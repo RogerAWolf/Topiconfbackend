@@ -39,14 +39,14 @@ public class Evenement {
 	public LocalDateTime getBeginTijd() {
 		return beginDatumTijd;
 	}
-	public void setBeginTijd(LocalDateTime beginTijd) {
-		this.beginDatumTijd = beginTijd;
+	public void setBeginTijd(LocalDateTime beginDatumTijd) {
+		this.beginDatumTijd = beginDatumTijd;
 	}
 	public LocalDateTime getEindTijd() {
 		return eindDatumTijd;
 	}
-	public void setEindTijd(LocalDateTime eindTijd) {
-		this.eindDatumTijd = eindTijd;
+	public void setEindTijd(LocalDateTime eindDatumTijd) {
+		this.eindDatumTijd = eindDatumTijd;
 	}
 	
 	
