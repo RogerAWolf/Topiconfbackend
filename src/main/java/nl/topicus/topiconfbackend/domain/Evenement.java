@@ -36,16 +36,16 @@ public class Evenement {
 	public void setOmschrijving(String omschrijving) {
 		this.omschrijving = omschrijving;
 	}
-	public LocalDateTime getBeginTijd() {
+	public LocalDateTime getBeginDatumTijd() {
 		return beginDatumTijd;
 	}
-	public void setBeginTijd(LocalDateTime beginDatumTijd) {
+	public void setBeginDatumTijd(LocalDateTime beginDatumTijd) {
 		this.beginDatumTijd = beginDatumTijd;
 	}
-	public LocalDateTime getEindTijd() {
+	public LocalDateTime getEindDatumTijd() {
 		return eindDatumTijd;
 	}
-	public void setEindTijd(LocalDateTime eindDatumTijd) {
+	public void setEindDatumTijd(LocalDateTime eindDatumTijd) {
 		this.eindDatumTijd = eindDatumTijd;
 	}
 	
