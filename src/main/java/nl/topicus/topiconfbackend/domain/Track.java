@@ -12,8 +12,8 @@ public class Track {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    String name;
-    String description;
+    private String name;
+    private String description;
 
     public long getId() {
         return id;
