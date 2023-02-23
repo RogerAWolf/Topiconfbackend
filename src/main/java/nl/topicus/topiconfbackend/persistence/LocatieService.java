@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class LocatieService {
 
     @Autowired
-    LocatieRepository locatieRepository;
+    private LocatieRepository locatieRepository;
 
     public Iterable<Locatie> geefAlleLocaties(){
         return locatieRepository.findAll();
