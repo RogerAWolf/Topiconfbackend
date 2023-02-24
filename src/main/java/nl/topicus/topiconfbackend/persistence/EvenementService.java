@@ -17,4 +17,8 @@ public class EvenementService {
 	public void slaEvenementOp(Evenement e1) {
 		er.save(e1);
 	}
+	
+	public void verwijderEvenement(long ID) {
+		er.deleteById(ID);;
+	}
 }
