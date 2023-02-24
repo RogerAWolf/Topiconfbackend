@@ -1,5 +1,7 @@
 package nl.topicus.topiconfbackend.persistence;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,13 @@ public class AanvraagService {
 
 	public Iterable<Aanvraag> bekijkAanvraag() {
 		return ar.findAll();
+	}
+	public Aanvraag findById(long id){
+		 return ar.findById(id).get();
+	}
+
+	public void delete(long id) {
+		ar.deleteById(id);
+		
 	}
 }
