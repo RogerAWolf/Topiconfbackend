@@ -1,6 +1,7 @@
 package nl.topicus.topiconfbackend.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +19,10 @@ public class RequestEndPoint {
 	//add request to database
 	 //fronted will make sure that all fields are filled
 	
-	
+	@CrossOrigin
 	@PostMapping("/postBody")
-	public void toevoegenAanvraag(@RequestBody Aanvraag aanvraag) {
-		as.toevoegenAanvraag(aanvraag);
+	public Aanvraag toevoegenAanvraag(@RequestBody Aanvraag aanvraag) {
+		return as.toevoegenAanvraag(aanvraag);
 	}
 	
 	@GetMapping("/getBody")
