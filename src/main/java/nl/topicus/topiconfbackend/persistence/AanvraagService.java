@@ -12,8 +12,8 @@ public class AanvraagService {
 	@Autowired
 	AanvraagRepository ar;
 
-	public void toevoegenAanvraag(Aanvraag aanvraag) {
-		ar.save(aanvraag);
+	public Aanvraag toevoegenAanvraag(Aanvraag aanvraag) {
+		return ar.save(aanvraag);
 		
 	}
 
