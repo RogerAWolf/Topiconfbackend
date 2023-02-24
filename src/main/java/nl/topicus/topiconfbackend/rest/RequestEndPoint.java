@@ -1,9 +1,13 @@
 package nl.topicus.topiconfbackend.rest;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +32,17 @@ public class RequestEndPoint {
 	@GetMapping("/getBody")
 	public Iterable<Aanvraag> bekijkenAanvraag() {
 		return as.bekijkAanvraag();
+	}
+	
+	//not able to use yet
+	@CrossOrigin
+	@PostMapping("/updateElementStatus/{id}/{status}")
+	public void selecterenEnUpdate(@PathVariable long id,@PathVariable String status) {
+		
+		Aanvraag a = as.findById(id);
+		a.setStatus(status);
+		//as.delete(id);
+		as.toevoegenAanvraag(a);
 	}
 	
 }

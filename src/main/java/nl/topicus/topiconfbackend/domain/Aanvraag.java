@@ -16,9 +16,16 @@ public class Aanvraag {
 	private String voornaam;
 	private String onderwerp;
 	private String eMail;
+	private String status = "ongemarkeerd";
 	
 	
 	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public long getId() {
 		return id;
 	}
