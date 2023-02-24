@@ -16,4 +16,8 @@ public class AanvraagService {
 		return ar.save(aanvraag);
 		
 	}
+
+	public Iterable<Aanvraag> bekijkAanvraag() {
+		return ar.findAll();
+	}
 }

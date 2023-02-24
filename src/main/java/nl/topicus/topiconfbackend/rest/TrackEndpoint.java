@@ -22,4 +22,10 @@ public class TrackEndpoint {
         System.out.println("create");
         trackService.slaTrackOp(track);
     }
+
+    @DeleteMapping("track/verwijderTrack/{trackid}")
+    public void verwijderTrack(@PathVariable("trackid") int trackid){
+        System.out.println("delete");
+        trackService.verwijderTrack(trackid);
+    }
 }
