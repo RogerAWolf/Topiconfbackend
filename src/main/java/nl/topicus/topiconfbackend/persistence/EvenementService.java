@@ -40,10 +40,10 @@ public class EvenementService {
 		return er.findById(eventid).get();
 	}
 
-	public void slaEvenementEnTrackOp(Evenement event, Track track){
+	public void slaEvenementEnTrackOp(Evenement event, Track track) {
 		tr.save(track);
 		event.getTrackList().add(track);
 		er.save(event);
-
 	}
+
 }
