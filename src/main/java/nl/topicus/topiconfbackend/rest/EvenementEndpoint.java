@@ -18,11 +18,23 @@ public class EvenementEndpoint {
 		return es.geefAlleEvenementen();
 	}
 
+	
+	@GetMapping("evenement/alleEvenementen/{eventid}")
+	public void aanvraagBekijken(@PathVariable("eventid") int eventid)
+	{
+		System.out.println("Redirect to event ID: " + eventid);
+		
+	}
+	
+	
+
+
 	@GetMapping("evenement/geefAlleTracksPerEvenement/{eventid}")
 	public Iterable<Track> geefAlleTracksPerEvenement(@PathVariable("eventid") int eventid){
 		Evenement event = es.findById(eventid);
 		return es.geefTracksPerEvenement(event);
 	}
+
 
 	@PostMapping("evenement/voegEvenementToe")
 	public void voegEvenementToe(@RequestBody Evenement e1) {
