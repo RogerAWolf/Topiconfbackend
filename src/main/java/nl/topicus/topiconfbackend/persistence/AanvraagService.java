@@ -14,8 +14,8 @@ public class AanvraagService {
 	@Autowired
 	AanvraagRepository ar;
 
-	public Aanvraag toevoegenAanvraag(Aanvraag aanvraag) {
-		return ar.save(aanvraag);
+	public void toevoegenAanvraag(Aanvraag aanvraag) {
+		ar.save(aanvraag);
 		
 	}
 
@@ -26,8 +26,4 @@ public class AanvraagService {
 		 return ar.findById(id).get();
 	}
 
-	public void delete(long id) {
-		ar.deleteById(id);
-		
-	}
 }
