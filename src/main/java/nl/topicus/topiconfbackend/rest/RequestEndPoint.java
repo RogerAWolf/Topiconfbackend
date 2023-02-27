@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.topicus.topiconfbackend.domain.Aanvraag;
@@ -25,8 +26,8 @@ public class RequestEndPoint {
 	
 	@CrossOrigin
 	@PostMapping("/postBody")
-	public Aanvraag toevoegenAanvraag(@RequestBody Aanvraag aanvraag) {
-		return as.toevoegenAanvraag(aanvraag);
+	public void toevoegenAanvraag(@RequestBody Aanvraag aanvraag) {
+		as.toevoegenAanvraag(aanvraag);
 	}
 	
 	@GetMapping("/getBody")
@@ -36,13 +37,17 @@ public class RequestEndPoint {
 	
 	//not able to use yet
 	@CrossOrigin
-	@PostMapping("/updateElementStatus/{id}/{status}")
-	public void selecterenEnUpdate(@PathVariable long id,@PathVariable String status) {
-		
-		Aanvraag a = as.findById(id);
-		a.setStatus(status);
-		//as.delete(id);
-		as.toevoegenAanvraag(a);
+	@PutMapping("/updateElementStatus/{id}")
+	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Aanvraag aanvraag) {
+		as.toevoegenAanvraag(aanvraag);
 	}
+	
+	
+	@CrossOrigin
+	@GetMapping("/getElement/{id}")
+	public Aanvraag getById(@PathVariable long id){
+		return as.findById(id);
+	}
+	
 	
 }
