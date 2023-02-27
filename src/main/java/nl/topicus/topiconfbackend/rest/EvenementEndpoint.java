@@ -17,19 +17,27 @@ public class EvenementEndpoint {
 	@Autowired
 	EvenementService es;
 	
-	@GetMapping("event/alleEvenementen")
+	@GetMapping("evenement/alleEvenementen")
 	public Iterable<Evenement> alleEvenementen() {
 		System.out.println("Alle evenementen opgehaald");
 		return es.geefAlleEvenementen();
 	}
 	
-	@PostMapping("event/voegEvenementToe")
+	@GetMapping("evenement/alleEvenementen/{eventid}")
+	public void aanvraagBekijken(@PathVariable("eventid") int eventid)
+	{
+		System.out.println("Redirect to event ID: " + eventid);
+		
+	}
+	
+	
+	@PostMapping("evenement/voegEvenementToe")
 	public void voegEvenementToe(@RequestBody Evenement e1) {
 		System.out.println("Evenement opgeslagen");
 		es.slaEvenementOp(e1);
 	}
 	
-	@DeleteMapping("event/verwijderEvent/{eventid}")
+	@DeleteMapping("evenement/verwijderEvent/{eventid}")
 	public void verwijderEvent(@PathVariable("eventid") int eventid) {
 		System.out.println("Evenement verwijderd");
 		es.verwijderEvenement(eventid);
