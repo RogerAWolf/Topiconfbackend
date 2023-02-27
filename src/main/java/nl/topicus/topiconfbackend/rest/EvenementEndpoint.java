@@ -1,5 +1,6 @@
 package nl.topicus.topiconfbackend.rest;
 
+import nl.topicus.topiconfbackend.domain.Locatie;
 import nl.topicus.topiconfbackend.domain.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,17 @@ public class EvenementEndpoint {
 		return es.geefTracksPerEvenement(event);
 	}
 
+	@GetMapping("evenement/geefAlleLocatiesPerEvenement/{eventid}")
+	public Iterable<Locatie> geefAlleLocatiesPerEvenement(@PathVariable("eventid") int eventid){
+		Evenement event = es.findById(eventid);
+		return es.geefLocatiesPerEvenement(event);
+	}
+
+	@GetMapping("evenement/geefEvenement/{eventid}")
+	public Evenement geefEvenement(@PathVariable("eventid") int eventid){
+		return es.findById(eventid);
+	}
+
 
 	@PostMapping("evenement/voegEvenementToe")
 	public void voegEvenementToe(@RequestBody Evenement e1) {
@@ -47,6 +59,12 @@ public class EvenementEndpoint {
 	public void voegTrackAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Track track){
 		Evenement event = es.findById(eventid);
 		es.slaEvenementEnTrackOp(event, track);
+	}
+
+	@PostMapping("evenement/voegLocatieAanEvenementToe/{eventid}")
+	public void voegLocatieAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Locatie locatie){
+		Evenement event = es.findById(eventid);
+		es.slaEvenementEnLocatieOp(event, locatie);
 	}
 
 	
