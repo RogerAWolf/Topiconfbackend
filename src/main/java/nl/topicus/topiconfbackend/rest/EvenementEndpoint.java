@@ -3,7 +3,6 @@ package nl.topicus.topiconfbackend.rest;
 import nl.topicus.topiconfbackend.domain.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.persistence.EvenementService;
 
@@ -12,9 +11,10 @@ public class EvenementEndpoint {
 
 	@Autowired
 	EvenementService es;
-	
+
 	@GetMapping("evenement/alleEvenementen")
 	public Iterable<Evenement> alleEvenementen() {
+		System.out.println("Alle evenementen opgehaald");
 		return es.geefAlleEvenementen();
 	}
 
@@ -23,9 +23,10 @@ public class EvenementEndpoint {
 		Evenement event = es.findById(eventid);
 		return es.geefTracksPerEvenement(event);
 	}
-	
+
 	@PostMapping("evenement/voegEvenementToe")
 	public void voegEvenementToe(@RequestBody Evenement e1) {
+		System.out.println("Evenement opgeslagen");
 		es.slaEvenementOp(e1);
 	}
 
@@ -35,5 +36,10 @@ public class EvenementEndpoint {
 		es.slaEvenementEnTrackOp(event, track);
 	}
 
-
+	
+	@DeleteMapping("evenement/verwijderEvent/{eventid}")
+	public void verwijderEvent(@PathVariable("eventid") int eventid) {
+		System.out.println("Evenement verwijderd");
+		es.verwijderEvenement(eventid);
+	}
 }
