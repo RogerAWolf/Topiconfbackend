@@ -13,6 +13,8 @@ public class Evenement {
 
 	@OneToMany
 	private List<Track> trackList;
+	@OneToMany
+	private List<Aanvraag> aanvraagList;
 
 	private String naam;
 	private String omschrijving;
@@ -56,5 +58,11 @@ public class Evenement {
 
 	public void setTrackList(List<Track> trackList) {
 		this.trackList = trackList;
+	}
+	public List<Aanvraag> getAanvraagList() {
+		return aanvraagList;
+	}
+	public void setAanvraagList(List<Aanvraag> aanvraagList) {
+		this.aanvraagList = aanvraagList;
 	}
 }
