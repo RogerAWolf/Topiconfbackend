@@ -16,6 +16,17 @@ public class Evenement {
 	@OneToMany
 	private List<Aanvraag> aanvraagList;
 
+	public List<Locatie> getLocatieLijst() {
+		return locatieLijst;
+	}
+
+	public void setLocatieLijst(List<Locatie> locatieLijst) {
+		this.locatieLijst = locatieLijst;
+	}
+
+	@OneToMany
+	private List<Locatie> locatieLijst;
+
 	private String naam;
 	private String omschrijving;
 	private LocalDateTime beginDatumTijd;
