@@ -23,6 +23,21 @@ public class LocatieServiceIT {
     }
 
     @Test
+    public void testGeefAlleLocaties() {
+        // To be programmed
+    }
+
+    @Test
+    public void testSlaLocatieOp() {
+        // To be programmed
+    }
+
+    @Test
+    public void testVerweijderLocatie() {
+        // To be programmed
+    }
+
+    @Test
     public void testFindById() {
 
         // Given

@@ -39,4 +39,33 @@ public class LocatieEndpointIT {
         // Get en Delete testen hieronder nog toevoegen
 
     }
+
+    @Test
+    @Order(2)
+    public void testGet() {
+
+        // Given
+
+
+        // When
+
+
+        // Then
+
+    }
+
+    @Test
+    @Order(3)
+    public void testDelete() {
+
+        // Given
+
+
+        // When
+
+
+        // Then
+
+    }
+
 }
