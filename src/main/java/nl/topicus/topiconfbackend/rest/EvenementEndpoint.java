@@ -20,16 +20,6 @@ public class EvenementEndpoint {
 		System.out.println("Alle evenementen opgehaald");
 		return es.geefAlleEvenementen();
 	}
-
-	
-	@GetMapping("evenement/alleEvenementen/{eventid}")
-	public Iterable<Voorstel> aanvraagBekijken(@PathVariable("eventid") int eventid)
-	{
-		System.out.println("Redirect to event ID: " + eventid);
-		Evenement event = es.findById(eventid);
-		return es.geefAlleAanvragen(event);
-	}
-	
 	
 	@GetMapping("evenement/geefAlleTracksPerEvenement/{eventid}")
 	public Iterable<Track> geefAlleTracksPerEvenement(@PathVariable("eventid") int eventid){
@@ -41,6 +31,12 @@ public class EvenementEndpoint {
 	public Iterable<Locatie> geefAlleLocatiesPerEvenement(@PathVariable("eventid") int eventid){
 		Evenement event = es.findById(eventid);
 		return es.geefLocatiesPerEvenement(event);
+	}
+	
+	@GetMapping("evenement/geefAlleVoorstellenPerEvenement/{eventid}")
+	public Iterable<Voorstel> geefAlleVoorstellenPerEvenement(@PathVariable("eventid") int eventid){
+		Evenement event = es.findById(eventid);
+		return es.geefVoorstellenPerEvenement(event);
 	}
 
 	@GetMapping("evenement/geefEvenement/{eventid}")
