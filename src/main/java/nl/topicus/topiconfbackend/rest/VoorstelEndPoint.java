@@ -26,7 +26,7 @@ public class VoorstelEndPoint {
 	
 	@CrossOrigin
 	@PostMapping("/postBody")
-	public void toevoegenAanvraag(@RequestBody Voorstel voorstel) {
+	public void toevoegenVoorstel(@RequestBody Voorstel voorstel) {
 		as.toevoegenVoorstel(voorstel);
 	}
 	
