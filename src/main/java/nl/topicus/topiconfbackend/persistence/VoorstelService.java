@@ -5,24 +5,24 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nl.topicus.topiconfbackend.domain.Aanvraag;
+import nl.topicus.topiconfbackend.domain.Voorstel;
 
 @Service
-public class AanvraagService {
+public class VoorstelService {
 
 	
 	@Autowired
-	AanvraagRepository ar;
+	VoorstelRepository ar;
 
-	public void toevoegenAanvraag(Aanvraag aanvraag) {
-		ar.save(aanvraag);
+	public void toevoegenVoorstel(Voorstel voorstel) {
+		ar.save(voorstel);
 		
 	}
 
-	public Iterable<Aanvraag> bekijkAanvraag() {
+	public Iterable<Voorstel> bekijkVoorstel() {
 		return ar.findAll();
 	}
-	public Aanvraag findById(long id){
+	public Voorstel findById(long id){
 		 return ar.findById(id).get();
 	}
 

@@ -5,7 +5,7 @@ import nl.topicus.topiconfbackend.domain.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import nl.topicus.topiconfbackend.domain.Aanvraag;
+import nl.topicus.topiconfbackend.domain.Voorstel;
 import nl.topicus.topiconfbackend.domain.Evenement;
 
 @Service
@@ -27,7 +27,7 @@ public class EvenementService {
 		er.save(e1);
 	}
 
-	public Iterable<Aanvraag> geefAlleAanvragen(Evenement evenement)
+	public Iterable<Voorstel> geefAlleAanvragen(Evenement evenement)
 	{
 		return evenement.getAanvraagList();
 	}
