@@ -5,7 +5,7 @@ import nl.topicus.topiconfbackend.domain.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import nl.topicus.topiconfbackend.domain.Aanvraag;
+import nl.topicus.topiconfbackend.domain.Voorstel;
 import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.persistence.EvenementService;
 
@@ -23,7 +23,7 @@ public class EvenementEndpoint {
 
 	
 	@GetMapping("evenement/alleEvenementen/{eventid}")
-	public Iterable<Aanvraag> aanvraagBekijken(@PathVariable("eventid") int eventid)
+	public Iterable<Voorstel> aanvraagBekijken(@PathVariable("eventid") int eventid)
 	{
 		System.out.println("Redirect to event ID: " + eventid);
 		Evenement event = es.findById(eventid);
