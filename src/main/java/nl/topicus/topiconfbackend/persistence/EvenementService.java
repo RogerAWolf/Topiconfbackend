@@ -19,6 +19,9 @@ public class EvenementService {
 	@Autowired
 	LocatieRepository lr;
 	
+	@Autowired
+	VoorstelRepository vr;
+	
 	public Iterable<Evenement> geefAlleEvenementen() {
 		return er.findAll();
 	}
@@ -56,6 +59,12 @@ public class EvenementService {
 	public void slaEvenementEnLocatieOp(Evenement event, Locatie locatie) {
 		lr.save(locatie);
 		event.getLocatieLijst().add(locatie);
+		er.save(event);
+	}
+
+	public void slaEvenementEnVoorstelOp(Evenement event, Voorstel voorstel) {
+		vr.save(voorstel);
+		event.getVoorstelList().add(voorstel);
 		er.save(event);
 	}
 
