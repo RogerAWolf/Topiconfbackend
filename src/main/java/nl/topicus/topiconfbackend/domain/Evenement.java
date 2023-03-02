@@ -14,7 +14,7 @@ public class Evenement {
 	@OneToMany
 	private List<Track> trackList;
 	@OneToMany
-	private List<Voorstel> aanvraagList;
+	private List<Voorstel> voorstelList;
 
 	@OneToMany
 	private List<Locatie> locatieLijst;
@@ -59,11 +59,11 @@ public class Evenement {
 	public void setTrackList(List<Track> trackList) {
 		this.trackList = trackList;
 	}
-	public List<Voorstel> getAanvraagList() {
-		return aanvraagList;
+	public List<Voorstel> getVoorstelList() {
+		return voorstelList;
 	}
-	public void setAanvraagList(List<Voorstel> aanvraagList) {
-		this.aanvraagList = aanvraagList;
+	public void setVoorstelList(List<Voorstel> voorstelList) {
+		this.voorstelList = voorstelList;
 	}
 	public List<Locatie> getLocatieLijst() {
 		return locatieLijst;

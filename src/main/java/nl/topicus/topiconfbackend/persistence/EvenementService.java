@@ -27,19 +27,18 @@ public class EvenementService {
 		er.save(e1);
 	}
 
-	public Iterable<Voorstel> geefAlleAanvragen(Evenement evenement)
-	{
-		return evenement.getAanvraagList();
+	public Iterable<Voorstel> geefVoorstellenPerEvenement(Evenement evenement) {
+		return evenement.getVoorstelList();
 	}
 
 	public Iterable<Track> geefTracksPerEvenement(Evenement evenement){
 		return evenement.getTrackList();
 	}
 
-	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) { return evenement.getLocatieLijst(); }
-
-
-
+	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) { 
+		return evenement.getLocatieLijst(); 
+	}
+	
 	public void verwijderEvenement(long eventid){
 		er.deleteById(eventid);
 	}
