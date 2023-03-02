@@ -19,7 +19,6 @@ public class Voorstel {
 	private String status = "ongemarkeerd";
 	
 	
-	
 	public String getStatus() {
 		return status;
 	}
