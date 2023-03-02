@@ -14,19 +14,10 @@ public class Evenement {
 	@OneToMany
 	private List<Track> trackList;
 	@OneToMany
-	private List<Aanvraag> aanvraagList;
-
-	public List<Locatie> getLocatieLijst() {
-		return locatieLijst;
-	}
-
-	public void setLocatieLijst(List<Locatie> locatieLijst) {
-		this.locatieLijst = locatieLijst;
-	}
+	private List<Voorstel> aanvraagList;
 
 	@OneToMany
 	private List<Locatie> locatieLijst;
-
 	private String naam;
 	private String omschrijving;
 	private LocalDateTime beginDatumTijd;
@@ -62,18 +53,22 @@ public class Evenement {
 	public void setEindDatumTijd(LocalDateTime eindDatumTijd) {
 		this.eindDatumTijd = eindDatumTijd;
 	}
-
 	public List<Track> getTrackList() {
 		return trackList;
 	}
-
 	public void setTrackList(List<Track> trackList) {
 		this.trackList = trackList;
 	}
-	public List<Aanvraag> getAanvraagList() {
+	public List<Voorstel> getAanvraagList() {
 		return aanvraagList;
 	}
-	public void setAanvraagList(List<Aanvraag> aanvraagList) {
+	public void setAanvraagList(List<Voorstel> aanvraagList) {
 		this.aanvraagList = aanvraagList;
+	}
+	public List<Locatie> getLocatieLijst() {
+		return locatieLijst;
+	}
+	public void setLocatieLijst(List<Locatie> locatieLijst) {
+		this.locatieLijst = locatieLijst;
 	}
 }
