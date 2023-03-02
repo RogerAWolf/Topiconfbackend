@@ -4,7 +4,6 @@ import nl.topicus.topiconfbackend.domain.Aanvraag;
 import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.domain.Locatie;
 import nl.topicus.topiconfbackend.domain.Track;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,9 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Value;
-
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
