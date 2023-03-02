@@ -18,6 +18,7 @@ public class LocatieServiceIT {
     @Mock
     private LocatieRepository locatieRepository;
 
+    // Constructor
     public LocatieServiceIT() {
         MockitoAnnotations.openMocks(this);
     }
@@ -43,10 +44,12 @@ public class LocatieServiceIT {
         // Given
         Locatie mockedLocatie = new Locatie();
         mockedLocatie.setId(1L);
-        mockedLocatie.setName("Rudi");
+        mockedLocatie.setName("Tropicana");
         mockedLocatie.setDescription("Een mooie rustgevende locatie");
         mockedLocatie.setCapacity("100 Personen");
+
         Optional<Locatie> myLocatie = Optional.of(mockedLocatie);
+
         Mockito.when(this.locatieRepository.findById(1L)).thenReturn(myLocatie);
 
         // When
@@ -55,7 +58,7 @@ public class LocatieServiceIT {
         // Then
         assertNotNull(locatieFromService);
         assertEquals(1L, locatieFromService.getId());
-        assertEquals("Rudi", locatieFromService.getName());
+        assertEquals("Tropicana", locatieFromService.getName());
         assertEquals("Een mooie rustgevende locatie", locatieFromService.getDescription());
         assertEquals("100 Personen", locatieFromService.getCapacity());
 
