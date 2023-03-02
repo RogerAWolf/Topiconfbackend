@@ -18,10 +18,10 @@ public class VoorstelUnitTest {
 	@Test
     public void testVoorstelNaam() {
         Voorstel voorstel = new Voorstel();
-        voorstel.setNaam("John");
-        voorstel.setVoornaam("Doe");
-        assertEquals("John", voorstel.getNaam());
-        assertEquals("Doe", voorstel.getVoornaam());
+        voorstel.setNaam("Naam");
+        voorstel.setVoornaam("Achternaam");
+        assertEquals("Naam", voorstel.getNaam());
+        assertEquals("Achternaam", voorstel.getVoornaam());
     }
     
     @Test
@@ -34,8 +34,8 @@ public class VoorstelUnitTest {
     @Test
     public void testAanvraagEmail() {
     	Voorstel voorstel = new Voorstel();
-    	voorstel.seteMail("john.joe@example.com");
-    	assertEquals("john.joe@example.com", voorstel.geteMail());
+    	voorstel.seteMail("naam.achternaam@example.com");
+    	assertEquals("naam.achternaam@example.com", voorstel.geteMail());
     }
     
     
