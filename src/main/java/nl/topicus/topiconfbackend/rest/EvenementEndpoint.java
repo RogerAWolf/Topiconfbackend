@@ -62,7 +62,12 @@ public class EvenementEndpoint {
 		Evenement event = es.findById(eventid);
 		es.slaEvenementEnLocatieOp(event, locatie);
 	}
-
+	
+	@PostMapping("evenement/voegVoorstelAanEvenementToe/{eventid}")
+	public void voegVoorstelAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Voorstel voorstel){
+		Evenement event = es.findById(eventid);
+		es.slaEvenementEnVoorstelOp(event, voorstel);
+	}
 	
 	@DeleteMapping("evenement/verwijderEvent/{eventid}")
 	public void verwijderEvent(@PathVariable("eventid") int eventid) {
