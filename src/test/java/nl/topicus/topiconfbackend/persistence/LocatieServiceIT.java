@@ -2,6 +2,8 @@ package nl.topicus.topiconfbackend.persistence;
 
 import nl.topicus.topiconfbackend.domain.Locatie;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -18,8 +20,34 @@ public class LocatieServiceIT {
     @Mock
     private LocatieRepository locatieRepository;
 
+    // Constructor
     public LocatieServiceIT() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    @Test
+    public void testGeefAlleLocaties() {
+        // To be programmed
+    }
+
+    @Test
+    public void testSlaLocatieOp() {
+        // To be programmed
+    }
+
+    @ParameterizedTest
+    @ValueSource(longs = -10L)
+    public void testVerwijderLocatie(long locatieID) {
+        // When
+        Boolean isVerwijderd = this.locatieService.verwijderLocatie(locatieID);
+
+        // Then
+        // in case given ID parameter is a negative value
+        assertEquals(isVerwijderd, false);
+        // in case ID can't be found at all
+        assertEquals(locatieService.verwijderLocatie(15L), false);
+        // in case ID is found and deleted
+        Mockito.when(this.locatieService.verwijderLocatie(-10L)).thenReturn(true);
     }
 
     @Test
@@ -28,10 +56,12 @@ public class LocatieServiceIT {
         // Given
         Locatie mockedLocatie = new Locatie();
         mockedLocatie.setId(1L);
-        mockedLocatie.setName("Rudi");
+        mockedLocatie.setName("Tropicana");
         mockedLocatie.setDescription("Een mooie rustgevende locatie");
         mockedLocatie.setCapacity("100 Personen");
+
         Optional<Locatie> myLocatie = Optional.of(mockedLocatie);
+
         Mockito.when(this.locatieRepository.findById(1L)).thenReturn(myLocatie);
 
         // When
@@ -40,7 +70,7 @@ public class LocatieServiceIT {
         // Then
         assertNotNull(locatieFromService);
         assertEquals(1L, locatieFromService.getId());
-        assertEquals("Rudi", locatieFromService.getName());
+        assertEquals("Tropicana", locatieFromService.getName());
         assertEquals("Een mooie rustgevende locatie", locatieFromService.getDescription());
         assertEquals("100 Personen", locatieFromService.getCapacity());
 

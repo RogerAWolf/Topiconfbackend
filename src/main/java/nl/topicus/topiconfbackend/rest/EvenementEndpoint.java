@@ -1,8 +1,11 @@
 package nl.topicus.topiconfbackend.rest;
 
+import nl.topicus.topiconfbackend.domain.Locatie;
 import nl.topicus.topiconfbackend.domain.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import nl.topicus.topiconfbackend.domain.Voorstel;
 import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.persistence.EvenementService;
 
@@ -17,22 +20,28 @@ public class EvenementEndpoint {
 		System.out.println("Alle evenementen opgehaald");
 		return es.geefAlleEvenementen();
 	}
-
 	
-	@GetMapping("evenement/alleEvenementen/{eventid}")
-	public void aanvraagBekijken(@PathVariable("eventid") int eventid)
-	{
-		System.out.println("Redirect to event ID: " + eventid);
-		
-	}
-	
-	
-
-
 	@GetMapping("evenement/geefAlleTracksPerEvenement/{eventid}")
 	public Iterable<Track> geefAlleTracksPerEvenement(@PathVariable("eventid") int eventid){
 		Evenement event = es.findById(eventid);
 		return es.geefTracksPerEvenement(event);
+	}
+
+	@GetMapping("evenement/geefAlleLocatiesPerEvenement/{eventid}")
+	public Iterable<Locatie> geefAlleLocatiesPerEvenement(@PathVariable("eventid") int eventid){
+		Evenement event = es.findById(eventid);
+		return es.geefLocatiesPerEvenement(event);
+	}
+	
+	@GetMapping("evenement/geefAlleVoorstellenPerEvenement/{eventid}")
+	public Iterable<Voorstel> geefAlleVoorstellenPerEvenement(@PathVariable("eventid") int eventid){
+		Evenement event = es.findById(eventid);
+		return es.geefVoorstellenPerEvenement(event);
+	}
+
+	@GetMapping("evenement/geefEvenement/{eventid}")
+	public Evenement geefEvenement(@PathVariable("eventid") int eventid){
+		return es.findById(eventid);
 	}
 
 
@@ -48,6 +57,17 @@ public class EvenementEndpoint {
 		es.slaEvenementEnTrackOp(event, track);
 	}
 
+	@PostMapping("evenement/voegLocatieAanEvenementToe/{eventid}")
+	public void voegLocatieAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Locatie locatie){
+		Evenement event = es.findById(eventid);
+		es.slaEvenementEnLocatieOp(event, locatie);
+	}
+	
+	@PostMapping("evenement/voegVoorstelAanEvenementToe/{eventid}")
+	public void voegVoorstelAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Voorstel voorstel){
+		Evenement event = es.findById(eventid);
+		es.slaEvenementEnVoorstelOp(event, voorstel);
+	}
 	
 	@DeleteMapping("evenement/verwijderEvent/{eventid}")
 	public void verwijderEvent(@PathVariable("eventid") int eventid) {

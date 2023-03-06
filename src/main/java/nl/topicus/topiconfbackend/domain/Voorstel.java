@@ -6,18 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Aanvraag {
+public class Voorstel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String naam;
 	private String voornaam;
+	private String achternaam;
 	private String onderwerp;
 	private String eMail;
 	private String status = "ongemarkeerd";
-	
 	
 	
 	public String getStatus() {
@@ -32,17 +31,17 @@ public class Aanvraag {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getNaam() {
-		return naam;
-	}
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
 	public String getVoornaam() {
 		return voornaam;
 	}
 	public void setVoornaam(String voornaam) {
 		this.voornaam = voornaam;
+	}
+	public String getAchternaam() {
+		return achternaam;
+	}
+	public void setAchternaam(String achternaam) {
+		this.achternaam = achternaam;
 	}
 	public String getOnderwerp() {
 		return onderwerp;
@@ -58,3 +57,5 @@ public class Aanvraag {
 	}
 	
 }
+
+//Test comment
