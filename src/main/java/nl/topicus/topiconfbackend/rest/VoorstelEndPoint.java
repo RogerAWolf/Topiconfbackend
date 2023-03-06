@@ -12,40 +12,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.topicus.topiconfbackend.domain.Aanvraag;
-import nl.topicus.topiconfbackend.persistence.AanvraagService;
+import nl.topicus.topiconfbackend.domain.Voorstel;
+import nl.topicus.topiconfbackend.persistence.VoorstelService;
 
 @RestController
-public class RequestEndPoint {
+public class VoorstelEndPoint {
 
 	@Autowired
-	AanvraagService as;
+	VoorstelService as;
 	
 	//add request to database
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
 	@PostMapping("/postBody")
-	public void toevoegenAanvraag(@RequestBody Aanvraag aanvraag) {
-		as.toevoegenAanvraag(aanvraag);
+	public void toevoegenVoorstel(@RequestBody Voorstel voorstel) {
+		as.toevoegenVoorstel(voorstel);
 	}
 	
 	@GetMapping("/getBody")
-	public Iterable<Aanvraag> bekijkenAanvraag() {
-		return as.bekijkAanvraag();
+	public Iterable<Voorstel> bekijkenVoorstel() {
+		return as.bekijkVoorstel();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
 	@PutMapping("/updateElementStatus/{id}")
-	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Aanvraag aanvraag) {
-		as.toevoegenAanvraag(aanvraag);
+	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Voorstel voorstel) {
+		as.toevoegenVoorstel(voorstel);
 	}
 	
 	
 	@CrossOrigin
 	@GetMapping("/getElement/{id}")
-	public Aanvraag getById(@PathVariable long id){
+	public Voorstel getById(@PathVariable long id){
 		return as.findById(id);
 	}
 	
