@@ -10,16 +10,24 @@ public class LocatieService {
     @Autowired
     private LocatieRepository locatieRepository;
 
-    public Iterable<Locatie> geefAlleLocaties(){
+    public Iterable<Locatie> geefAlleLocaties() {
         return locatieRepository.findAll();
     }
 
-    public void slaLocatieOp(Locatie locatie){
+    public void slaLocatieOp(Locatie locatie) {
         locatieRepository.save(locatie);
     }
 
-    public void verwijderLocatie(long locatieid) {
-        locatieRepository.deleteById(locatieid);
+    public Boolean verwijderLocatie(long locatieid) {
+        if (locatieid < 0) {
+            return false;
+        }
+        if (locatieRepository.existsById(locatieid)) {
+            locatieRepository.deleteById(locatieid);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Locatie findById(long id) {
