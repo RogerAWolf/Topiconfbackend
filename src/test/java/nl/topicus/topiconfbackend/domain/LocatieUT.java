@@ -3,12 +3,12 @@ package nl.topicus.topiconfbackend.domain;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LocatieIT {
+public class LocatieUT {
 
     private  Locatie locatie;
 
     // This constructor is invoked every time @Test annotated method is run
-    public LocatieIT() {
+    public LocatieUT() {
         this.locatie = new Locatie();
     }
 
