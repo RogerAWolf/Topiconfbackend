@@ -9,19 +9,23 @@ import nl.topicus.topiconfbackend.domain.Voorstel;
 public class VoorstelService {
 
 	@Autowired
-	VoorstelRepository ar;
+	VoorstelRepository vr;
 
 	public void toevoegenVoorstel(Voorstel voorstel) {
-		ar.save(voorstel);
+		vr.save(voorstel);
 		
 	}
 
 	public Iterable<Voorstel> bekijkVoorstel() {
-		return ar.findAll();
+		return vr.findAll();
 	}
 
 	public Voorstel findById(long id){
 
-		 return ar.findById(id).get();
+		 return vr.findById(id).get();
+	}
+
+	public void linkTrackAanVoorstel(){
+
 	}
 }

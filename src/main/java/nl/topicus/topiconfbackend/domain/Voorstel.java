@@ -1,9 +1,6 @@
 package nl.topicus.topiconfbackend.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Voorstel {
@@ -11,14 +8,24 @@ public class Voorstel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	@OneToOne
+	private Track track;
+
 	private String voornaam;
 	private String achternaam;
 	private String onderwerp;
 	private String eMail;
 	private String status = "ongemarkeerd";
-	
-	
+
+	public Track getTrack() {
+		return track;
+	}
+
+	public void setTrack(Track track) {
+		this.track = track;
+	}
+
 	public String getStatus() {
 		return status;
 	}
