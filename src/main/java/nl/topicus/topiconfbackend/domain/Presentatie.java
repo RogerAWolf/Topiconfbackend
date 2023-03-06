@@ -17,10 +17,10 @@ public class Presentatie {
 	
 	@OneToMany
 	private List<Spreker> sprekerList;
+
 	@OneToMany 
 	private List<Track> trackList;
-	
-	@OneToMany
+
 	private String onderwerp;
 	private String samenvatting;
 	private int tijdsduur;
