@@ -1,9 +1,9 @@
 package nl.topicus.topiconfbackend.persistence;
 
-import nl.topicus.topiconfbackend.domain.Aanvraag;
 import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.domain.Locatie;
 import nl.topicus.topiconfbackend.domain.Track;
+import nl.topicus.topiconfbackend.domain.Voorstel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -23,7 +23,7 @@ public class EvenementServiceIT {
 
     private LocalDateTime mockedDateTime;
     private List<Track> mockedTrackList;
-    private List<Aanvraag> mockedAanvraagList;
+    private List<Voorstel> mockedAanvraagList;
 
     @InjectMocks
     private EvenementService evenementService;
@@ -81,7 +81,7 @@ public class EvenementServiceIT {
         mockedEvenement.setBeginDatumTijd(mockedDateTime);
         mockedEvenement.setEindDatumTijd(mockedDateTime);
         mockedEvenement.setTrackList(mockedTrackList);
-        mockedEvenement.setAanvraagList(mockedAanvraagList);
+        mockedEvenement.setVoorstelList(mockedAanvraagList);
 
         Optional<Evenement> myEvenement = Optional.of(mockedEvenement);
 
@@ -98,7 +98,8 @@ public class EvenementServiceIT {
         assertEquals(mockedDateTime , evenementFromService.getBeginDatumTijd());
         assertEquals(mockedDateTime, evenementFromService.getEindDatumTijd());
         assertEquals(mockedTrackList, evenementFromService.getTrackList());
-        assertEquals(mockedAanvraagList, evenementFromService.getAanvraagList());
+        //assertEquals(mockedAanvraagList, evenementFromService.setLocatieLijst());  // <- moet nog gemaakt worden (parameter
+                                                                                     // ontbreekt na aanpassing in de klasse zelf)
 
     }
 

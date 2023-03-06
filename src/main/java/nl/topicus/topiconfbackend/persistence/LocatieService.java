@@ -18,15 +18,15 @@ public class LocatieService {
         locatieRepository.save(locatie);
     }
 
-    public String verwijderLocatie(long locatieid) {
+    public Boolean verwijderLocatie(long locatieid) {
         if (locatieid < 0) {
-            return "U mag alleen een positieve waarde invullen";
+            return false;
         }
         if (locatieRepository.existsById(locatieid)) {
             locatieRepository.deleteById(locatieid);
-            return "verwijderd";
+            return true;
         } else {
-            return "Kan niet gevonden worden";
+            return false;
         }
     }
 

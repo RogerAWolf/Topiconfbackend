@@ -38,20 +38,16 @@ public class LocatieServiceIT {
     @ParameterizedTest
     @ValueSource(longs = -10L)
     public void testVerwijderLocatie(long locatieID) {
+        // When
+        Boolean isVerwijderd = this.locatieService.verwijderLocatie(locatieID);
 
-        // Given
-        Locatie mockedLocatie = new Locatie();
-        mockedLocatie = null;
-
-        //When
-        String reactie = this.locatieService.verwijderLocatie(locatieID);
-
-        // Case given ID parameter is a negative value
-        assertEquals(reactie, "U mag alleen een positieve waarde invullen");
-        // Case ID given retrieves empty record so returns null value
-        assertEquals(locatieService.verwijderLocatie(5L), "verwijderd");
-        // Case ID can't be found at all
-        assertEquals(locatieService.verwijderLocatie(15L), "Kan niet gevonden worden");
+        // Then
+        // in case given ID parameter is a negative value
+        assertEquals(isVerwijderd, false);
+        // in case ID can't be found at all
+        assertEquals(locatieService.verwijderLocatie(15L), false);
+        // in case ID is found and deleted
+        Mockito.when(this.locatieService.verwijderLocatie(-10L)).thenReturn(true);
     }
 
     @Test

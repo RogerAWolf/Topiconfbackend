@@ -60,11 +60,11 @@ public class EvenementUT {
 
     @Test
     public void testGetAndSetAanvraagList() {
-        List<Aanvraag> testAanvraagList = new ArrayList<>();
-        Aanvraag testAanvraag = new Aanvraag();
+        List<Voorstel> testAanvraagList = new ArrayList<>();
+        Voorstel testAanvraag = new Voorstel();
         testAanvraagList.add(testAanvraag);
 
-        evenement.setAanvraagList(testAanvraagList);
-        assertEquals(testAanvraagList, evenement.getAanvraagList());
+        evenement.setVoorstelList(testAanvraagList);
+        assertEquals(testAanvraagList, evenement.getVoorstelList());
     }
 }
