@@ -46,7 +46,7 @@ public class LocatieServiceIT {
         assertEquals(isVerwijderd, false);
         // in case ID can't be found at all
         assertEquals(locatieService.verwijderLocatie(15L), false);
-        // in case ID is found and deleted
+        // in case ID is found and record is removed
         Mockito.when(this.locatieService.verwijderLocatie(-10L)).thenReturn(true);
     }
 
