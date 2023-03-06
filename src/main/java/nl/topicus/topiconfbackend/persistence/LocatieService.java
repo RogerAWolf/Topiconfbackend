@@ -10,16 +10,24 @@ public class LocatieService {
     @Autowired
     private LocatieRepository locatieRepository;
 
-    public Iterable<Locatie> geefAlleLocaties(){
+    public Iterable<Locatie> geefAlleLocaties() {
         return locatieRepository.findAll();
     }
 
-    public void slaLocatieOp(Locatie locatie){
+    public void slaLocatieOp(Locatie locatie) {
         locatieRepository.save(locatie);
     }
 
-    public void verwijderLocatie(long locatieid) {
-        locatieRepository.deleteById(locatieid);
+    public String verwijderLocatie(long locatieid) {
+        if (locatieid < 0) {
+            return "U mag alleen een positieve waarde invullen";
+        }
+        if (locatieRepository.existsById(locatieid)) {
+            locatieRepository.deleteById(locatieid);
+            return "verwijderd";
+        } else {
+            return "Kan niet gevonden worden";
+        }
     }
 
     public Locatie findById(long id) {

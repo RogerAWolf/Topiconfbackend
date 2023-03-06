@@ -2,6 +2,8 @@ package nl.topicus.topiconfbackend.persistence;
 
 import nl.topicus.topiconfbackend.domain.Locatie;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -33,9 +35,23 @@ public class LocatieServiceIT {
         // To be programmed
     }
 
-    @Test
-    public void testVerweijderLocatie() {
-        // To be programmed
+    @ParameterizedTest
+    @ValueSource(longs = -10L)
+    public void testVerwijderLocatie(long locatieID) {
+
+        // Given
+        Locatie mockedLocatie = new Locatie();
+        mockedLocatie = null;
+
+        //When
+        String reactie = this.locatieService.verwijderLocatie(locatieID);
+
+        // Case given ID parameter is a negative value
+        assertEquals(reactie, "U mag alleen een positieve waarde invullen");
+        // Case ID given retrieves empty record so returns null value
+        assertEquals(locatieService.verwijderLocatie(5L), "verwijderd");
+        // Case ID can't be found at all
+        assertEquals(locatieService.verwijderLocatie(15L), "Kan niet gevonden worden");
     }
 
     @Test

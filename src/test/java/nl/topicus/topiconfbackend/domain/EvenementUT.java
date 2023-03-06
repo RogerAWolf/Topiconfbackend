@@ -7,12 +7,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EvenementIT {
+public class EvenementUT {
 
     private Evenement evenement;
 
     // This constructor is invoked every time @Test annotated method is run
-    public EvenementIT() {
+    public EvenementUT() {
         this.evenement = new Evenement();
     }
 
