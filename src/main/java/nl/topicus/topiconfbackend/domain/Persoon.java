@@ -32,7 +32,10 @@ public class Persoon {
 	public String getAchternaam() {
 		return achternaam;
 	}
-	public void setAchternaam(String achternaam) {
+	public void setAchternaam(String achternaam) throws IllegalArgumentException {
+		if (achternaam == null) {
+			throw new IllegalArgumentException();
+		}
 		this.achternaam = achternaam;
 	}
 	public String getEmail() {
