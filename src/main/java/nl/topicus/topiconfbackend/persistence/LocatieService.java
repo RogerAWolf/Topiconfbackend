@@ -21,8 +21,7 @@ public class LocatieService {
     public Boolean verwijderLocatie(long locatieid) {
         if (locatieid < 0) {
             return false;
-        }
-        if (locatieRepository.existsById(locatieid)) {
+        } else if (locatieRepository.existsById(locatieid)) {
             locatieRepository.deleteById(locatieid);
             return true;
         } else {
