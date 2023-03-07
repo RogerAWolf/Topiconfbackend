@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -19,25 +21,67 @@ public class LocatieServiceIT {
 
     @Mock
     private LocatieRepository locatieRepository;
+    private final Locatie mockedLocatie1;
+    private final Locatie mockedLocatie2;
+    private final Optional<Locatie> myLocatie1;
+    private final Optional<Locatie> myLocatie2;
+    private final ArrayList<Locatie> locatieLijst;
 
     // Constructor
     public LocatieServiceIT() {
         MockitoAnnotations.openMocks(this);
+
+        this.mockedLocatie1 = new Locatie();
+        this.mockedLocatie1.setId(1L);
+        this.mockedLocatie1.setName("Tropicana");
+        this.mockedLocatie1.setDescription("Een mooie rustgevende locatie");
+        this.mockedLocatie1.setCapacity("100 Personen");
+
+        this.myLocatie1 = Optional.of(mockedLocatie1);
+
+        this.mockedLocatie2 = new Locatie();
+        this.mockedLocatie2.setId(1L);
+        this.mockedLocatie2.setName("Tropicana");
+        this.mockedLocatie2.setDescription("Een mooie rustgevende locatie");
+        this.mockedLocatie2.setCapacity("100 Personen");
+
+        this.myLocatie2 = Optional.of(mockedLocatie2);
+
+        this.locatieLijst = new ArrayList<Locatie>();
+        this.locatieLijst.add(mockedLocatie1);
+        this.locatieLijst.add(mockedLocatie2);
+
     }
 
     @Test
     public void testGeefAlleLocaties() {
-        // To be programmed
+
+        // Given
+        Mockito.when(this.locatieRepository.findAll()).thenReturn(this.locatieLijst);
+
+        // When
+        Iterable<Locatie> locatieLijstFromService = this.locatieService.geefAlleLocaties();
+
+        // Then
+        assertNotNull(locatieLijstFromService);
+
+        for (Locatie locatie : locatieLijst) {
+
+        }
+
     }
 
     @Test
     public void testSlaLocatieOp() {
-        // To be programmed
+        // Empty
     }
 
     @ParameterizedTest
     @ValueSource(longs = -10L)
     public void testVerwijderLocatie(long locatieID) {
+
+        // Given
+        // locatieID = -10L
 
         // When
         Boolean isVerwijderd = this.locatieService.verwijderLocatie(locatieID);
@@ -45,7 +89,7 @@ public class LocatieServiceIT {
         // in case given ID parameter is a negative value then
         assertEquals(isVerwijderd, false);
         // in case ID can't be found at all then
-        assertEquals(locatieService.verwijderLocatie(15L), false);
+        assertEquals(this.locatieService.verwijderLocatie(15L), false);
         // in case ID is found and record is removed then
         Mockito.when(this.locatieService.verwijderLocatie(-10L)).thenReturn(true);
     }
@@ -54,15 +98,7 @@ public class LocatieServiceIT {
     public void testFindById() {
 
         // Given
-        Locatie mockedLocatie = new Locatie();
-        mockedLocatie.setId(1L);
-        mockedLocatie.setName("Tropicana");
-        mockedLocatie.setDescription("Een mooie rustgevende locatie");
-        mockedLocatie.setCapacity("100 Personen");
-
-        Optional<Locatie> myLocatie = Optional.of(mockedLocatie);
-
-        Mockito.when(this.locatieRepository.findById(1L)).thenReturn(myLocatie);
+        Mockito.when(this.locatieRepository.findById(1L)).thenReturn(this.myLocatie1);
 
         // When
         Locatie locatieFromService = this.locatieService.findById(1L);
