@@ -25,6 +25,14 @@ public class Voorstel {
 	public void setTrack(Track track) {
 		this.track = track;
 	}
+	private String eMail;
+	private String samenvatting;
+	private String status = "ongemarkeerd";
+
+	public String getSamenvatting() {return samenvatting;}
+
+	public void setSamenvatting(String samenvatting){this.samenvatting = samenvatting;}
+>>>>>>> main
 
 	public String getStatus() {
 		return status;

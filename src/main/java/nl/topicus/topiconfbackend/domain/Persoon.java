@@ -42,7 +42,7 @@ public class Persoon {
 	public String getAchternaam() {
 		return achternaam;
 	}
-	public void setAchternaam(String achternaam) {
+	public void setAchternaam(String achternaam)  {
 		this.achternaam = achternaam;
 	}
 	public String getEmail() {
