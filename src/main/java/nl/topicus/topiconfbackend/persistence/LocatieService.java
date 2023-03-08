@@ -14,8 +14,9 @@ public class LocatieService {
         return locatieRepository.findAll();
     }
 
-    public void slaLocatieOp(Locatie locatie) {
+    public Boolean slaLocatieOp(Locatie locatie) {
         locatieRepository.save(locatie);
+        return true;
     }
 
     public Boolean verwijderLocatie(long locatieid) {
