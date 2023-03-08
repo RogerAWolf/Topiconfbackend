@@ -47,13 +47,10 @@ public class PresentatieUnitTest {
 	}
 	
 	@Test
-	public void testPresentatieTrackList() {
-		List<Categorie> testCategorieList = new ArrayList<>();
-		Track testCategorie = new Track();
-		testCatergorieList.add(testCatergorie);
-		
-		presentatie.setTrackList(testCatergorieList);
-		assertEquals(testCatergorieList, presentatie.getTrackList());
+	public void testPresentatieCatergorie() {
+		Presentatie p = new Presentatie();
+		Categorie c = new Categorie();
+		assertEquals(c, p.getCategorie());
 	}
 
 }
