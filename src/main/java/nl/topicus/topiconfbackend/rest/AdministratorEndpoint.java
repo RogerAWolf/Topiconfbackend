@@ -29,26 +29,26 @@ public class AdministratorEndpoint {
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("/postBody")
+	@PostMapping("administrator/postBody")
 	public void toevoegenAdministrator(@RequestBody Administrator administrator) {
 		as.toevoegenAdministrator(administrator);
 	}
 	
-	@GetMapping("/getBody")
+	@GetMapping("administrator/getBody")
 	public Iterable<Administrator> bekijkenAdministrator() {
 		return as.bekijkAdministrator();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("/updateElementStatus/{id}")
+	@PutMapping("administrator/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Administrator administrator) {
 		as.toevoegenAdministrator(administrator);
 	}
 	
 	
 	@CrossOrigin
-	@GetMapping("/getElement/{id}")
+	@GetMapping("administrator/getElement/{id}")
 	public Administrator getById(@PathVariable long id){
 		return as.findById(id);
 	}
