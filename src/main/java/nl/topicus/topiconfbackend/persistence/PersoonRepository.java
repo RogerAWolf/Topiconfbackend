@@ -9,3 +9,4 @@ import nl.topicus.topiconfbackend.domain.Persoon;
 public interface PersoonRepository extends CrudRepository<Persoon, Long>{
 
 }
+

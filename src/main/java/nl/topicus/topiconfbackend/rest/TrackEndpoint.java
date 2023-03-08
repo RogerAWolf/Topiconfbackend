@@ -23,9 +23,16 @@ public class TrackEndpoint {
         trackService.slaTrackOp(track);
     }
 
+    @GetMapping("track/geefTrackPerID/{trackid}")
+    public Track geefTrackPerID(@PathVariable("trackid") int trackid){
+        return trackService.findById(trackid);
+    }
+
     @DeleteMapping("track/verwijderTrack/{trackid}")
     public void verwijderTrack(@PathVariable("trackid") int trackid){
         System.out.println("delete");
         trackService.verwijderTrack(trackid);
     }
+
+
 }
