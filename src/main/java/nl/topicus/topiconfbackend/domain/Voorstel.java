@@ -10,7 +10,7 @@ public class Voorstel {
 	private long id;
 
 	@OneToOne
-	private Track track;
+	private Categorie categorie;
 
 	@OneToOne
 	private Spreker spreker;
@@ -20,12 +20,12 @@ public class Voorstel {
 	private String eMail;
 	private String samenvatting;
 
-	public Track getTrack() {
-		return track;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setTrack(Track track) {
-		this.track = track;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 

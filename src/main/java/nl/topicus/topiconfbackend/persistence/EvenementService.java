@@ -1,7 +1,7 @@
 package nl.topicus.topiconfbackend.persistence;
 
 import nl.topicus.topiconfbackend.domain.Locatie;
-import nl.topicus.topiconfbackend.domain.Track;
+import nl.topicus.topiconfbackend.domain.Categorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class EvenementService {
 	EvenementRepository er;
 
 	@Autowired
-	TrackRepository tr;
+	CategorieRepository tr;
 
 	@Autowired
 	LocatieRepository lr;
@@ -34,8 +34,8 @@ public class EvenementService {
 		return evenement.getVoorstelLijst();
 	}
 
-	public Iterable<Track> geefTracksPerEvenement(Evenement evenement){
-		return evenement.getTrackLijst();
+	public Iterable<Categorie> geefCategorieenPerEvenement(Evenement evenement){
+		return evenement.getCategorieLijst();
 	}
 
 	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) {
@@ -50,9 +50,9 @@ public class EvenementService {
 		return er.findById(eventid).get();
 	}
 
-	public void slaEvenementEnTrackOp(Evenement event, Track track) {
-		tr.save(track);
-		event.getTrackLijst().add(track);
+	public void slaEvenementEnCategorieOp(Evenement event, Categorie categorie) {
+		tr.save(categorie);
+		event.getCategorieLijst().add(categorie);
 		er.save(event);
 	}
 

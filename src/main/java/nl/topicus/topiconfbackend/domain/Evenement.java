@@ -12,7 +12,7 @@ public class Evenement {
 	long id;
 
 	@OneToMany
-	private List<Track> trackLijst;
+	private List<Categorie> categorieLijst;
 	@OneToMany
 	private List<Voorstel> voorstelLijst;
 	@OneToMany
@@ -53,11 +53,11 @@ public class Evenement {
 	public void setEindDatumTijd(LocalDateTime eindDatumTijd) {
 		this.eindDatumTijd = eindDatumTijd;
 	}
-	public List<Track> getTrackLijst() {
-		return trackLijst;
+	public List<Categorie> getCategorieLijst() {
+		return categorieLijst;
 	}
-	public void setTrackLijst(List<Track> trackLijst) {
-		this.trackLijst = trackLijst;
+	public void setCategorieLijst(List<Categorie> categorieLijst) {
+		this.categorieLijst = categorieLijst;
 	}
 	public List<Voorstel> getVoorstelLijst() {
 		return voorstelLijst;
