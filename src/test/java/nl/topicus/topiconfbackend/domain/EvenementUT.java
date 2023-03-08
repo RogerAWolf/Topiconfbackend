@@ -54,8 +54,8 @@ public class EvenementUT {
         Categorie testCategorie = new Categorie();
         testCategorieList.add(testCategorie);
 
-        evenement.setTrackLijst(testCategorieList);
-        assertEquals(testCategorieList, evenement.getTrackLijst());
+        evenement.setCategorieLijst(testCategorieList);
+        assertEquals(testCategorieList, evenement.getCategorieLijst());
     }
 
     @Test
