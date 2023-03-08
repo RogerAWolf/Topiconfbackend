@@ -1,6 +1,6 @@
 package nl.topicus.topiconfbackend.rest;
 
-import nl.topicus.topiconfbackend.domain.Locatie;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -8,35 +8,30 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("intergrationtest")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class LocatieEndpointIT {
+public class EvenementEndpointIT {
 
     @Autowired
     private TestRestTemplate restTemplate;
 
-    private static long lastid = -1;
+    private static long lastID = -1;
 
     @Test
     @Order(1)
     public void testPost() {
 
+        // To be programmed
+
         // Given
-        Locatie locatieToBePosted = new Locatie();
 
         // When
-        ResponseEntity<Locatie> result = this.restTemplate.postForEntity("/locatie/voegLocatieToe", locatieToBePosted, Locatie.class);
 
         // Then
-        assertEquals(200, result.getStatusCode().value());
-
-        // Get en Delete testen hieronder nog toevoegen
 
     }
 
