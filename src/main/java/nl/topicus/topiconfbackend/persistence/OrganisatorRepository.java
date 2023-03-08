@@ -1,10 +1,11 @@
 package nl.topicus.topiconfbackend.persistence;
 
-import nl.topicus.topiconfbackend.domain.Track;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
+import nl.topicus.topiconfbackend.domain.Organisator;
+
 @Component
-public interface TrackRepository extends CrudRepository<Track, Long> {
+public interface OrganisatorRepository extends CrudRepository<Organisator, Long>{
 
 }

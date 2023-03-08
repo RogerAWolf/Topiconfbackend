@@ -2,7 +2,7 @@ package nl.topicus.topiconfbackend.persistence;
 
 import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.domain.Locatie;
-import nl.topicus.topiconfbackend.domain.Track;
+import nl.topicus.topiconfbackend.domain.Categorie;
 import nl.topicus.topiconfbackend.domain.Voorstel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class EvenementServiceIT {
 
     private LocalDateTime mockedDateTime;
-    private List<Track> mockedTrackList;
+    private List<Categorie> mockedCategorieList;
     private List<Voorstel> mockedAanvraagList;
 
     @InjectMocks
@@ -35,7 +35,7 @@ public class EvenementServiceIT {
     public EvenementServiceIT() {
         MockitoAnnotations.openMocks(this);
         mockedDateTime = LocalDateTime.now();
-        mockedTrackList = new ArrayList<>();
+        mockedCategorieList = new ArrayList<>();
         mockedAanvraagList = new ArrayList<>();
     }
 
@@ -80,8 +80,8 @@ public class EvenementServiceIT {
         mockedEvenement.setOmschrijving("Ongetwijfeld Nederlands beste volkszanger");
         mockedEvenement.setBeginDatumTijd(mockedDateTime);
         mockedEvenement.setEindDatumTijd(mockedDateTime);
-        mockedEvenement.setTrackList(mockedTrackList);
-        mockedEvenement.setVoorstelList(mockedAanvraagList);
+//        mockedEvenement.setLocatieLijst(mockedCategorieList);
+        mockedEvenement.setVoorstelLijst(mockedAanvraagList);
 
         Optional<Evenement> myEvenement = Optional.of(mockedEvenement);
 
@@ -97,14 +97,14 @@ public class EvenementServiceIT {
         assertEquals("Ongetwijfeld Nederlands beste volkszanger", evenementFromService.getOmschrijving());
         assertEquals(mockedDateTime , evenementFromService.getBeginDatumTijd());
         assertEquals(mockedDateTime, evenementFromService.getEindDatumTijd());
-        assertEquals(mockedTrackList, evenementFromService.getTrackList());
+        assertEquals(mockedCategorieList, evenementFromService.getCategorieLijst());
         //assertEquals(mockedAanvraagList, evenementFromService.setLocatieLijst());  // <- moet nog gemaakt worden (parameter
                                                                                      // ontbreekt na aanpassing in de klasse zelf)
 
     }
 
     @Test
-    public void testSlaEventEnTrackOp(Evenement evenement, Track track) {
+    public void testSlaEventEnTrackOp(Evenement evenement, Categorie categorie) {
         // To be programmed
     }
 

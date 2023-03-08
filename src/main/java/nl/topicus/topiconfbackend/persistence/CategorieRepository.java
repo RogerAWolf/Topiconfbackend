@@ -1,10 +1,10 @@
 package nl.topicus.topiconfbackend.persistence;
 
+import nl.topicus.topiconfbackend.domain.Categorie;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-import nl.topicus.topiconfbackend.domain.Voorstel;
 
 @Component
-public interface VoorstelRepository extends CrudRepository<Voorstel, Long>{
+public interface CategorieRepository extends CrudRepository<Categorie, Long> {
 
 }

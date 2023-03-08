@@ -50,12 +50,12 @@ public class EvenementUT {
 
     @Test
     public void testGetAndSetTrackList() {
-        List<Track> testTrackList = new ArrayList<>();
-        Track testTrack = new Track();
-        testTrackList.add(testTrack);
+        List<Categorie> testCategorieList = new ArrayList<>();
+        Categorie testCategorie = new Categorie();
+        testCategorieList.add(testCategorie);
 
-        evenement.setTrackList(testTrackList);
-        assertEquals(testTrackList, evenement.getTrackList());
+        evenement.setCategorieLijst(testCategorieList);
+        assertEquals(testCategorieList, evenement.getCategorieLijst());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class EvenementUT {
         Voorstel testAanvraag = new Voorstel();
         testAanvraagList.add(testAanvraag);
 
-        evenement.setVoorstelList(testAanvraagList);
-        assertEquals(testAanvraagList, evenement.getVoorstelList());
+        evenement.setVoorstelLijst(testAanvraagList);
+        assertEquals(testAanvraagList, evenement.getVoorstelLijst());
     }
 }

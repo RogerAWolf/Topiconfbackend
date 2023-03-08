@@ -1,7 +1,7 @@
 package nl.topicus.topiconfbackend.persistence;
 
 import nl.topicus.topiconfbackend.domain.Locatie;
-import nl.topicus.topiconfbackend.domain.Track;
+import nl.topicus.topiconfbackend.domain.Categorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,34 +14,34 @@ public class EvenementService {
 	EvenementRepository er;
 
 	@Autowired
-	TrackRepository tr;
+	CategorieRepository tr;
 
 	@Autowired
 	LocatieRepository lr;
-	
+
 	@Autowired
 	VoorstelRepository vr;
-	
+
 	public Iterable<Evenement> geefAlleEvenementen() {
 		return er.findAll();
 	}
-	
+
 	public void slaEvenementOp(Evenement e1) {
 		er.save(e1);
 	}
 
 	public Iterable<Voorstel> geefVoorstellenPerEvenement(Evenement evenement) {
-		return evenement.getVoorstelList();
+		return evenement.getVoorstelLijst();
 	}
 
-	public Iterable<Track> geefTracksPerEvenement(Evenement evenement){
-		return evenement.getTrackList();
+	public Iterable<Categorie> geefCategorieenPerEvenement(Evenement evenement){
+		return evenement.getCategorieLijst();
 	}
 
-	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) { 
-		return evenement.getLocatieLijst(); 
+	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) {
+		return evenement.getLocatieLijst();
 	}
-	
+
 	public void verwijderEvenement(long eventid){
 		er.deleteById(eventid);
 	}
@@ -50,9 +50,9 @@ public class EvenementService {
 		return er.findById(eventid).get();
 	}
 
-	public void slaEvenementEnTrackOp(Evenement event, Track track) {
-		tr.save(track);
-		event.getTrackList().add(track);
+	public void slaEvenementEnCategorieOp(Evenement event, Categorie categorie) {
+		tr.save(categorie);
+		event.getCategorieLijst().add(categorie);
 		er.save(event);
 	}
 
@@ -64,7 +64,7 @@ public class EvenementService {
 
 	public void slaEvenementEnVoorstelOp(Evenement event, Voorstel voorstel) {
 		vr.save(voorstel);
-		event.getVoorstelList().add(voorstel);
+		event.getVoorstelLijst().add(voorstel);
 		er.save(event);
 	}
 
