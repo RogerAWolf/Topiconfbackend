@@ -15,6 +15,7 @@ public class Persoon {
 	private String voornaam;
 	private String achternaam;
 	private String email;
+	private String rol;  //s = spreker, o = organisator, a = administrator
 	
 	
 	public long getId() {
@@ -23,6 +24,15 @@ public class Persoon {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	public String getRol() {
+		return rol;
+	}
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
 	public String getVoornaam() {
 		return voornaam;
 	}
@@ -32,7 +42,7 @@ public class Persoon {
 	public String getAchternaam() {
 		return achternaam;
 	}
-	public void setAchternaam(String achternaam) {
+	public void setAchternaam(String achternaam)  {
 		this.achternaam = achternaam;
 	}
 	public String getEmail() {

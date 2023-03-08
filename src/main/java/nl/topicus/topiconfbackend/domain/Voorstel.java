@@ -1,9 +1,6 @@
 package nl.topicus.topiconfbackend.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Voorstel {
@@ -11,14 +8,31 @@ public class Voorstel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	private String voornaam;
-	private String achternaam;
+
+	@OneToOne
+	private Categorie categorie;
+
+	@OneToOne
+	private Spreker spreker;
+
 	private String onderwerp;
-	private String eMail;
 	private String status = "ongemarkeerd";
-	
-	
+	private String eMail;
+	private String samenvatting;
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+
+	public String getSamenvatting() {return samenvatting;}
+
+	public void setSamenvatting(String samenvatting){this.samenvatting = samenvatting;}
+
 	public String getStatus() {
 		return status;
 	}
@@ -31,29 +45,11 @@ public class Voorstel {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getVoornaam() {
-		return voornaam;
-	}
-	public void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
-	}
-	public String getAchternaam() {
-		return achternaam;
-	}
-	public void setAchternaam(String achternaam) {
-		this.achternaam = achternaam;
-	}
 	public String getOnderwerp() {
 		return onderwerp;
 	}
 	public void setOnderwerp(String onderwerp) {
 		this.onderwerp = onderwerp;
-	}
-	public String geteMail() {
-		return eMail;
-	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
 	}
 	
 }

@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Track {
+public class Categorie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
