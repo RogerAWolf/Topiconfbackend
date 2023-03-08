@@ -2,11 +2,7 @@ package nl.topicus.topiconfbackend.domain;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Presentatie {
@@ -18,8 +14,8 @@ public class Presentatie {
 	@OneToMany
 	private List<Spreker> sprekerList;
 
-	@OneToMany 
-	private List<Track> trackList;
+	@OneToOne
+	private Track track;
 
 	private String onderwerp;
 	private String samenvatting;
@@ -65,13 +61,12 @@ public class Presentatie {
 	public void setSprekerList(List<Spreker> sprekerList) {
 		this.sprekerList = sprekerList;
 	}
-	public List<Track> getTrackList() {
-		return trackList;
-	}
-	public void setTrackList(List<Track> trackList) {
-		this.trackList = trackList;
-	}
-	
-	
 
+	public Track getTrack() {
+		return track;
+	}
+
+	public void setTrack(Track track) {
+		this.track = track;
+	}
 }

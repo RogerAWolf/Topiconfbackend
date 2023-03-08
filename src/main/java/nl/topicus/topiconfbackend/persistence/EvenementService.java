@@ -18,30 +18,30 @@ public class EvenementService {
 
 	@Autowired
 	LocatieRepository lr;
-	
+
 	@Autowired
 	VoorstelRepository vr;
-	
+
 	public Iterable<Evenement> geefAlleEvenementen() {
 		return er.findAll();
 	}
-	
+
 	public void slaEvenementOp(Evenement e1) {
 		er.save(e1);
 	}
 
 	public Iterable<Voorstel> geefVoorstellenPerEvenement(Evenement evenement) {
-		return evenement.getVoorstelList();
+		return evenement.getVoorstelLijst();
 	}
 
 	public Iterable<Track> geefTracksPerEvenement(Evenement evenement){
-		return evenement.getTrackList();
+		return evenement.getTrackLijst();
 	}
 
-	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) { 
-		return evenement.getLocatieLijst(); 
+	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) {
+		return evenement.getLocatieLijst();
 	}
-	
+
 	public void verwijderEvenement(long eventid){
 		er.deleteById(eventid);
 	}
@@ -52,7 +52,7 @@ public class EvenementService {
 
 	public void slaEvenementEnTrackOp(Evenement event, Track track) {
 		tr.save(track);
-		event.getTrackList().add(track);
+		event.getTrackLijst().add(track);
 		er.save(event);
 	}
 
@@ -64,7 +64,7 @@ public class EvenementService {
 
 	public void slaEvenementEnVoorstelOp(Evenement event, Voorstel voorstel) {
 		vr.save(voorstel);
-		event.getVoorstelList().add(voorstel);
+		event.getVoorstelLijst().add(voorstel);
 		er.save(event);
 	}
 

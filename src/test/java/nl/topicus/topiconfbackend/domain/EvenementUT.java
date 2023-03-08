@@ -54,8 +54,8 @@ public class EvenementUT {
         Track testTrack = new Track();
         testTrackList.add(testTrack);
 
-        evenement.setTrackList(testTrackList);
-        assertEquals(testTrackList, evenement.getTrackList());
+        evenement.setTrackLijst(testTrackList);
+        assertEquals(testTrackList, evenement.getTrackLijst());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class EvenementUT {
         Voorstel testAanvraag = new Voorstel();
         testAanvraagList.add(testAanvraag);
 
-        evenement.setVoorstelList(testAanvraagList);
-        assertEquals(testAanvraagList, evenement.getVoorstelList());
+        evenement.setVoorstelLijst(testAanvraagList);
+        assertEquals(testAanvraagList, evenement.getVoorstelLijst());
     }
 }
