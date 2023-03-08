@@ -29,19 +29,19 @@ public class PresentatieEndpoint {
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("/postBody")
+	@PostMapping("presentatie/postBody")
 	public void toevoegenPresentatie(@RequestBody Presentatie presentatie) {
 		as.toevoegenPresentatie(presentatie);
 	}
 	
-	@GetMapping("/getBody")
+	@GetMapping("presentatie/getBody")
 	public Iterable<Presentatie> bekijkenPresentatie() {
 		return as.bekijkPresentatie();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("/updateElementStatus/{id}")
+	@PutMapping("presentatie/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Presentatie presentatie) {
 		as.toevoegenPresentatie(presentatie);
 	}

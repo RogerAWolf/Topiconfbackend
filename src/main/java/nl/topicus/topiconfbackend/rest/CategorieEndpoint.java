@@ -17,18 +17,18 @@ public class CategorieEndpoint {
         return categorieService.geefAlleCategorieen();
     }
 
-    @PostMapping("Categorie/voegCategorieToe")
+    @PostMapping("categorie/voegCategorieToe")
     public void slaCategorieOp(@RequestBody Categorie categorie){
         System.out.println("create");
         categorieService.slaCategorieOp(categorie);
     }
 
-    @GetMapping("Categorie/geefCategoriePerID/{categorieid}")
+    @GetMapping("categorie/geefCategoriePerID/{categorieid}")
     public Categorie geefCategoriePerID(@PathVariable("categorieid") int categorieid){
         return categorieService.findById(categorieid);
     }
 
-    @DeleteMapping("Categorie/verwijderCategorie/{categorieid}")
+    @DeleteMapping("categorie/verwijderCategorie/{categorieid}")
     public void verwijderCategorie(@PathVariable("categorieid") int categorieid){
         System.out.println("delete");
         categorieService.verwijderCategorie(categorieid);
