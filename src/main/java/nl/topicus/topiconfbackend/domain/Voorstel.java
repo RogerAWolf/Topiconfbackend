@@ -16,9 +16,13 @@ public class Voorstel {
 	private String achternaam;
 	private String onderwerp;
 	private String eMail;
+	private String samenvatting;
 	private String status = "ongemarkeerd";
-	
-	
+
+	public String getSamenvatting() {return samenvatting;}
+
+	public void setSamenvatting(String samenvatting){this.samenvatting = samenvatting;}
+
 	public String getStatus() {
 		return status;
 	}
