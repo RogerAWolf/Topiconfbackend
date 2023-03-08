@@ -80,8 +80,8 @@ public class EvenementServiceIT {
         mockedEvenement.setOmschrijving("Ongetwijfeld Nederlands beste volkszanger");
         mockedEvenement.setBeginDatumTijd(mockedDateTime);
         mockedEvenement.setEindDatumTijd(mockedDateTime);
-        mockedEvenement.setTrackList(mockedTrackList);
-        mockedEvenement.setVoorstelList(mockedAanvraagList);
+        mockedEvenement.setTrackLijst(mockedTrackList);
+        mockedEvenement.setVoorstelLijst(mockedAanvraagList);
 
         Optional<Evenement> myEvenement = Optional.of(mockedEvenement);
 
@@ -97,7 +97,7 @@ public class EvenementServiceIT {
         assertEquals("Ongetwijfeld Nederlands beste volkszanger", evenementFromService.getOmschrijving());
         assertEquals(mockedDateTime , evenementFromService.getBeginDatumTijd());
         assertEquals(mockedDateTime, evenementFromService.getEindDatumTijd());
-        assertEquals(mockedTrackList, evenementFromService.getTrackList());
+        assertEquals(mockedTrackList, evenementFromService.getTrackLijst());
         //assertEquals(mockedAanvraagList, evenementFromService.setLocatieLijst());  // <- moet nog gemaakt worden (parameter
                                                                                      // ontbreekt na aanpassing in de klasse zelf)
 

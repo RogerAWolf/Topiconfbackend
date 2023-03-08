@@ -12,10 +12,10 @@ public class Voorstel {
 	@OneToOne
 	private Track track;
 
-	private String voornaam;
-	private String achternaam;
+	@OneToOne
+	private Spreker spreker;
+
 	private String onderwerp;
-	private String eMail;
 	private String status = "ongemarkeerd";
 
 	public Track getTrack() {
@@ -38,29 +38,11 @@ public class Voorstel {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getVoornaam() {
-		return voornaam;
-	}
-	public void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
-	}
-	public String getAchternaam() {
-		return achternaam;
-	}
-	public void setAchternaam(String achternaam) {
-		this.achternaam = achternaam;
-	}
 	public String getOnderwerp() {
 		return onderwerp;
 	}
 	public void setOnderwerp(String onderwerp) {
 		this.onderwerp = onderwerp;
-	}
-	public String geteMail() {
-		return eMail;
-	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
 	}
 	
 }

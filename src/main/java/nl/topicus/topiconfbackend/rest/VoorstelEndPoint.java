@@ -2,6 +2,7 @@ package nl.topicus.topiconfbackend.rest;
 
 import java.util.Optional;
 
+import nl.topicus.topiconfbackend.persistence.TrackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,19 +21,18 @@ public class VoorstelEndPoint {
 
 	@Autowired
 	VoorstelService vs;
+
+	@Autowired
+	TrackService ts;
 	
 	//add request to database
-	 //fronted will make sure that all fields are filled
+	 //frontend will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("/postBody")
-	public void toevoegenVoorstel(@RequestBody Voorstel voorstel) {
+	@PostMapping("voorstel/voorstelOpslaan")
+	public void toevoegenVoorstel(@RequestBody Voorstel voorstel, @RequestParam("trackid") int trackid) {
+		voorstel.setTrack(ts.findById(trackid));
 		vs.toevoegenVoorstel(voorstel);
-	}
-	
-	@GetMapping("/getBody")
-	public Iterable<Voorstel> bekijkenVoorstel() {
-		return vs.bekijkVoorstel();
 	}
 
 	@GetMapping("/voorstel/getVoorstelById/{id}")
@@ -42,17 +42,9 @@ public class VoorstelEndPoint {
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("/updateElementStatus/{id}")
+	@PutMapping("voorstel/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Voorstel voorstel) {
 		vs.toevoegenVoorstel(voorstel);
 	}
-	
-	
-	@CrossOrigin
-	@GetMapping("/getElement/{id}")
-	public Voorstel getById(@PathVariable long id){
-		return vs.findById(id);
-	}
-	
-	
+
 }
