@@ -1,9 +1,5 @@
 package nl.topicus.topiconfbackend.persistence;
 
-<<<<<<< HEAD
-public class PersoonService {
-}
-=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import nl.topicus.topiconfbackend.domain.Persoon;
@@ -30,5 +26,4 @@ public class PersoonService {
 	}
 
 	
-	}
->>>>>>> main
+}

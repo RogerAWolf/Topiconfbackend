@@ -1,8 +1,6 @@
 package nl.topicus.topiconfbackend.rest;
 
-import java.util.Optional;
-
-import nl.topicus.topiconfbackend.persistence.TrackService;
+import nl.topicus.topiconfbackend.persistence.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,15 +21,15 @@ public class VoorstelEndPoint {
 	VoorstelService vs;
 
 	@Autowired
-	TrackService ts;
+    CategorieService ts;
 	
 	//add request to database
 	 //frontend will make sure that all fields are filled
 	
 	@CrossOrigin
 	@PostMapping("voorstel/voorstelOpslaan")
-	public void toevoegenVoorstel(@RequestBody Voorstel voorstel, @RequestParam("trackid") int trackid) {
-		voorstel.setTrack(ts.findById(trackid));
+	public void toevoegenVoorstel(@RequestBody Voorstel voorstel, @RequestParam("categorieid") int categorieid) {
+		voorstel.setCategorie(ts.findById(categorieid));
 		vs.toevoegenVoorstel(voorstel);
 	}
 

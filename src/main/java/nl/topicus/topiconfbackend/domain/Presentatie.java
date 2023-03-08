@@ -15,7 +15,7 @@ public class Presentatie {
 	private List<Spreker> sprekerList;
 
 	@OneToOne
-	private Track track;
+	private Categorie categorie;
 
 	private String onderwerp;
 	private String samenvatting;
@@ -62,11 +62,11 @@ public class Presentatie {
 		this.sprekerList = sprekerList;
 	}
 
-	public Track getTrack() {
-		return track;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setTrack(Track track) {
-		this.track = track;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 }
