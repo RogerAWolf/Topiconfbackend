@@ -93,6 +93,7 @@ public class LocatieServiceIT {
     public void testSlaLocatieOp(Locatie locatie) {
         assertNotNull(locatie);
         assertEquals(true , locatieService.slaLocatieOp(locatie));
+        assertEquals(false, locatieService.slaLocatieOp(null) );
 
     }
 

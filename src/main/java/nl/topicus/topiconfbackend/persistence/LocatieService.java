@@ -15,8 +15,21 @@ public class LocatieService {
     }
 
     public Boolean slaLocatieOp(Locatie locatie) {
-        locatieRepository.save(locatie);
-        return true;
+        if(locatie == null) {
+            return false;
+        } else {
+            locatieRepository.save(locatie);
+            return true;
+        }
+
+        // Met het oog op de Testen, het gewenste gedrag van de methode
+        // To do:
+        // Locatie met negatieve ID mag niet worden opgeslagen
+
+        // Uitvragen bij PO:
+        // Slaan we een locatie zonder naam op?
+        // Slaan we een locatie zonder capaciteit op?
+        // Slaan we een locatie zonder description op?
     }
 
     public Boolean verwijderLocatie(long locatieid) {
