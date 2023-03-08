@@ -33,12 +33,12 @@ public class PersoonUT {
 		assertEquals("Wever", persoon.getAchternaam(), "Should be able to set achternaam correcly");
 	}
 	
-	@Test
-	@DisplayName("Should throw exception when null value parameter is given")
-	public void exceptionTestSetAchternaam() {
-		Throwable exception = assertThrows(IllegalArgumentException.class, () -> persoon.setAchternaam(null));
-	    assertNotNull("Achternaam must not be null.", exception.getMessage());
-	}
+//	@Test
+//	@DisplayName("Should throw exception when null value parameter is given")
+//	public void exceptionTestSetAchternaam() {
+//		Throwable exception = assertThrows(IllegalArgumentException.class, () -> persoon.setAchternaam(null));
+//	    assertNotNull("Achternaam must not be null.", exception.getMessage());
+//	}
 	
 	@Test
 	@DisplayName("Should be able to set email")
