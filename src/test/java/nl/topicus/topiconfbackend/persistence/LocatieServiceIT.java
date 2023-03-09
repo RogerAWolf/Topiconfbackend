@@ -31,6 +31,7 @@ public class LocatieServiceIT {
 
     // Constructor
     public LocatieServiceIT() {
+
         MockitoAnnotations.openMocks(this);
 
     }
@@ -54,7 +55,6 @@ public class LocatieServiceIT {
         locatieLijst.add(mockedLocatie2);
     }
 
-
     @Test
     public void testGeefAlleLocaties() {
 
@@ -70,15 +70,17 @@ public class LocatieServiceIT {
         int i = 0;
         long x = 1L;
         for (Locatie locatie : locatieLijst) {
+            if( i == 0 ) {
 
-            if(i == 0) {
                 assertEquals(x, locatieLijst.get(i).getId());
                 assertEquals("Tropicana", locatieLijst.get(i).getName());
                 assertEquals("Een mooie rustgevende locatie", locatieLijst.get(i).getDescription());
                 assertEquals("100 Personen", locatieLijst.get(i).getCapacity());
                 i++;
                 x++;
-            } else if(i == 1) {
+
+            } else if( i == 1 ) {
+
                 assertEquals(x, locatieLijst.get(i).getId());
                 assertEquals("Plopsaland", locatieLijst.get(i).getName());
                 assertEquals("Een bos vol met kabouters", locatieLijst.get(i).getDescription());
@@ -91,6 +93,7 @@ public class LocatieServiceIT {
     @ParameterizedTest
     @MethodSource
     public void testSlaLocatieOp(Locatie locatie) {
+
         assertNotNull(locatie);
         assertEquals(true , locatieService.slaLocatieOp(locatie));
         assertEquals(false, locatieService.slaLocatieOp(null) );
@@ -101,7 +104,8 @@ public class LocatieServiceIT {
         return Stream.of(mockedLocatie1);
     }
 
-//    Example of how to test a method with an Object parameter
+//    INFO:
+//    Example of how to test a method with Object parameter
 //    @ParameterizedTest
 //    @MethodSource     /* When we don't provide a name for the @MethodSource, JUnit will search for
 //                      a source method with the same name as the test method */
@@ -123,29 +127,29 @@ public class LocatieServiceIT {
         // When
         Boolean isVerwijderd = this.locatieService.verwijderLocatie(locatieID);
 
+        // Then
         // in case given ID parameter is a negative value then
         assertEquals(isVerwijderd, false);
-
         // in case ID can't be found at all then
         assertEquals(this.locatieService.verwijderLocatie(15L), false);
-
         // in case ID is found and record is removed then
         Mockito.when(this.locatieService.verwijderLocatie(-10L)).thenReturn(true);
 
     }
 
-    @Test
-    public void testFindById() {
+    @ParameterizedTest
+    @ValueSource(longs = 1L)
+    public void testFindById(long locatieid) {
 
         // Given
-        Mockito.when(this.locatieRepository.findById(1L)).thenReturn(this.myLocatie1);
+        Mockito.when(this.locatieRepository.findById(locatieid)).thenReturn(this.myLocatie1);
 
         // When
-        Locatie locatieFromService = this.locatieService.findById(1L);
+        Locatie locatieFromService = this.locatieService.findById(locatieid);
 
         // Then
         assertNotNull(locatieFromService);
-        assertEquals(1L, locatieFromService.getId());
+        assertEquals(locatieid, locatieFromService.getId());
         assertEquals("Tropicana", locatieFromService.getName());
         assertEquals("Een mooie rustgevende locatie", locatieFromService.getDescription());
         assertEquals("100 Personen", locatieFromService.getCapacity());
