@@ -2,6 +2,9 @@ package nl.topicus.topiconfbackend.persistence;
 
 import nl.topicus.topiconfbackend.domain.Locatie;
 import nl.topicus.topiconfbackend.domain.Categorie;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +69,10 @@ public class EvenementService {
 		vr.save(voorstel);
 		event.getVoorstelLijst().add(voorstel);
 		er.save(event);
+	}
+
+	public Iterable<Evenement> haalEvenementOpMetNaam(String naam) {
+		return er.findEvenementsByNaam(naam);
 	}
 
 }
