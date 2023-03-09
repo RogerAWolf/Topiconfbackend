@@ -21,7 +21,6 @@ public class Voorstel {
 	@OneToOne
 	private Spreker spreker;
 
-	
 	public long getId() {
 		return id;
 	}
