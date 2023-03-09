@@ -1,5 +1,6 @@
 package nl.topicus.topiconfbackend.rest;
 
+import nl.topicus.topiconfbackend.domain.Locatie;
 import nl.topicus.topiconfbackend.persistence.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,7 +34,12 @@ public class VoorstelEndPoint {
 		vs.toevoegenVoorstel(voorstel);
 	}
 
-	@GetMapping("/voorstel/getVoorstelById/{id}")
+	@GetMapping("voorstel/geefAlleVoorstellen")
+	public Iterable<Voorstel> geefAlleVoorstellen(){
+		return vs.bekijkVoorstel();
+	}
+
+	@GetMapping("voorstel/getVoorstelById/{id}")
 	public Voorstel getVoorstelByID(@PathVariable long id){
 		return vs.findById(id);
 	}
