@@ -29,26 +29,26 @@ public class SprekerEndpoint {
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("/postBody")
+	@PostMapping("spreker/postBody")
 	public void toevoegenSpreker(@RequestBody Spreker spreker) {
 		as.toevoegenSpreker(spreker);
 	}
 	
-	@GetMapping("/getBody")
+	@GetMapping("spreker/getBody")
 	public Iterable<Spreker> bekijkenSpreker() {
 		return as.bekijkSpreker();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("/updateElementStatus/{id}")
+	@PutMapping("spreker/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Spreker spreker) {
 		as.toevoegenSpreker(spreker);
 	}
 	
 	
 	@CrossOrigin
-	@GetMapping("/getElement/{id}")
+	@GetMapping("spreker/getElement/{id}")
 	public Spreker getById(@PathVariable long id){
 		return as.findById(id);
 	}

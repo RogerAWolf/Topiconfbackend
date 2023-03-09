@@ -29,26 +29,26 @@ public class OrganisatorEndpoint {
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("/postBody")
+	@PostMapping("organisator/postBody")
 	public void toevoegenOrganisator(@RequestBody Organisator organisator) {
 		as.toevoegenOrganisator(organisator);
 	}
 	
-	@GetMapping("/getBody")
+	@GetMapping("organisator/getBody")
 	public Iterable<Organisator> bekijkenOrganisator() {
 		return as.bekijkOrganisator();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("/updateElementStatus/{id}")
+	@PutMapping("organisator/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Organisator organisator) {
 		as.toevoegenOrganisator(organisator);
 	}
 	
 	
 	@CrossOrigin
-	@GetMapping("/getElement/{id}")
+	@GetMapping("organisator/getElement/{id}")
 	public Organisator getById(@PathVariable long id){
 		return as.findById(id);
 	}
