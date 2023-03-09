@@ -13,7 +13,6 @@ public class SprekerService {
 
 	public void toevoegenSpreker(Spreker spreker) {
 		ar.save(spreker);
-		
 	}
 
 	public Iterable<Spreker> bekijkSpreker() {
@@ -21,9 +20,6 @@ public class SprekerService {
 	}
 
 	public Spreker findById(long id){
-
 		 return ar.findById(id).get();
 	}
-
-	
-	}
+}
