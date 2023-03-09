@@ -23,8 +23,8 @@ public class VoorstelEndPoint {
 	@Autowired
     CategorieService categorieService;
 	
-	//add request to database
-	//frontend will make sure that all fields are filled
+	// add request to database
+	// frontend will make sure that all fields are filled
 	
 	@CrossOrigin
 	@PostMapping("voorstel/voorstelOpslaan")
@@ -43,7 +43,7 @@ public class VoorstelEndPoint {
 		return this.voorstelService.findById(id);
 	}
 	
-	//not able to use yet
+	// not able to use yet
 	@CrossOrigin
 	@PutMapping("voorstel/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Voorstel voorstel) {
