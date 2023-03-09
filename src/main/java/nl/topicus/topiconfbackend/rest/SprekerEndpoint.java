@@ -18,15 +18,12 @@ import nl.topicus.topiconfbackend.persistence.SprekerService;
 
 @RestController
 public class SprekerEndpoint {
-	
-	
-
 
 	@Autowired
 	SprekerService as;
 	
 	//add request to database
-	 //fronted will make sure that all fields are filled
+	//fronted will make sure that all fields are filled
 	
 	@CrossOrigin
 	@PostMapping("spreker/postBody")
@@ -45,8 +42,7 @@ public class SprekerEndpoint {
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Spreker spreker) {
 		as.toevoegenSpreker(spreker);
 	}
-	
-	
+
 	@CrossOrigin
 	@GetMapping("spreker/getElement/{id}")
 	public Spreker getById(@PathVariable long id){

@@ -18,31 +18,36 @@ import nl.topicus.topiconfbackend.persistence.VoorstelService;
 public class VoorstelEndPoint {
 
 	@Autowired
-	VoorstelService vs;
+	VoorstelService voorstelService;
 
 	@Autowired
-    CategorieService ts;
+    CategorieService categorieService;
 	
-	//add request to database
-	 //frontend will make sure that all fields are filled
+	// add request to database
+	// frontend will make sure that all fields are filled
 	
 	@CrossOrigin
 	@PostMapping("voorstel/voorstelOpslaan")
 	public void toevoegenVoorstel(@RequestBody Voorstel voorstel, @RequestParam("categorieid") int categorieid) {
-		voorstel.setCategorie(ts.findById(categorieid));
-		vs.toevoegenVoorstel(voorstel);
+		voorstel.setCategorie(this.categorieService.findById(categorieid));
+		this.voorstelService.toevoegenVoorstel(voorstel);
 	}
 
-	@GetMapping("/voorstel/getVoorstelById/{id}")
+	@GetMapping("voorstel/geefAlleVoorstellen")
+	public Iterable<Voorstel> geefAlleVoorstellen(){
+		return this.voorstelService.bekijkAlleVoorstellen();
+	}
+
+	@GetMapping("voorstel/getVoorstelById/{id}")
 	public Voorstel getVoorstelByID(@PathVariable long id){
-		return vs.findById(id);
+		return this.voorstelService.findById(id);
 	}
 	
-	//not able to use yet
+	// not able to use yet
 	@CrossOrigin
 	@PutMapping("voorstel/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Voorstel voorstel) {
-		vs.toevoegenVoorstel(voorstel);
+		this.voorstelService.toevoegenVoorstel(voorstel);
 	}
 
 }
