@@ -1,5 +1,6 @@
 package nl.topicus.topiconfbackend.rest;
 
+import nl.topicus.topiconfbackend.domain.Spreker;
 import nl.topicus.topiconfbackend.persistence.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,6 +49,19 @@ public class VoorstelEndPoint {
 	@PutMapping("voorstel/updateElementStatus/{id}")
 	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Voorstel voorstel) {
 		this.voorstelService.toevoegenVoorstel(voorstel);
+	}
+
+	@PostMapping("voorstelEnSpreker/postBody")
+	public void toevoegenSprekerBijVoorstel(@RequestBody Voorstel voorstel){
+		Voorstel voorstel1 = new Voorstel();
+		voorstel1.setOnderwerp(voorstel.getOnderwerp());
+		voorstel1.seteMail(voorstel.geteMail());
+		voorstel1.setSamenvatting(voorstel.getSamenvatting());
+		Spreker spreker1 = new Spreker();
+		spreker1.setEmail(voorstel.geteMail());
+		voorstelService.slaDezeVoorstelEnSprekerOp(voorstel1, spreker1);
+
+
 	}
 
 }
