@@ -15,6 +15,16 @@ public class Voorstel {
 	private String status = "ongemarkeerd";
 	private String eMail;
 
+	public boolean isVeranderd() {
+		return isVeranderd;
+	}
+
+	public void setVeranderd(boolean veranderd) {
+		isVeranderd = veranderd;
+	}
+
+	private boolean isVeranderd;
+
 	@OneToOne
 	private Categorie categorie;
 
