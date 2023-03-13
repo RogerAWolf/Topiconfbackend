@@ -11,8 +11,8 @@ public class SprekerService {
 	@Autowired
 	SprekerRepository ar;
 
-	public void toevoegenSpreker(Spreker spreker) {
-		ar.save(spreker);
+	public Spreker toevoegenSpreker(Spreker spreker) {
+		return ar.save(spreker);
 		
 	}
 
