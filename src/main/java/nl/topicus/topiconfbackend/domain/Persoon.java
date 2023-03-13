@@ -11,28 +11,30 @@ public class Persoon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	private enum Rol {
+		SPREKER,
+		ORGANISATOR,
+		ADMINISTRATOR;
+	}
+
 	private String voornaam;
 	private String achternaam;
 	private String email;
 	private String rol;  //s = spreker, o = organisator, a = administrator
-	
-	
+
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-
 	public String getRol() {
 		return rol;
 	}
-
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-
 	public String getVoornaam() {
 		return voornaam;
 	}
@@ -51,7 +53,5 @@ public class Persoon {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
 }
