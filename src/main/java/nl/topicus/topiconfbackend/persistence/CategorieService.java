@@ -10,11 +10,11 @@ public class CategorieService {
     @Autowired
     private CategorieRepository categorieRepository;
 
-    public Iterable<Categorie> geefAlleCategorieen(){
+    public Iterable<Categorie> geefAlleCategorieen() {
         return categorieRepository.findAll();
     }
 
-    public void slaCategorieOp(Categorie categorie){
+    public void slaCategorieOp(Categorie categorie) {
         categorieRepository.save(categorie);
     }
 
@@ -23,6 +23,7 @@ public class CategorieService {
     }
 
     public Categorie findById(long id) {
+
         return this.categorieRepository.findById(id).get();
     }
 }

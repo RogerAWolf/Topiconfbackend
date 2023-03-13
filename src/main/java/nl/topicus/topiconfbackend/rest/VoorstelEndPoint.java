@@ -33,38 +33,34 @@ public class VoorstelEndPoint {
 	// frontend will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("voorstel/voorstelOpslaan")
-	public void toevoegenVoorstel(@RequestBody Voorstel voorstel, @RequestParam("categorieid") int categorieid) {
+	@PostMapping("voorstel/slaVoorstelOp")
+	public void slaVoorstelOp(@RequestBody Voorstel voorstel, @RequestParam("categorieid") int categorieid) {
 		voorstel.setCategorie(this.categorieService.findById(categorieid));
-		this.voorstelService.toevoegenVoorstel(voorstel);
+		this.voorstelService.slaVoorstelOp(voorstel);
 	}
 
 	@GetMapping("voorstel/geefAlleVoorstellen")
 	public Iterable<Voorstel> geefAlleVoorstellen(){
-		return this.voorstelService.bekijkAlleVoorstellen();
+		return this.voorstelService.geefAlleVoorstellen();
 	}
 
-	@GetMapping("voorstel/getVoorstelById/{id}")
-	public Voorstel getVoorstelByID(@PathVariable long id){
+	@GetMapping("voorstel/geefVoorstelPerId/{id}")
+	public Voorstel geefVoorstelPerId(@PathVariable long id){
 		return this.voorstelService.findById(id);
 	}
 	
 	// not able to use yet
 	@CrossOrigin
-	@PutMapping("voorstel/updateElementStatus/{id}")
-	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Voorstel voorstel) {
-		this.voorstelService.toevoegenVoorstel(voorstel);
+	@PutMapping("voorstel/updateVoorstel/{id}")
+	public void updateVoorstel(@PathVariable long id, @RequestBody Voorstel voorstel) {
+		this.voorstelService.slaVoorstelOp(voorstel);
 	}
 
-	@PostMapping("voorstelEnSpreker/postBody")
-	public void toevoegenSprekerBijVoorstel(@RequestBody Voorstel voorstel){
-		Voorstel voorstel1 = new Voorstel();
-		voorstel1.setOnderwerp(voorstel.getOnderwerp());
-		voorstel1.seteMail(voorstel.geteMail());
-		voorstel1.setSamenvatting(voorstel.getSamenvatting());
+	@PostMapping("voorstel/voegSprekerAanVoorstelToe")
+	public void voegSprekerAanVoorstelToe(@RequestBody Voorstel voorstel){
 		Spreker spreker1 = new Spreker();
 		spreker1.setEmail(voorstel.geteMail());
-		voorstelService.slaDezeVoorstelEnSprekerOp(voorstel1, spreker1);
+		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 
 	@PostMapping("voorstel/voegBenodigdheidAanVoorstelToe/{benodigdheidid}")

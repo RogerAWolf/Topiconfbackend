@@ -20,33 +20,33 @@ import nl.topicus.topiconfbackend.persistence.SprekerService;
 public class SprekerEndpoint {
 
 	@Autowired
-	SprekerService as;
+	SprekerService sprekerService;
 	
 	//add request to database
 	//fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("spreker/postBody")
-	public void toevoegenSpreker(@RequestBody Spreker spreker) {
-		as.toevoegenSpreker(spreker);
+	@PostMapping("spreker/slaSprekerOp")
+	public void slaSprekerOp(@RequestBody Spreker spreker) {
+		sprekerService.slaSprekerOp(spreker);
 	}
 	
-	@GetMapping("spreker/getBody")
-	public Iterable<Spreker> bekijkenSpreker() {
-		return as.bekijkSpreker();
+	@GetMapping("spreker/geefAlleSprekers")
+	public Iterable<Spreker> geefAlleSprekers() {
+		return sprekerService.geefAlleSprekers();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("spreker/updateElementStatus/{id}")
-	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Spreker spreker) {
-		as.toevoegenSpreker(spreker);
+	@PutMapping("spreker/updateSpreker/{id}")
+	public void updateSpreker(@PathVariable long id, @RequestBody Spreker spreker) {
+		sprekerService.slaSprekerOp(spreker);
 	}
 
 	@CrossOrigin
-	@GetMapping("spreker/getElement/{id}")
-	public Spreker getById(@PathVariable long id){
-		return as.findById(id);
+	@GetMapping("spreker/geefSprekerPerId/{id}")
+	public Spreker geefSprekerPerId(@PathVariable long id){
+		return sprekerService.findById(id);
 	}
 
 }

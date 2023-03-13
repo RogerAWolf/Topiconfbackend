@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.*;
 public class BenodigdheidEndpoint {
 
     @Autowired
-    BenodigdheidService bs;
+    BenodigdheidService benodigdheidService;
 
     @GetMapping("benodigdheid/geefAlleBenodigdheden")
     public Iterable<Benodigdheid> geefAlleBenodigdheden(){
-        return bs.geefAlleBenodigdheden();
+        return benodigdheidService.geefAlleBenodigdheden();
     }
 
-    @PostMapping("benodigdheid/voegBenodigdheidToe")
-    public void voegBenodigdheidToe(@RequestBody Benodigdheid benodigdheid){
-        bs.slaBenodigdheidOp(benodigdheid);
+    @PostMapping("benodigdheid/slaBenodigdheidOp")
+    public void slaBenodigdheidOp(@RequestBody Benodigdheid benodigdheid){
+        benodigdheidService.slaBenodigdheidOp(benodigdheid);
     }
 
     @DeleteMapping("benodigdheid/verwijderBenodigdheid/{benodigdheidid}")
     public void verwijderBenodigdheid(@PathVariable("benodigdheidid") int benodigdheidid){
-        bs.verwijderBenodigdheid(benodigdheidid);
+        benodigdheidService.verwijderBenodigdheid(benodigdheidid);
     }
 
 
