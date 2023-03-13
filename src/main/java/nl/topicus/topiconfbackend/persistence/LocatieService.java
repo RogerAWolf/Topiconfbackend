@@ -10,20 +10,40 @@ public class LocatieService {
     @Autowired
     private LocatieRepository locatieRepository;
 
+    // Constructor
+    public LocatieService() {
+        this.locatieRepository = null;
+    }
+
     public Iterable<Locatie> geefAlleLocaties() {
-        return locatieRepository.findAll();
+        return this.locatieRepository.findAll();
     }
 
     public Boolean slaLocatieOp(Locatie locatie) {
-        locatieRepository.save(locatie);
-        return true;
+        if(locatie == null) {
+            return false;
+        } else {
+            this.locatieRepository.save(locatie);
+            return true;
+        }
+
+        // INFO:
+        // Met het oog op de Testen en het gewenste gedrag van de methode
+        // To do:
+        // Locatie met negatieve ID mag niet worden opgeslagen
+
+        // Uitvragen bij PO:
+        // Slaan we een locatie zonder naam op?
+        // Slaan we een locatie zonder capaciteit op?
+        // Slaan we een locatie zonder description op?
+        
     }
 
     public Boolean verwijderLocatie(long locatieid) {
         if (locatieid < 0) {
             return false;
-        } else if (locatieRepository.existsById(locatieid)) {
-            locatieRepository.deleteById(locatieid);
+        } else if (this.locatieRepository.existsById(locatieid)) {
+            this.locatieRepository.deleteById(locatieid);
             return true;
         } else {
             return false;

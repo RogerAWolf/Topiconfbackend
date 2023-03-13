@@ -11,9 +11,8 @@ public class SprekerService {
 	@Autowired
 	SprekerRepository ar;
 
-	public Spreker toevoegenSpreker(Spreker spreker) {
-		return ar.save(spreker);
-		
+	public void toevoegenSpreker(Spreker spreker) {
+		ar.save(spreker);
 	}
 
 	public Iterable<Spreker> bekijkSpreker() {
@@ -21,9 +20,6 @@ public class SprekerService {
 	}
 
 	public Spreker findById(long id){
-
 		 return ar.findById(id).get();
 	}
-
-	
-	}
+}

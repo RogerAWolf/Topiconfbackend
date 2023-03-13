@@ -44,6 +44,10 @@ public class EvenementEndpoint {
 		return es.findById(eventid);
 	}
 
+	@GetMapping("evenement/geefEvenement")
+	public Iterable<Evenement> geefEvenementMetNaam(@RequestParam String e) {
+		return es.haalEvenementOpMetNaam(e);
+	}
 
 	@PostMapping("evenement/voegEvenementToe")
 	public void voegEvenementToe(@RequestBody Evenement e1) {
