@@ -1,6 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Voorstel {
@@ -8,6 +9,9 @@ public class Voorstel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+
+	@OneToMany
+	private List<Benodigdheid> benodigdhedenLijst;
 
 	private String naam;
 	private String onderwerp;
