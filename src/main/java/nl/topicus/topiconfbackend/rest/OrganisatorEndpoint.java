@@ -18,39 +18,35 @@ import nl.topicus.topiconfbackend.persistence.OrganisatorService;
 
 @RestController
 public class OrganisatorEndpoint {
-	
-	
-
 
 	@Autowired
-	OrganisatorService as;
+	OrganisatorService organisatorService;
 	
 	//add request to database
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("organisator/postBody")
-	public void toevoegenOrganisator(@RequestBody Organisator organisator) {
-		as.toevoegenOrganisator(organisator);
+	@PostMapping("organisator/slaOrganisatorOp")
+	public void slaOrganisatorOp(@RequestBody Organisator organisator) {
+		organisatorService.slaOrganisatorOp(organisator);
 	}
 	
-	@GetMapping("organisator/getBody")
-	public Iterable<Organisator> bekijkenOrganisator() {
-		return as.bekijkOrganisator();
+	@GetMapping("organisator/geefAlleOrganisators")
+	public Iterable<Organisator> geefAlleOrganisators() {
+		return organisatorService.geefAlleOrganisators();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("organisator/updateElementStatus/{id}")
-	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Organisator organisator) {
-		as.toevoegenOrganisator(organisator);
+	@PutMapping("organisator/updateOrganisator/{id}")
+	public void updateOrganisator(@PathVariable long id, @RequestBody Organisator organisator) {
+		organisatorService.slaOrganisatorOp(organisator);
 	}
-	
-	
+
 	@CrossOrigin
-	@GetMapping("organisator/getElement/{id}")
-	public Organisator getById(@PathVariable long id){
-		return as.findById(id);
+	@GetMapping("organisator/geefOrganisatorPerId/{id}")
+	public Organisator geefOrganisatorPerId(@PathVariable long id){
+		return organisatorService.findById(id);
 	}
 
 }
