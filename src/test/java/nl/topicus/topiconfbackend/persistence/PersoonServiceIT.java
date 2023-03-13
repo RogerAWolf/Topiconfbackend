@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -58,9 +59,13 @@ public class PersoonServiceIT {
 		persoonLijst.add(mockedPersoon2);
 	}
 	
-	@Test
-	public void testToevoegenPersoon() {
+	@ParameterizedTest
+	@MethodSource
+	public void testToevoegenPersoon(Persoon persoon) {
 		
+		assertNotNull(persoon);
+		assertEquals(true, persoonService.toevoegenPersoon(persoon));
+		assertEquals(false, persoonService.toevoegenPersoon(null));
 	}
 	
 	@Test
