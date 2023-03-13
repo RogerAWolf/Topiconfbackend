@@ -1,6 +1,8 @@
 package nl.topicus.topiconfbackend.rest;
 
+import nl.topicus.topiconfbackend.domain.Benodigdheid;
 import nl.topicus.topiconfbackend.domain.Spreker;
+import nl.topicus.topiconfbackend.persistence.BenodigdheidService;
 import nl.topicus.topiconfbackend.persistence.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +25,9 @@ public class VoorstelEndPoint {
 
 	@Autowired
     CategorieService categorieService;
+
+	@Autowired
+	BenodigdheidService benodigheidService;
 	
 	// add request to database
 	// frontend will make sure that all fields are filled
@@ -60,7 +65,10 @@ public class VoorstelEndPoint {
 		Spreker spreker1 = new Spreker();
 		spreker1.setEmail(voorstel.geteMail());
 		voorstelService.slaDezeVoorstelEnSprekerOp(voorstel1, spreker1);
+	}
 
+	@PostMapping("voorstel/voegBenodigdheidAanVoorstelToe/{benodigdheidid}")
+	public void voegBenodigdheidAanVoorstelToe(@PathVariable("voorstelid") int voorstelid, @RequestBody Benodigdheid benodigdheid){
 
 	}
 

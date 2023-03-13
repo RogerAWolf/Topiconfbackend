@@ -6,93 +6,123 @@ import java.util.List;
 @Entity
 public class Voorstel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	@OneToMany
-	private List<Benodigdheid> benodigdhedenLijst;
+    @OneToMany
+    private List<Benodigdheid> benodigdhedenLijst;
 
-	private String naam;
-	private String onderwerp;
-	private String samenvatting;
-	private String status = "ongemarkeerd";
-	private String eMail;
+    private String voornaam;
+    private String achternaam;
+    private String onderwerp;
+    private String samenvatting;
+    private String status = "ongezien";
+    private String eMail;
+    private boolean isVeranderd;
+    private String extraOpmerkingen;
 
-	public boolean isVeranderd() {
-		return isVeranderd;
-	}
+    public List<Benodigdheid> getBenodigdhedenLijst() {
+        return benodigdhedenLijst;
+    }
 
-	public void setVeranderd(boolean veranderd) {
-		isVeranderd = veranderd;
-	}
+    public void setBenodigdhedenLijst(List<Benodigdheid> benodigdhedenLijst) {
+        this.benodigdhedenLijst = benodigdhedenLijst;
+    }
 
-	private boolean isVeranderd;
+    public String getExtraOpmerkingen() {
+        return extraOpmerkingen;
+    }
 
-	@OneToOne
-	private Categorie categorie;
+    public void setExtraOpmerkingen(String extraOpmerkingen) {
+        this.extraOpmerkingen = extraOpmerkingen;
+    }
 
-	@OneToOne
-	private Spreker spreker;
+    public boolean isVeranderd() {
+        return isVeranderd;
+    }
 
-	
-	public long getId() {
-		return id;
-	}
+    public void setVeranderd(boolean veranderd) {
+        isVeranderd = veranderd;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
-	public String getNaam() {
-		return naam;
-	}
+    @OneToOne
+    private Categorie categorie;
 
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
+    @OneToOne
+    private Spreker spreker;
 
-	public String getOnderwerp() {
-		return onderwerp;
-	}
 
-	public void setOnderwerp(String onderwerp) {
-		this.onderwerp = onderwerp;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getSamenvatting() {return samenvatting;}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setSamenvatting(String samenvatting){this.samenvatting = samenvatting;}
+    public String getVoornaam() {
+        return voornaam;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public String getAchternaam() {
+        return achternaam;
+    }
 
-	public String geteMail() {
-		return eMail;
-	}
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
+    }
 
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
+    public String getOnderwerp() {
+        return onderwerp;
+    }
 
-	public Categorie getCategorie() {
-		return this.categorie;
-	}
+    public void setOnderwerp(String onderwerp) {
+        this.onderwerp = onderwerp;
+    }
 
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
+    public String getSamenvatting() {
+        return samenvatting;
+    }
 
-	public Spreker getSpreker() {
-		return spreker;
-	}
+    public void setSamenvatting(String samenvatting) {
+        this.samenvatting = samenvatting;
+    }
 
-	public void setSpreker(Spreker spreker) {
-		this.spreker = spreker;
-	}
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public Categorie getCategorie() {
+        return this.categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public Spreker getSpreker() {
+        return spreker;
+    }
+
+    public void setSpreker(Spreker spreker) {
+        this.spreker = spreker;
+    }
 }

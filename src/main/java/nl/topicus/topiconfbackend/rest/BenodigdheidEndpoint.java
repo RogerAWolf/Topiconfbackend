@@ -26,4 +26,5 @@ public class BenodigdheidEndpoint {
         bs.verwijderBenodigdheid(benodigdheidid);
     }
 
+
 }
