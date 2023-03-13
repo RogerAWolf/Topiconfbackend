@@ -11,7 +11,13 @@ public class Persoon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	private enum Rol {
+		SPREKER,
+		ORGANISATOR,
+		ADMINISTRATOR;
+	}
+
 	private String voornaam;
 	private String achternaam;
 	private String email;
