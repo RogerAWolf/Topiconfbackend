@@ -11,8 +11,13 @@ public class PresentatieService {
 	@Autowired
 	PresentatieRepository ar;
 
-	public void toevoegenPresentatie(Presentatie presentatie) {
-		ar.save(presentatie);
+	public boolean toevoegenPresentatie(Presentatie presentatie) {
+		if (presentatie == null) {
+			return false;
+		} else {
+			this.ar.save(presentatie);
+			return true;
+		}
 		
 	}
 
