@@ -56,6 +56,7 @@ public class VoorstelEndPoint {
 		this.voorstelService.slaVoorstelOp(voorstel);
 	}
 
+
 	@PostMapping("voorstel/voegSprekerAanVoorstelToe")
 	public void voegSprekerAanVoorstelToe(@RequestBody Voorstel voorstel){
 		Spreker spreker1 = new Spreker();
