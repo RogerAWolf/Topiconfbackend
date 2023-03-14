@@ -57,10 +57,13 @@ public class VoorstelEndPoint {
 	}
 
 
-	@PostMapping("voorstel/voegSprekerAanVoorstelToe")
-	public void voegSprekerAanVoorstelToe(@RequestBody Voorstel voorstel){
+	@PostMapping("voorstel/voegSprekerAanVoorstelToe/{id}")
+	public void voegSprekerAanVoorstelToe(@PathVariable long id, @RequestBody Voorstel voorstel){
 		Spreker spreker1 = new Spreker();
+		spreker1.setVoornaam(voorstel.getVoornaam());
+		spreker1.setAchternaam(voorstel.getAchternaam());
 		spreker1.setEmail(voorstel.geteMail());
+		spreker1.setRol("s");
 		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 
