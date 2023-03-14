@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import nl.topicus.topiconfbackend.domain.Administrator;
 
-
 @Service
 public class AdministratorService {
 
@@ -13,7 +12,6 @@ public class AdministratorService {
 
 	public void toevoegenAdministrator(Administrator administrator) {
 		ar.save(administrator);
-		
 	}
 
 	public Iterable<Administrator> bekijkAdministrator() {
@@ -21,9 +19,6 @@ public class AdministratorService {
 	}
 
 	public Administrator findById(long id){
-
 		 return ar.findById(id).get();
 	}
-
-	
-	}
+}

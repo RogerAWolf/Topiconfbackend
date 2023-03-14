@@ -18,15 +18,12 @@ import nl.topicus.topiconfbackend.persistence.PresentatieService;
 
 @RestController
 public class PresentatieEndpoint {
-	
-	
-
 
 	@Autowired
 	PresentatieService as;
 	
 	//add request to database
-	 //fronted will make sure that all fields are filled
+	//fronted will make sure that all fields are filled
 	
 	@CrossOrigin
 	@PostMapping("presentatie/postBody")

@@ -18,15 +18,12 @@ import nl.topicus.topiconfbackend.persistence.PersoonService;
 
 @RestController
 public class PersoonEndpoint {
-	
-	
-
 
 	@Autowired
 	PersoonService as;
 	
 	//add request to database
-	 //fronted will make sure that all fields are filled
+	//fronted will make sure that all fields are filled
 	
 	@CrossOrigin
 	@PostMapping("persoon/postBody")
