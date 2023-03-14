@@ -1,83 +1,128 @@
 package nl.topicus.topiconfbackend.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Voorstel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	private String naam;
-	private String onderwerp;
-	private String samenvatting;
-	private String status = "ongemarkeerd";
-	private String eMail;
+    @OneToMany
+    private List<Benodigdheid> benodigdhedenLijst;
 
-	@OneToOne
-	private Categorie categorie;
+    private String voornaam;
+    private String achternaam;
+    private String onderwerp;
+    private String samenvatting;
+    private String status = "ongezien";
+    private String eMail;
+    private boolean isVeranderd;
+    private String extraOpmerkingen;
 
-	@OneToOne
-	private Spreker spreker;
+    public List<Benodigdheid> getBenodigdhedenLijst() {
+        return benodigdhedenLijst;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public void setBenodigdhedenLijst(List<Benodigdheid> benodigdhedenLijst) {
+        this.benodigdhedenLijst = benodigdhedenLijst;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public String getExtraOpmerkingen() {
+        return extraOpmerkingen;
+    }
 
-	public String getNaam() {
-		return naam;
-	}
+    public void setExtraOpmerkingen(String extraOpmerkingen) {
+        this.extraOpmerkingen = extraOpmerkingen;
+    }
 
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
+    public boolean isVeranderd() {
+        return isVeranderd;
+    }
 
-	public String getOnderwerp() {
-		return onderwerp;
-	}
+    public void setVeranderd(boolean veranderd) {
+        isVeranderd = veranderd;
+    }
 
-	public void setOnderwerp(String onderwerp) {
-		this.onderwerp = onderwerp;
-	}
 
-	public String getSamenvatting() {return samenvatting;}
+    @OneToOne
+    private Categorie categorie;
 
-	public void setSamenvatting(String samenvatting){this.samenvatting = samenvatting;}
+    @OneToOne
+    private Spreker spreker;
 
-	public String getStatus() {
-		return status;
-	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String geteMail() {
-		return eMail;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
-	}
+    public String getVoornaam() {
+        return voornaam;
+    }
 
-	public Categorie getCategorie() {
-		return this.categorie;
-	}
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
 
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
+    public String getAchternaam() {
+        return achternaam;
+    }
 
-	public Spreker getSpreker() {
-		return spreker;
-	}
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
+    }
 
-	public void setSpreker(Spreker spreker) {
-		this.spreker = spreker;
-	}
+    public String getOnderwerp() {
+        return onderwerp;
+    }
+
+    public void setOnderwerp(String onderwerp) {
+        this.onderwerp = onderwerp;
+    }
+
+    public String getSamenvatting() {
+        return samenvatting;
+    }
+
+    public void setSamenvatting(String samenvatting) {
+        this.samenvatting = samenvatting;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public Categorie getCategorie() {
+        return this.categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public Spreker getSpreker() {
+        return spreker;
+    }
+
+    public void setSpreker(Spreker spreker) {
+        this.spreker = spreker;
+    }
 }

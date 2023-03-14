@@ -9,21 +9,23 @@ import nl.topicus.topiconfbackend.domain.Persoon;
 public class PersoonService {
 
 	@Autowired
-	PersoonRepository ar;
+	PersoonRepository persoonRepository;
 
-	public void toevoegenPersoon(Persoon persoon) {
-		ar.save(persoon);
-		
+	public boolean slaPersoonOp(Persoon persoon) {
+		if (persoon == null) {
+			return false;
+		} else {
+			this.persoonRepository.save(persoon);
+			return true;
+		}
 	}
 
-	public Iterable<Persoon> bekijkPersoon() {
-		return ar.findAll();
+	public Iterable<Persoon> geefAllePersonen() {
+		return persoonRepository.findAll();
 	}
 
 	public Persoon findById(long id){
-
-		 return ar.findById(id).get();
+		 return persoonRepository.findById(id).get();
 	}
 
-	
 }

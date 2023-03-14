@@ -20,34 +20,33 @@ import nl.topicus.topiconfbackend.persistence.PersoonService;
 public class PersoonEndpoint {
 
 	@Autowired
-	PersoonService as;
+	PersoonService persoonService;
 	
 	//add request to database
 	//fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("persoon/postBody")
-	public void toevoegenPersoon(@RequestBody Persoon persoon) {
-		as.toevoegenPersoon(persoon);
+	@PostMapping("persoon/slaPersoonOp")
+	public void slaPersoonOp(@RequestBody Persoon persoon) {
+		persoonService.slaPersoonOp(persoon);
 	}
 	
-	@GetMapping("persoon/getBody")
-	public Iterable<Persoon> bekijkenPersoon() {
-		return as.bekijkPersoon();
+	@GetMapping("persoon/geefAllePersonen")
+	public Iterable<Persoon> geefAllePersonen() {
+		return persoonService.geefAllePersonen();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("persoon/updateElementStatus/{id}")
-	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Persoon persoon) {
-		as.toevoegenPersoon(persoon);
+	@PutMapping("persoon/updatePersoon/{id}")
+	public void updatePersoon(@PathVariable long id, @RequestBody Persoon persoon) {
+		persoonService.slaPersoonOp(persoon);
 	}
-	
-	
+
 	@CrossOrigin
-	@GetMapping("persoon/getElement/{id}")
-	public Persoon getById(@PathVariable long id){
-		return as.findById(id);
+	@GetMapping("persoon/geefPersoonPerId/{id}")
+	public Persoon geefPersoonPerId(@PathVariable long id){
+		return persoonService.findById(id);
 	}
 
 }

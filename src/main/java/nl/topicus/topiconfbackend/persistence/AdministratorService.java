@@ -7,18 +7,19 @@ import nl.topicus.topiconfbackend.domain.Administrator;
 @Service
 public class AdministratorService {
 
-	@Autowired
-	AdministratorRepository ar;
+    @Autowired
+    AdministratorRepository administratorRepository;
 
-	public void toevoegenAdministrator(Administrator administrator) {
-		ar.save(administrator);
-	}
 
-	public Iterable<Administrator> bekijkAdministrator() {
-		return ar.findAll();
-	}
+    public void slaAdministratorOp(Administrator administrator) {
+        administratorRepository.save(administrator);
+    }
 
-	public Administrator findById(long id){
-		 return ar.findById(id).get();
-	}
+    public Iterable<Administrator> geefAlleAdministrators() {
+        return administratorRepository.findAll();
+    }
+
+    public Administrator geefAdministratorPerId(long id) {
+        return administratorRepository.findById(id).get();
+    }
 }

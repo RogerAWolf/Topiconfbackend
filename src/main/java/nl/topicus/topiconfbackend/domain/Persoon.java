@@ -7,60 +7,59 @@ import javax.persistence.Id;
 
 @Entity
 public class Persoon {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
 
-	private enum Rol {
-		SPREKER,
-		ORGANISATOR,
-		ADMINISTRATOR;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	private String voornaam;
-	private String achternaam;
-	private String email;
-	private String rol;  //s = spreker, o = organisator, a = administrator
+    private enum Rol {
+        SPREKER,
+        ORGANISATOR,
+        ADMINISTRATOR;
+    }
 
-	public long getId() {
-		return id;
-	}
+    private String voornaam;
+    private String achternaam;
+    private String email;
+    private String rol;  //s = spreker, o = organisator, a = administrator
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getRol() {
-		return rol;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setRol(String rol) {
-		this.rol = rol;
-	}
+    public String getRol() {
+        return rol;
+    }
 
-	public String getVoornaam() {
-		return voornaam;
-	}
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 
-	public void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
-	}
+    public String getVoornaam() {
+        return voornaam;
+    }
 
-	public String getAchternaam() {
-		return achternaam;
-	}
+    public void setVoornaam(String voornaam) {
+        this.voornaam = voornaam;
+    }
 
-	public void setAchternaam(String achternaam)  {
-		this.achternaam = achternaam;
-	}
+    public String getAchternaam() {
+        return achternaam;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setAchternaam(String achternaam) {
+        this.achternaam = achternaam;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -8,22 +8,19 @@ import nl.topicus.topiconfbackend.domain.Organisator;
 @Service
 public class OrganisatorService {
 
-	@Autowired
-	OrganisatorRepository ar;
+    @Autowired
+    OrganisatorRepository organisatorRepository;
 
-	public void toevoegenOrganisator(Organisator organisator) {
-		ar.save(organisator);
-		
-	}
+    public void slaOrganisatorOp(Organisator organisator) {
+        organisatorRepository.save(organisator);
+    }
 
-	public Iterable<Organisator> bekijkOrganisator() {
-		return ar.findAll();
-	}
+    public Iterable<Organisator> geefAlleOrganisators() {
+        return organisatorRepository.findAll();
+    }
 
-	public Organisator findById(long id){
+    public Organisator findById(long id) {
+        return organisatorRepository.findById(id).get();
+    }
 
-		 return ar.findById(id).get();
-	}
-
-	
-	}
+}

@@ -8,22 +8,19 @@ import nl.topicus.topiconfbackend.domain.Presentatie;
 @Service
 public class PresentatieService {
 
-	@Autowired
-	PresentatieRepository ar;
+    @Autowired
+    PresentatieRepository presentatieRepository;
 
-	public void toevoegenPresentatie(Presentatie presentatie) {
-		ar.save(presentatie);
-		
-	}
+    public void slaPresentatieOp(Presentatie presentatie) {
+        presentatieRepository.save(presentatie);
+    }
 
-	public Iterable<Presentatie> bekijkPresentatie() {
-		return ar.findAll();
-	}
+    public Iterable<Presentatie> geefAllePresentaties() {
+        return presentatieRepository.findAll();
+    }
 
-	public Presentatie findById(long id){
+    public Presentatie findById(long id) {
+        return presentatieRepository.findById(id).get();
+    }
 
-		 return ar.findById(id).get();
-	}
-
-	
-	}
+}
