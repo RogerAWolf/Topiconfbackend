@@ -9,17 +9,17 @@ import nl.topicus.topiconfbackend.domain.Spreker;
 public class SprekerService {
 
 	@Autowired
-	SprekerRepository ar;
+	SprekerRepository sprekerRepository;
 
-	public void toevoegenSpreker(Spreker spreker) {
-		ar.save(spreker);
+	public void slaSprekerOp(Spreker spreker) {
+		sprekerRepository.save(spreker);
 	}
 
-	public Iterable<Spreker> bekijkSpreker() {
-		return ar.findAll();
+	public Iterable<Spreker> geefAlleSprekers() {
+		return sprekerRepository.findAll();
 	}
 
 	public Spreker findById(long id){
-		 return ar.findById(id).get();
+		 return sprekerRepository.findById(id).get();
 	}
 }

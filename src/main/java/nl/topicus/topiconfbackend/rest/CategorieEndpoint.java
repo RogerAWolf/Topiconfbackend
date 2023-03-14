@@ -13,18 +13,16 @@ public class CategorieEndpoint {
 
     @GetMapping("categorie/geefAlleCategorieen")
     public Iterable<Categorie> geefAlleCategorieen(){
-        System.out.println("retrieve");
         return categorieService.geefAlleCategorieen();
     }
 
-    @PostMapping("categorie/voegCategorieToe")
+    @PostMapping("categorie/slaCategorieOp")
     public void slaCategorieOp(@RequestBody Categorie categorie){
-        System.out.println("create");
         categorieService.slaCategorieOp(categorie);
     }
 
-    @GetMapping("categorie/geefCategoriePerID/{categorieid}")
-    public Categorie geefCategoriePerID(@PathVariable("categorieid") int categorieid){
+    @GetMapping("categorie/geefCategoriePerId/{categorieid}")
+    public Categorie geefCategoriePerId(@PathVariable("categorieid") int categorieid){
         return categorieService.findById(categorieid);
     }
 

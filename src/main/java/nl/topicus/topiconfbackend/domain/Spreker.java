@@ -3,31 +3,31 @@ package nl.topicus.topiconfbackend.domain;
 import javax.persistence.*;
 
 @Entity
-public class Spreker extends Persoon{
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+public class Spreker extends Persoon {
 
-	@OneToOne
-	private Voorstel voorstel;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	public Voorstel getVoorstel() {
-		return voorstel;
-	}
+    @OneToOne
+    private Voorstel voorstel;
 
-	public void setVoorstel(Voorstel voorstel) {
-		this.voorstel = voorstel;
-	}
+    public Voorstel getVoorstel() {
+        return voorstel;
+    }
 
-	@Override
-	public long getId() {
-		return id;
-	}
+    public void setVoorstel(Voorstel voorstel) {
+        this.voorstel = voorstel;
+    }
 
-	@Override
-	public void setId(long id) {
-		this.id = id;
-	}
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(long id) {
+        this.id = id;
+    }
 }
 

@@ -18,39 +18,35 @@ import nl.topicus.topiconfbackend.persistence.AdministratorService;
 
 @RestController
 public class AdministratorEndpoint {
-	
-	
-
 
 	@Autowired
-	AdministratorService as;
+	AdministratorService administratorService;
 	
 	//add request to database
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("administrator/postBody")
-	public void toevoegenAdministrator(@RequestBody Administrator administrator) {
-		as.toevoegenAdministrator(administrator);
+	@PostMapping("administrator/slaAdministratorOp")
+	public void slaAdministratorOp(@RequestBody Administrator administrator) {
+		administratorService.slaAdministratorOp(administrator);
 	}
 	
-	@GetMapping("administrator/getBody")
-	public Iterable<Administrator> bekijkenAdministrator() {
-		return as.bekijkAdministrator();
+	@GetMapping("administrator/geefAlleAdministrators")
+	public Iterable<Administrator> geefAlleAdministators() {
+		return administratorService.geefAlleAdministrators();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("administrator/updateElementStatus/{id}")
-	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Administrator administrator) {
-		as.toevoegenAdministrator(administrator);
+	@PutMapping("administrator/updateAdministrator/{id}")
+	public void updateAdministator(@PathVariable long id, @RequestBody Administrator administrator) {
+		administratorService.slaAdministratorOp(administrator);
 	}
-	
-	
+
 	@CrossOrigin
-	@GetMapping("administrator/getElement/{id}")
-	public Administrator getById(@PathVariable long id){
-		return as.findById(id);
+	@GetMapping("administrator/geefAdministratorPerId/{id}")
+	public Administrator geefAdministratorPerId(@PathVariable long id){
+		return administratorService.geefAdministratorPerId(id);
 	}
 
 }

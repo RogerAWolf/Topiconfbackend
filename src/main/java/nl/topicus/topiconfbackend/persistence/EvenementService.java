@@ -14,65 +14,65 @@ import nl.topicus.topiconfbackend.domain.Evenement;
 @Service
 public class EvenementService {
 	@Autowired
-	EvenementRepository er;
+	EvenementRepository evenementRepository;
 
 	@Autowired
-	CategorieRepository tr;
+	CategorieRepository categorieRepository;
 
 	@Autowired
-	LocatieRepository lr;
+	LocatieRepository locatieRepository;
 
 	@Autowired
-	VoorstelRepository vr;
+	VoorstelRepository voorstelRepository;
 
 	public Iterable<Evenement> geefAlleEvenementen() {
-		return er.findAll();
+		return evenementRepository.findAll();
 	}
 
-	public void slaEvenementOp(Evenement e1) {
-		er.save(e1);
+	public void slaEvenementOp(Evenement evenement) {
+		evenementRepository.save(evenement);
 	}
 
-	public Iterable<Voorstel> geefVoorstellenPerEvenement(Evenement evenement) {
+	public Iterable<Voorstel> geefAlleVoorstellenPerEvenement(Evenement evenement) {
 		return evenement.getVoorstelLijst();
 	}
 
-	public Iterable<Categorie> geefCategorieenPerEvenement(Evenement evenement){
+	public Iterable<Categorie> geefAlleCategorieenPerEvenement(Evenement evenement){
 		return evenement.getCategorieLijst();
 	}
 
-	public Iterable<Locatie> geefLocatiesPerEvenement(Evenement evenement) {
+	public Iterable<Locatie> geefAlleLocatiesPerEvenement(Evenement evenement) {
 		return evenement.getLocatieLijst();
 	}
 
 	public void verwijderEvenement(long eventid){
-		er.deleteById(eventid);
+		evenementRepository.deleteById(eventid);
 	}
 
 	public Evenement findById(long eventid){
-		return er.findById(eventid).get();
+		return evenementRepository.findById(eventid).get();
 	}
 
 	public void slaEvenementEnCategorieOp(Evenement event, Categorie categorie) {
-		tr.save(categorie);
+		categorieRepository.save(categorie);
 		event.getCategorieLijst().add(categorie);
-		er.save(event);
+		evenementRepository.save(event);
 	}
 
 	public void slaEvenementEnLocatieOp(Evenement event, Locatie locatie) {
-		lr.save(locatie);
+		locatieRepository.save(locatie);
 		event.getLocatieLijst().add(locatie);
-		er.save(event);
+		evenementRepository.save(event);
 	}
 
 	public void slaEvenementEnVoorstelOp(Evenement event, Voorstel voorstel) {
-		vr.save(voorstel);
+		voorstelRepository.save(voorstel);
 		event.getVoorstelLijst().add(voorstel);
-		er.save(event);
+		evenementRepository.save(event);
 	}
 
-	public Iterable<Evenement> haalEvenementOpMetNaam(String naam) {
-		return er.findEvenementsByNaam(naam);
+	public Iterable<Evenement> geefEvenementPerNaam(String naam) {
+		return evenementRepository.findEvenementsByNaam(naam);
 	}
 
 }
