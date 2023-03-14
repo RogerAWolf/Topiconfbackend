@@ -51,7 +51,10 @@ public class EvenementEndpoint {
 
 	@PostMapping("evenement/slaEvenementOp")
 	public void slaEvenementOp(@RequestBody Evenement evenement) {
-		evenementService.slaEvenementOp(evenement);
+		Categorie geenCategorie = new Categorie();
+		geenCategorie.setName("geenCategorie");
+		geenCategorie.setDescription("Standaard categorie");
+		evenementService.slaEvenementEnCategorieOp(evenement, geenCategorie);
 	}
 
 	@PostMapping("evenement/voegCategorieAanEvenementToe/{evenementid}")
@@ -69,6 +72,7 @@ public class EvenementEndpoint {
 	@PostMapping("evenement/voegVoorstelAanEvenementToe/{evenementid}")
 	public void voegVoorstelAanEvenementToe(@PathVariable("evenementid") int evenementid, @RequestBody Voorstel voorstel){
 		Evenement evenement = evenementService.findById(evenementid);
+		voorstel.setCategorie(evenement.getCategorieLijst().get(0));
 		evenementService.slaEvenementEnVoorstelOp(evenement, voorstel);
 		Spreker spreker1 = new Spreker();
 		spreker1.setVoornaam(voorstel.getVoornaam());
