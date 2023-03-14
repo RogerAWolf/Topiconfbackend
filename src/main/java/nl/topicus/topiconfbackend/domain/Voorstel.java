@@ -1,6 +1,9 @@
 package nl.topicus.topiconfbackend.domain;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 @Entity
@@ -114,10 +117,12 @@ public class Voorstel {
         this.categorie = categorie;
     }
 
+    @JsonIgnore
     public Spreker getSpreker() {
         return spreker;
     }
-
+    
+    @JsonIgnore
     public void setSpreker(Spreker spreker) {
         this.spreker = spreker;
     }
