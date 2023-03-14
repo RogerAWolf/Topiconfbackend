@@ -1,6 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -12,11 +13,11 @@ public class Evenement {
 	long id;
 
 	@OneToMany
-	private List<Categorie> categorieLijst;
+	private List<Categorie> categorieLijst = new ArrayList<Categorie>();
 	@OneToMany
-	private List<Voorstel> voorstelLijst;
+	private List<Voorstel> voorstelLijst = new ArrayList<Voorstel>();
 	@OneToMany
-	private List<Locatie> locatieLijst;
+	private List<Locatie> locatieLijst = new ArrayList<Locatie>();
 
 	private String naam;
 	private String omschrijving;
