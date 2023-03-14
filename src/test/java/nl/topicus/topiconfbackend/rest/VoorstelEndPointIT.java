@@ -40,7 +40,7 @@ public class VoorstelEndPointIT {
 		when(categorieService.findById(1)).thenReturn(categorie);
 		
 		//When
-		voorstelEndPoint.toevoegenVoorstel(voorstel, 1);
+		voorstelEndPoint.slaVoorstelOp(voorstel, 1);
 		
 		//Then
 		assertEquals(categorie, voorstel.getCategorie());
@@ -71,7 +71,7 @@ public class VoorstelEndPointIT {
 		when(voorstelService.findById(id)).thenReturn(verwachteVoorstel);
 		
 		//When
-		Voorstel result = voorstelEndPoint.getVoorstelByID(id);
+		Voorstel result = voorstelEndPoint.geefVoorstelPerId(id);
 		
 		//Them
 		assertEquals(verwachteVoorstel, result);
@@ -86,10 +86,10 @@ public class VoorstelEndPointIT {
 		voorstel.setId(id);
 		
 		//When
-		voorstelEndPoint.selecterenEnUpdate(id, voorstel);
+		voorstelEndPoint.updateVoorstel(id, voorstel);
 		
 		//Then
-		verify(voorstelService).toevoegenVoorstel(voorstel);
+		verify(voorstelService).slaVoorstelOp(voorstel);
 	}
 	
 	@Test
@@ -100,7 +100,7 @@ public class VoorstelEndPointIT {
 		voorstel.seteMail("test@example.com");
 		
 		//When
-		voorstelEndPoint.toevoegenSprekerBijVoorstel(voorstel);
+		voorstelEndPoint.voegSprekerAanVoorstelToe(1, voorstel);
 		
 		//Then
 		Voorstel verwachteVoorstel = new Voorstel();

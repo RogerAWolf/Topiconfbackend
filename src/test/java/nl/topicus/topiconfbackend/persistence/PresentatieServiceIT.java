@@ -61,8 +61,8 @@ public class PresentatieServiceIT {
 	public void testToevoegenPresentatie(Presentatie presentatie) {
 		
 		assertNotNull(presentatie);
-		assertEquals(true, presentatieService.toevoegenPresentatie(presentatie));
-		assertEquals(false, presentatieService.toevoegenPresentatie(presentatie));
+		assertEquals(true, presentatieService.slaPresentatieOp(presentatie));
+		assertEquals(false, presentatieService.slaPresentatieOp(presentatie));
 	}
 	
 	@Test
@@ -72,7 +72,7 @@ public class PresentatieServiceIT {
 		Mockito.when(this.presentatieRepository.findAll()).thenReturn(this.presentatieLijst);
 		
 		//When
-		Iterable<Presentatie> presentatieLijstFromService = ((PresentatieService) this.presentatieRepository).bekijkPresentatie();
+		Iterable<Presentatie> presentatieLijstFromService = ((PresentatieService) this.presentatieRepository).geefAllePresentaties();
 		
 		//Then
 		assertNotNull(presentatieLijstFromService);
