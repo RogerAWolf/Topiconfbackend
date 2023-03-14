@@ -2,8 +2,8 @@ package nl.topicus.topiconfbackend.persistence;
 
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -64,8 +64,8 @@ public class PersoonServiceIT {
 	public void testToevoegenPersoon(Persoon persoon) {
 		
 		assertNotNull(persoon);
-		assertEquals(true, persoonService.toevoegenPersoon(persoon));
-		assertEquals(false, persoonService.toevoegenPersoon(null));
+		assertEquals(true, persoonService.slaPersoonOp(persoon));
+		assertEquals(false, persoonService.slaPersoonOp(null));
 	}
 	
 	@Test
@@ -75,7 +75,7 @@ public class PersoonServiceIT {
 		Mockito.when(this.persoonRep.findAll()).thenReturn(this.persoonLijst);
 		
 		//When
-		Iterable<Persoon> persoonLijstFromService = ((PersoonService) this.persoonRep).bekijkPersoon();
+		Iterable<Persoon> persoonLijstFromService = ((PersoonService) this.persoonRep).geefAllePersonen();
 		
 		//Then
 		assertNotNull(persoonLijstFromService);
