@@ -11,9 +11,16 @@ public class PresentatieService {
     @Autowired
     PresentatieRepository presentatieRepository;
 
-    public void slaPresentatieOp(Presentatie presentatie) {
-        presentatieRepository.save(presentatie);
+
+    public boolean slaPresentatieOp(Presentatie presentatie) {
+        if (presentatie == null) {
+        	return false;
+        } else {
+        	this.presentatieRepository.save(presentatie);
+        	return true;
+        }
     }
+
 
     public Iterable<Presentatie> geefAllePresentaties() {
         return presentatieRepository.findAll();
