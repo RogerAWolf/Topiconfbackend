@@ -8,27 +8,26 @@ import nl.topicus.topiconfbackend.domain.Presentatie;
 @Service
 public class PresentatieService {
 
-	@Autowired
-	PresentatieRepository ar;
+    @Autowired
+    PresentatieRepository presentatieRepository;
 
-	public boolean toevoegenPresentatie(Presentatie presentatie) {
-		if (presentatie == null) {
-			return false;
-		} else {
-			this.ar.save(presentatie);
-			return true;
-		}
-		
-	}
 
-	public Iterable<Presentatie> bekijkPresentatie() {
-		return ar.findAll();
-	}
+    public boolean slaPresentatieOp(Presentatie presentatie) {
+        if (presentatie == null) {
+        	return false;
+        } else {
+        	this.presentatieRepository.save(presentatie);
+        	return true;
+        }
+    }
 
-	public Presentatie findById(long id){
 
-		 return ar.findById(id).get();
-	}
+    public Iterable<Presentatie> geefAllePresentaties() {
+        return presentatieRepository.findAll();
+    }
 
-	
-	}
+    public Presentatie findById(long id) {
+        return presentatieRepository.findById(id).get();
+    }
+
+}

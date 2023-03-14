@@ -8,21 +8,21 @@ import org.springframework.stereotype.Service;
 public class BenodigdheidService {
 
     @Autowired
-    BenodigdheidRepository br;
+    BenodigdheidRepository benodigdheidRepository;
 
     public Iterable<Benodigdheid> geefAlleBenodigdheden() {
-        return br.findAll();
+        return benodigdheidRepository.findAll();
     }
 
-    public void slaBenodigdheidOp(Benodigdheid benodigdheid){
-        br.save(benodigdheid);
+    public void slaBenodigdheidOp(Benodigdheid benodigdheid) {
+        benodigdheidRepository.save(benodigdheid);
     }
 
-    public Benodigdheid geefBenodigdheidPerId(long id){
-        return br.findById(id).get();
+    public Benodigdheid geefBenodigdheidPerId(long id) {
+        return benodigdheidRepository.findById(id).get();
     }
 
-    public void verwijderBenodigdheid(long id){
-        br.deleteById(id);
+    public void verwijderBenodigdheid(long id) {
+        benodigdheidRepository.deleteById(id);
     }
 }

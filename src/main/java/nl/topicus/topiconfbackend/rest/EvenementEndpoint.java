@@ -1,81 +1,85 @@
 package nl.topicus.topiconfbackend.rest;
 
-import nl.topicus.topiconfbackend.domain.Locatie;
-import nl.topicus.topiconfbackend.domain.Categorie;
+import nl.topicus.topiconfbackend.domain.*;
+import nl.topicus.topiconfbackend.persistence.VoorstelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import nl.topicus.topiconfbackend.domain.Voorstel;
-import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.persistence.EvenementService;
 
 @RestController
 public class EvenementEndpoint {
 
 	@Autowired
-	EvenementService es;
+	EvenementService evenementService;
 
-	@GetMapping("evenement/alleEvenementen")
-	public Iterable<Evenement> alleEvenementen() {
-		System.out.println("Alle evenementen opgehaald");
-		return es.geefAlleEvenementen();
+	@Autowired
+	VoorstelService voorstelService;
+
+	@GetMapping("evenement/geefAlleEvenementen")
+	public Iterable<Evenement> geefAlleEvenementen() {
+		return evenementService.geefAlleEvenementen();
 	}
 	
-	@GetMapping("evenement/geefAlleCategorieenPerEvenement/{eventid}")
-	public Iterable<Categorie> geefAlleCategorieenPerEvenement(@PathVariable("eventid") int eventid){
-		Evenement event = es.findById(eventid);
-		return es.geefCategorieenPerEvenement(event);
+	@GetMapping("evenement/geefAlleCategorieenPerEvenement/{evenementid}")
+	public Iterable<Categorie> geefAlleCategorieenPerEvenement(@PathVariable("evenementid") int evenementid){
+		Evenement evenement = evenementService.findById(evenementid);
+		return evenementService.geefAlleCategorieenPerEvenement(evenement);
 	}
 
-	@GetMapping("evenement/geefAlleLocatiesPerEvenement/{eventid}")
-	public Iterable<Locatie> geefAlleLocatiesPerEvenement(@PathVariable("eventid") int eventid){
-		Evenement event = es.findById(eventid);
-		return es.geefLocatiesPerEvenement(event);
+	@GetMapping("evenement/geefAlleLocatiesPerEvenement/{evenementid}")
+	public Iterable<Locatie> geefAlleLocatiesPerEvenement(@PathVariable("evenementid") int evenementid){
+		Evenement evenement = evenementService.findById(evenementid);
+		return evenementService.geefAlleLocatiesPerEvenement(evenement);
 	}
 	
-	@GetMapping("evenement/geefAlleVoorstellenPerEvenement/{eventid}")
-	public Iterable<Voorstel> geefAlleVoorstellenPerEvenement(@PathVariable("eventid") int eventid){
-		Evenement event = es.findById(eventid);
-		return es.geefVoorstellenPerEvenement(event);
+	@GetMapping("evenement/geefAlleVoorstellenPerEvenement/{evenementid}")
+	public Iterable<Voorstel> geefAlleVoorstellenPerEvenement(@PathVariable("evenementid") int evenementid){
+		Evenement evenement = evenementService.findById(evenementid);
+		return evenementService.geefAlleVoorstellenPerEvenement(evenement);
 	}
 
-	@GetMapping("evenement/geefEvenement/{eventid}")
-	public Evenement geefEvenement(@PathVariable("eventid") int eventid){
-		return es.findById(eventid);
+	@GetMapping("evenement/geefEvenementPerId/{evenementid}")
+	public Evenement geefEvenementPerId(@PathVariable("evenementid") int evenementid){
+		return evenementService.findById(evenementid);
 	}
 
-	@GetMapping("evenement/geefEvenement")
-	public Iterable<Evenement> geefEvenementMetNaam(@RequestParam String e) {
-		return es.haalEvenementOpMetNaam(e);
+	@GetMapping("evenement/geefEvenementPerNaam")
+	public Iterable<Evenement> geefEvenementPerNaam(@RequestParam String e) {
+		return evenementService.geefEvenementPerNaam(e);
 	}
 
-	@PostMapping("evenement/voegEvenementToe")
-	public void voegEvenementToe(@RequestBody Evenement e1) {
-		System.out.println("Evenement opgeslagen");
-		es.slaEvenementOp(e1);
+	@PostMapping("evenement/slaEvenementOp")
+	public void slaEvenementOp(@RequestBody Evenement evenement) {
+		evenementService.slaEvenementOp(evenement);
 	}
 
-	@PostMapping("evenement/voegCategorieAanEvenementToe/{eventid}")
-	public void voegCategorieAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Categorie categorie){
-		Evenement event = es.findById(eventid);
-		es.slaEvenementEnCategorieOp(event, categorie);
+	@PostMapping("evenement/voegCategorieAanEvenementToe/{evenementid}")
+	public void voegCategorieAanEvenementToe(@PathVariable("evenementid") int evenementid, @RequestBody Categorie categorie){
+		Evenement evenement = evenementService.findById(evenementid);
+		evenementService.slaEvenementEnCategorieOp(evenement, categorie);
 	}
 
-	@PostMapping("evenement/voegLocatieAanEvenementToe/{eventid}")
-	public void voegLocatieAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Locatie locatie){
-		Evenement event = es.findById(eventid);
-		es.slaEvenementEnLocatieOp(event, locatie);
+	@PostMapping("evenement/voegLocatieAanEvenementToe/{evenementid}")
+	public void voegLocatieAanEvenementToe(@PathVariable("evenementid") int evenementid, @RequestBody Locatie locatie){
+		Evenement evenement = evenementService.findById(evenementid);
+		evenementService.slaEvenementEnLocatieOp(evenement, locatie);
 	}
 	
-	@PostMapping("evenement/voegVoorstelAanEvenementToe/{eventid}")
-	public void voegVoorstelAanEvenementToe(@PathVariable("eventid") int eventid, @RequestBody Voorstel voorstel){
-		Evenement event = es.findById(eventid);
-		es.slaEvenementEnVoorstelOp(event, voorstel);
+	@PostMapping("evenement/voegVoorstelAanEvenementToe/{evenementid}")
+	public void voegVoorstelAanEvenementToe(@PathVariable("evenementid") int evenementid, @RequestBody Voorstel voorstel){
+		Evenement evenement = evenementService.findById(evenementid);
+		evenementService.slaEvenementEnVoorstelOp(evenement, voorstel);
+		Spreker spreker1 = new Spreker();
+		spreker1.setVoornaam(voorstel.getVoornaam());
+		spreker1.setAchternaam(voorstel.getAchternaam());
+		spreker1.setEmail(voorstel.geteMail());
+		spreker1.setRol("s");
+		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 	
-	@DeleteMapping("evenement/verwijderEvent/{eventid}")
-	public void verwijderEvent(@PathVariable("eventid") int eventid) {
-		System.out.println("Evenement verwijderd");
-		es.verwijderEvenement(eventid);
+	@DeleteMapping("evenement/verwijderEvenement/{evenementid}")
+	public void verwijderEvenement(@PathVariable("evenementid") int evenementid) {
+		evenementService.verwijderEvenement(evenementid);
 	}
 }

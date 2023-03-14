@@ -16,8 +16,8 @@ public class LocatieEndpoint {
         return locatieService.geefAlleLocaties();
     }
 
-    @PostMapping("locatie/voegLocatieToe")
-    public void voegLocatieToe(@RequestBody Locatie locatie){
+    @PostMapping("locatie/slaLocatieOp")
+    public void slaLocatieOp(@RequestBody Locatie locatie){
         locatieService.slaLocatieOp(locatie);
     }
 

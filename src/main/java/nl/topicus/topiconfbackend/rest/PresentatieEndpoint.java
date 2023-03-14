@@ -18,39 +18,36 @@ import nl.topicus.topiconfbackend.persistence.PresentatieService;
 
 @RestController
 public class PresentatieEndpoint {
-	
-	
-
 
 	@Autowired
-	PresentatieService as;
+	PresentatieService presentatieService;
 	
 	//add request to database
 	 //fronted will make sure that all fields are filled
 	
 	@CrossOrigin
-	@PostMapping("presentatie/postBody")
-	public void toevoegenPresentatie(@RequestBody Presentatie presentatie) {
-		as.toevoegenPresentatie(presentatie);
+	@PostMapping("presentatie/slaPresentatieOp")
+	public void slaPresentatieOp(@RequestBody Presentatie presentatie) {
+		presentatieService.slaPresentatieOp(presentatie);
 	}
 	
-	@GetMapping("presentatie/getBody")
-	public Iterable<Presentatie> bekijkenPresentatie() {
-		return as.bekijkPresentatie();
+	@GetMapping("presentatie/geefAllePresentaties")
+	public Iterable<Presentatie> geefAllePresentaties() {
+		return presentatieService.geefAllePresentaties();
 	}
 	
 	//not able to use yet
 	@CrossOrigin
-	@PutMapping("presentatie/updateElementStatus/{id}")
-	public void selecterenEnUpdate(@PathVariable long id, @RequestBody Presentatie presentatie) {
-		as.toevoegenPresentatie(presentatie);
+	@PutMapping("presentatie/updatePresentatie/{id}")
+	public void updatePresentatie(@PathVariable long id, @RequestBody Presentatie presentatie) {
+		presentatieService.slaPresentatieOp(presentatie);
 	}
 	
 	
 	@CrossOrigin
-	@GetMapping("/getElement/{id}")
+	@GetMapping("presentatie/geefPresentatiePerId/{id}")
 	public Presentatie getById(@PathVariable long id){
-		return as.findById(id);
+		return presentatieService.findById(id);
 	}
 
 }
