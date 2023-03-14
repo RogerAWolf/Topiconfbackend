@@ -1,12 +1,10 @@
 package nl.topicus.topiconfbackend.rest;
 
-import nl.topicus.topiconfbackend.domain.Locatie;
-import nl.topicus.topiconfbackend.domain.Categorie;
+import nl.topicus.topiconfbackend.domain.*;
+import nl.topicus.topiconfbackend.persistence.VoorstelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import nl.topicus.topiconfbackend.domain.Voorstel;
-import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.persistence.EvenementService;
 
 @RestController
@@ -14,6 +12,9 @@ public class EvenementEndpoint {
 
 	@Autowired
 	EvenementService evenementService;
+
+	@Autowired
+	VoorstelService voorstelService;
 
 	@GetMapping("evenement/geefAlleEvenementen")
 	public Iterable<Evenement> geefAlleEvenementen() {
@@ -44,8 +45,8 @@ public class EvenementEndpoint {
 	}
 
 	@GetMapping("evenement/geefEvenementPerNaam")
-	public Iterable<Evenement> geefEvenementPerNaam(@RequestParam String naam) {
-		return evenementService.geefEvenementPerNaam(naam);
+	public Iterable<Evenement> geefEvenementPerNaam(@RequestParam String e) {
+		return evenementService.geefEvenementPerNaam(e);
 	}
 
 	@PostMapping("evenement/slaEvenementOp")
@@ -69,6 +70,12 @@ public class EvenementEndpoint {
 	public void voegVoorstelAanEvenementToe(@PathVariable("evenementid") int evenementid, @RequestBody Voorstel voorstel){
 		Evenement evenement = evenementService.findById(evenementid);
 		evenementService.slaEvenementEnVoorstelOp(evenement, voorstel);
+		Spreker spreker1 = new Spreker();
+		spreker1.setVoornaam(voorstel.getVoornaam());
+		spreker1.setAchternaam(voorstel.getAchternaam());
+		spreker1.setEmail(voorstel.geteMail());
+		spreker1.setRol("s");
+		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 	
 	@DeleteMapping("evenement/verwijderEvenement/{evenementid}")
