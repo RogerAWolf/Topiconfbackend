@@ -23,12 +23,13 @@ public class Voorstel {
     private String eMail;
     private boolean isVeranderd;
     private String extraOpmerkingen;
+    private String tijdsduur;
+    private String maximaleCapaciteit;
     @OneToOne
     private Categorie categorie;
     @OneToOne
     private Spreker spreker;
 
-    
     public List<Benodigdheid> getBenodigdhedenLijst() {
         return benodigdhedenLijst;
     }
@@ -125,5 +126,13 @@ public class Voorstel {
     @JsonIgnore
     public void setSpreker(Spreker spreker) {
         this.spreker = spreker;
+    }
+
+    public String getTijdsduur() {
+        return tijdsduur;
+    }
+
+    public void setTijdsduur(String tijdsduur) {
+        this.tijdsduur = tijdsduur;
     }
 }
