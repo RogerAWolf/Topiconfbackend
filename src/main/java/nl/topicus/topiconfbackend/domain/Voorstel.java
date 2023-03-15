@@ -14,6 +14,8 @@ public class Voorstel {
     private long id;
 
     @OneToMany
+    private List<Benodigdheid> benodigdhedenLijst;
+
     private String voornaam;
     private String achternaam;
     private String onderwerp;
@@ -24,7 +26,6 @@ public class Voorstel {
     private int maximaleCapaciteit;
     private boolean isVeranderd;
     private String extraOpmerkingen;
-    private List<Benodigdheid> benodigdhedenLijst;
     @OneToOne
     private Categorie categorie;
     @OneToOne

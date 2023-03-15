@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import nl.topicus.topiconfbackend.domain.Voorstel;
 import nl.topicus.topiconfbackend.persistence.VoorstelService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class VoorstelEndPoint {
 
@@ -52,17 +55,14 @@ public class VoorstelEndPoint {
 	@CrossOrigin
 	@PutMapping("voorstel/updateVoorstel")
 	public void updateVoorstel(@RequestBody Voorstel voorstel) {
-		Voorstel geupdatetVoorstel = voorstel;
-		geupdatetVoorstel.setVeranderd(true);
+		voorstel.setVeranderd(true);
 
-		geupdatetVoorstel.getBenodigdhedenLijst().clear();
-
+		List<Benodigdheid> nieuweBenodigdheden = new ArrayList<>();
 		for(Benodigdheid benodigdheid: voorstel.getBenodigdhedenLijst()){
-			System.out.println(benodigdheid);
 			Benodigdheid nieuweBenodigdheid = benodigdheidService.geefBenodigdheidPerId(benodigdheid.getId());
-			geupdatetVoorstel.getBenodigdhedenLijst().add(nieuweBenodigdheid);
+			nieuweBenodigdheden.add(nieuweBenodigdheid);
 		}
-		System.out.println(geupdatetVoorstel.getBenodigdhedenLijst());
+		voorstel.setBenodigdhedenLijst(nieuweBenodigdheden);
 		this.voorstelService.slaVoorstelOp(voorstel);
 	}
 
