@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import nl.topicus.topiconfbackend.domain.Voorstel;
 
-
 @Service
 public class VoorstelService {
 
@@ -31,9 +30,10 @@ public class VoorstelService {
 	}
 
 	public void slaVoorstelEnSprekerOp(Voorstel voorstel, Spreker spreker) {
-		voorstelRepository.save(voorstel);
 		spreker.setVoorstel(voorstel);
+		voorstel.setSpreker(spreker);
 		sprekerRepository.save(spreker);
+		voorstelRepository.save(voorstel);
 	}
 
 }

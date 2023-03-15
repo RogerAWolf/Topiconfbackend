@@ -1,6 +1,9 @@
 package nl.topicus.topiconfbackend.domain;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 @Entity
@@ -11,8 +14,6 @@ public class Voorstel {
     private long id;
 
     @OneToMany
-    private List<Benodigdheid> benodigdhedenLijst;
-
     private String voornaam;
     private String achternaam;
     private String onderwerp;
@@ -20,9 +21,14 @@ public class Voorstel {
     private String status = "ongezien";
     private String eMail;
     private int tijdsduur;
-    private int maxCapaciteit;
+    private int maximaleCapaciteit;
     private boolean isVeranderd;
     private String extraOpmerkingen;
+    private List<Benodigdheid> benodigdhedenLijst;
+    @OneToOne
+    private Categorie categorie;
+    @OneToOne
+    private Spreker spreker;
 
     public List<Benodigdheid> getBenodigdhedenLijst() {
         return benodigdhedenLijst;
@@ -47,14 +53,6 @@ public class Voorstel {
     public void setVeranderd(boolean veranderd) {
         isVeranderd = veranderd;
     }
-
-
-    @OneToOne
-    private Categorie categorie;
-
-    @OneToOne
-    private Spreker spreker;
-
 
     public long getId() {
         return id;
@@ -120,10 +118,12 @@ public class Voorstel {
         this.categorie = categorie;
     }
 
+    @JsonIgnore
     public Spreker getSpreker() {
         return spreker;
     }
-
+    
+    @JsonIgnore
     public void setSpreker(Spreker spreker) {
         this.spreker = spreker;
     }
@@ -136,11 +136,11 @@ public class Voorstel {
         this.tijdsduur = tijdsduur;
     }
 
-    public int getMaxCapaciteit() {
-        return maxCapaciteit;
+    public int getMaximaleCapaciteit() {
+        return maximaleCapaciteit;
     }
 
-    public void setMaxCapaciteit(int maxCapaciteit) {
-        this.maxCapaciteit = maxCapaciteit;
+    public void setMaximaleCapaciteit(int maximaleCapaciteit) {
+        this.maximaleCapaciteit = maximaleCapaciteit;
     }
 }
