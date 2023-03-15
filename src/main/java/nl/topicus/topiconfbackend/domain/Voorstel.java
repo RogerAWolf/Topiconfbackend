@@ -19,6 +19,8 @@ public class Voorstel {
     private String samenvatting;
     private String status = "ongezien";
     private String eMail;
+    private int tijdsduur;
+    private int maxCapaciteit;
     private boolean isVeranderd;
     private String extraOpmerkingen;
 
@@ -124,5 +126,21 @@ public class Voorstel {
 
     public void setSpreker(Spreker spreker) {
         this.spreker = spreker;
+    }
+
+    public int getTijdsduur() {
+        return tijdsduur;
+    }
+
+    public void setTijdsduur(int tijdsduur) {
+        this.tijdsduur = tijdsduur;
+    }
+
+    public int getMaxCapaciteit() {
+        return maxCapaciteit;
+    }
+
+    public void setMaxCapaciteit(int maxCapaciteit) {
+        this.maxCapaciteit = maxCapaciteit;
     }
 }
