@@ -14,17 +14,18 @@ public class Voorstel {
     private long id;
 
     @OneToMany
+    private List<Benodigdheid> benodigdhedenLijst;
+
     private String voornaam;
     private String achternaam;
     private String onderwerp;
     private String samenvatting;
     private String status = "ongezien";
     private String eMail;
+    private int tijdsduur;
+    private int maximaleCapaciteit;
     private boolean isVeranderd;
     private String extraOpmerkingen;
-    private String tijdsduur;
-    private String maximaleCapaciteit;
-    private List<Benodigdheid> benodigdhedenLijst;
     @OneToOne
     private Categorie categorie;
     @OneToOne
@@ -128,19 +129,19 @@ public class Voorstel {
         this.spreker = spreker;
     }
 
-    public String getTijdsduur() {
+    public int getTijdsduur() {
         return tijdsduur;
     }
 
-    public void setTijdsduur(String tijdsduur) {
+    public void setTijdsduur(int tijdsduur) {
         this.tijdsduur = tijdsduur;
     }
 
-    public String getMaximaleCapaciteit() {
+    public int getMaximaleCapaciteit() {
         return maximaleCapaciteit;
     }
 
-    public void setMaximaleCapaciteit(String maximaleCapaciteit) {
+    public void setMaximaleCapaciteit(int maximaleCapaciteit) {
         this.maximaleCapaciteit = maximaleCapaciteit;
     }
 }

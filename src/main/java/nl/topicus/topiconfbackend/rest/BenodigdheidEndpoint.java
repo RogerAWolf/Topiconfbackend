@@ -11,6 +11,11 @@ public class BenodigdheidEndpoint {
     @Autowired
     BenodigdheidService benodigdheidService;
 
+    @GetMapping("benodigdheid/geefBenodigdheidPerId/{benodigdheidid}")
+    public Benodigdheid geefBenodigdheidPerId(@PathVariable("benodigdheidid") int benodigdheidid){
+        return benodigdheidService.geefBenodigdheidPerId(benodigdheidid);
+    }
+
     @GetMapping("benodigdheid/geefAlleBenodigdheden")
     public Iterable<Benodigdheid> geefAlleBenodigdheden(){
         return benodigdheidService.geefAlleBenodigdheden();
