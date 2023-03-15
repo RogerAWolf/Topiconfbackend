@@ -14,7 +14,6 @@ public class Voorstel {
     private long id;
 
     @OneToMany
-    private List<Benodigdheid> benodigdhedenLijst;
     private String voornaam;
     private String achternaam;
     private String onderwerp;
@@ -25,6 +24,7 @@ public class Voorstel {
     private String extraOpmerkingen;
     private String tijdsduur;
     private String maximaleCapaciteit;
+    private List<Benodigdheid> benodigdhedenLijst;
     @OneToOne
     private Categorie categorie;
     @OneToOne
@@ -134,5 +134,13 @@ public class Voorstel {
 
     public void setTijdsduur(String tijdsduur) {
         this.tijdsduur = tijdsduur;
+    }
+
+    public String getMaximaleCapaciteit() {
+        return maximaleCapaciteit;
+    }
+
+    public void setMaximaleCapaciteit(String maximaleCapaciteit) {
+        this.maximaleCapaciteit = maximaleCapaciteit;
     }
 }
