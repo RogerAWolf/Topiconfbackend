@@ -40,7 +40,7 @@ public class VoorstelEndPointIT {
 		when(categorieService.findById(1)).thenReturn(categorie);
 		
 		//When
-		voorstelEndPoint.slaVoorstelOp(voorstel, 1);
+		voorstelEndPoint.slaVoorstelOp(voorstel);
 		
 		//Then
 		assertEquals(categorie, voorstel.getCategorie());
@@ -86,7 +86,7 @@ public class VoorstelEndPointIT {
 		voorstel.setId(id);
 		
 		//When
-		voorstelEndPoint.updateVoorstel(id, voorstel);
+		voorstelEndPoint.updateVoorstel(voorstel);
 		
 		//Then
 		verify(voorstelService).slaVoorstelOp(voorstel);
