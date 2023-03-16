@@ -21,6 +21,7 @@ public class BenodigdheidEndpoint {
         return benodigdheidService.geefAlleBenodigdheden();
     }
 
+
     @PostMapping("benodigdheid/slaBenodigdheidOp")
     public void slaBenodigdheidOp(@RequestBody Benodigdheid benodigdheid){
         benodigdheidService.slaBenodigdheidOp(benodigdheid);
