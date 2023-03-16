@@ -39,6 +39,7 @@ public class EvenementEndpoint {
 		return evenementService.geefAlleVoorstellenPerEvenement(evenement);
 	}
 
+	@CrossOrigin
 	@GetMapping("evenement/geefEvenementPerId/{evenementid}")
 	public Evenement geefEvenementPerId(@PathVariable("evenementid") int evenementid){
 		return evenementService.findById(evenementid);

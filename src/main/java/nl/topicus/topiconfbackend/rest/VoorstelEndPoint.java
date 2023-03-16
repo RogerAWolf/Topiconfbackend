@@ -65,6 +65,12 @@ public class VoorstelEndPoint {
 		voorstel.setBenodigdhedenLijst(nieuweBenodigdheden);
 		this.voorstelService.slaVoorstelOp(voorstel);
 	}
+	@CrossOrigin
+	@PutMapping("voorstel/updateVoorstel/{id}")
+	public void updateVoorstel(@PathVariable long id, @RequestBody Voorstel voorstel) {
+		this.voorstelService.slaVoorstelOp(voorstel);
+	}
+
 
 	@PostMapping("voorstel/voegSprekerAanVoorstelToe/{id}")
 	public void voegSprekerAanVoorstelToe(@PathVariable long id, @RequestBody Voorstel voorstel){
