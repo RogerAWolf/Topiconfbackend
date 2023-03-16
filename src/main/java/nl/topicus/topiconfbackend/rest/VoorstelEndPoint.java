@@ -88,4 +88,10 @@ public class VoorstelEndPoint {
 		voorstelService.findById(voorstelid).getBenodigdhedenLijst().add(benodigdheid);
 	}
 
+	@GetMapping("voorstel/geefBenodigdhedenPerVoorstel/{voorstelid}")
+	public List<Benodigdheid> geefBenodigdhedenPerVoorstel(@PathVariable("voorstelid") int voorstelid){
+		Voorstel huidigVoorstel = voorstelService.findById(voorstelid);
+		return huidigVoorstel.getBenodigdhedenLijst();
+	}
+
 }
