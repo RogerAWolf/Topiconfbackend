@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import nl.topicus.topiconfbackend.domain.Voorstel;
 
-
 @Service
 public class VoorstelService {
 
@@ -14,6 +13,9 @@ public class VoorstelService {
 
 	@Autowired
 	SprekerRepository sprekerRepository;
+
+	@Autowired
+	BenodigdheidRepository benodigdheidRepository;
 
 	public void slaVoorstelOp(Voorstel voorstel) {
 		this.voorstelRepository.save(voorstel);

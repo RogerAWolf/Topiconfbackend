@@ -15,12 +15,15 @@ public class Voorstel {
 
     @OneToMany
     private List<Benodigdheid> benodigdhedenLijst;
+
     private String voornaam;
     private String achternaam;
     private String onderwerp;
     private String samenvatting;
     private String status = "ongezien";
     private String eMail;
+    private int tijdsduur;
+    private int maximaleCapaciteit;
     private boolean isVeranderd;
     private String extraOpmerkingen;
     @OneToOne
@@ -28,7 +31,6 @@ public class Voorstel {
     @OneToOne
     private Spreker spreker;
 
-    
     public List<Benodigdheid> getBenodigdhedenLijst() {
         return benodigdhedenLijst;
     }
@@ -125,5 +127,21 @@ public class Voorstel {
     @JsonIgnore
     public void setSpreker(Spreker spreker) {
         this.spreker = spreker;
+    }
+
+    public int getTijdsduur() {
+        return tijdsduur;
+    }
+
+    public void setTijdsduur(int tijdsduur) {
+        this.tijdsduur = tijdsduur;
+    }
+
+    public int getMaximaleCapaciteit() {
+        return maximaleCapaciteit;
+    }
+
+    public void setMaximaleCapaciteit(int maximaleCapaciteit) {
+        this.maximaleCapaciteit = maximaleCapaciteit;
     }
 }
