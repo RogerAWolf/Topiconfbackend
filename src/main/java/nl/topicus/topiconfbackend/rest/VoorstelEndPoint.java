@@ -65,6 +65,12 @@ public class VoorstelEndPoint {
 		voorstel.setBenodigdhedenLijst(nieuweBenodigdheden);
 		this.voorstelService.slaVoorstelOp(voorstel);
 	}
+	@CrossOrigin
+	@PutMapping("voorstel/updateVoorstel/{id}")
+	public void updateVoorstel(@PathVariable long id, @RequestBody Voorstel voorstel) {
+		this.voorstelService.slaVoorstelOp(voorstel);
+	}
+
 
 
 	@PostMapping("voorstel/voegSprekerAanVoorstelToe/{id}")
@@ -81,6 +87,12 @@ public class VoorstelEndPoint {
 	public void voegBenodigdheidAanVoorstelToe(@PathVariable("voorstelid") int voorstelid, @PathVariable("benodigdheidid") int benodigdheidid){
 		Benodigdheid benodigdheid = benodigdheidService.geefBenodigdheidPerId(benodigdheidid);
 		voorstelService.findById(voorstelid).getBenodigdhedenLijst().add(benodigdheid);
+	}
+
+	@GetMapping("voorstel/geefBenodigdhedenPerVoorstel/{voorstelid}")
+	public List<Benodigdheid> geefBenodigdhedenPerVoorstel(@PathVariable("voorstelid") int voorstelid){
+		Voorstel huidigVoorstel = voorstelService.findById(voorstelid);
+		return huidigVoorstel.getBenodigdhedenLijst();
 	}
 
 }
