@@ -13,7 +13,7 @@ public class Voorstel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Benodigdheid> benodigdhedenLijst;
 
     private String voornaam;
