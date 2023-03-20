@@ -87,4 +87,17 @@ public class EvenementEndpoint {
 	public void verwijderEvenement(@PathVariable("evenementid") int evenementid) {
 		evenementService.verwijderEvenement(evenementid);
 	}
+
+	@PutMapping("evenement/updateEvenement/{evenementid}")
+	public void updateEvenement(@PathVariable("evenementid") int evenementid, @RequestBody Evenement evenement)
+	{
+		evenementService.slaEvenementOp(evenement);
+	}
+
+	@PutMapping("/evenement/verwijderOrganisatorVanEvenement/{evenementid}")
+	public void updateOrganisatorVoorEvenement(@PathVariable("evenementid") int evenementid, @RequestParam("organisatorid") int organisatorid)
+	{
+		Evenement evenement = evenementService.findById(evenementid);
+//		List<Persoon> persoonList = evenement.getVoorstelLijst()
+	}
 }
