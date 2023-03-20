@@ -1,5 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +29,12 @@ public class Evenement {
 	)
 	private List<Persoon> persoonLijst;
 
+	@JsonIgnore
 	public List<Persoon> getPersoonLijst() {
 		return persoonLijst;
 	}
 
+	@JsonIgnore
 	public void setPersoonLijst(List<Persoon> persoonLijst) {
 		this.persoonLijst = persoonLijst;
 	}
