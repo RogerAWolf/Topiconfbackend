@@ -19,6 +19,22 @@ public class Evenement {
 	@OneToMany
 	private List<Locatie> locatieLijst = new ArrayList<Locatie>();
 
+	@ManyToMany
+	@JoinTable(
+			name = "evenement_organisatorlijst",
+			joinColumns = @JoinColumn(name = "evenement_id"),
+			inverseJoinColumns = @JoinColumn(name = "persoon_id")
+	)
+	private List<Persoon> persoonLijst;
+
+	public List<Persoon> getPersoonLijst() {
+		return persoonLijst;
+	}
+
+	public void setPersoonLijst(List<Persoon> persoonLijst) {
+		this.persoonLijst = persoonLijst;
+	}
+
 	private String naam;
 	private String omschrijving;
 	private LocalDateTime beginDatumTijd;

@@ -1,7 +1,10 @@
 package nl.topicus.topiconfbackend.rest;
 
+import java.util.List;
 import java.util.Optional;
 
+import nl.topicus.topiconfbackend.domain.Evenement;
+import nl.topicus.topiconfbackend.persistence.EvenementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,9 @@ import nl.topicus.topiconfbackend.persistence.PersoonService;
 
 @RestController
 public class PersoonEndpoint {
+
+	@Autowired
+	EvenementService evenementService;
 
 	@Autowired
 	PersoonService persoonService;
@@ -48,5 +54,12 @@ public class PersoonEndpoint {
 	public Persoon geefPersoonPerId(@PathVariable long id){
 		return persoonService.findById(id);
 	}
+
+	@GetMapping("persoon/geefEvenementenPerPersoon/{persoonid}")
+	public List<Evenement> geefEvenementenPerPersoon(@PathVariable("persoonid") int persoonid){
+		Persoon huidigPersoon = persoonService.findById(persoonid);
+		return huidigPersoon.getEvenementenLijst();
+	}
+
 
 }

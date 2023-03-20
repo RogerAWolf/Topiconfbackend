@@ -14,7 +14,7 @@ public class Benodigdheid {
     private String description;
 
     @ManyToMany(mappedBy = "benodigdhedenLijst")
-    List<Voorstel> benodigdheden;
+    private List<Voorstel> voorstellen;
 
     public long getId() {
         return id;
