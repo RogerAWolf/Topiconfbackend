@@ -1,6 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Benodigdheid {
@@ -11,6 +12,9 @@ public class Benodigdheid {
 
     private String name;
     private String description;
+
+    @ManyToMany(mappedBy = "benodigdhedenLijst")
+    private List<Voorstel> voorstellen;
 
     public long getId() {
         return id;

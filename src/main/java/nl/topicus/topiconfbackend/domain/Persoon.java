@@ -1,9 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Persoon {
@@ -23,8 +21,19 @@ public class Persoon {
     private String email;
     private String rol;  //s = spreker, o = organisator, a = administrator
 
+    @ManyToMany(mappedBy = "persoonLijst")
+    private List<Evenement> evenementenLijst;
+
     public long getId() {
         return id;
+    }
+
+    public List<Evenement> getEvenementenLijst() {
+        return evenementenLijst;
+    }
+
+    public void setEvenementenLijst(List<Evenement> evenementenLijst) {
+        this.evenementenLijst = evenementenLijst;
     }
 
     public void setId(long id) {

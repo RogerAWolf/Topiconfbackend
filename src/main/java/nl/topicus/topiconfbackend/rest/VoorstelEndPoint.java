@@ -56,15 +56,6 @@ public class VoorstelEndPoint {
     @PutMapping("voorstel/updateVoorstel")
     public void updateVoorstel(@RequestBody Voorstel voorstel) {
         voorstel.setVeranderd(true);
-        System.out.println("======");
-        List<Benodigdheid> nieuweBenodigdheden = new ArrayList<>();
-//        for (Benodigdheid benodigdheid : voorstel.getBenodigdhedenLijst()) {
-//            System.out.println(voorstel.getBenodigdhedenLijst());
-//            System.out.println("x");
-//            Benodigdheid nieuweBenodigdheid = benodigdheidService.geefBenodigdheidPerId(benodigdheid.getId());
-//            nieuweBenodigdheden.add(nieuweBenodigdheid);
-//        }
-//        voorstel.setBenodigdhedenLijst(nieuweBenodigdheden);
         this.voorstelService.slaVoorstelOp(voorstel);
     }
 
