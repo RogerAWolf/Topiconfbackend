@@ -15,6 +15,7 @@ public class EmailDetails {
 
     // Class data members
 //    private String sender;
+    private String from;
     private String recipient;
     private String msgBody;
     private String subject;

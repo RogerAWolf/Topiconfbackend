@@ -13,9 +13,6 @@ public class Voorstel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Benodigdheid> benodigdhedenLijst;
-
     private String voornaam;
     private String achternaam;
     private String onderwerp;
@@ -30,6 +27,13 @@ public class Voorstel {
     private Categorie categorie;
     @OneToOne
     private Spreker spreker;
+
+    @ManyToMany
+    @JoinTable(
+            name = "voorstel_benodigdheden",
+            joinColumns = @JoinColumn(name = "voorstel_id"),
+            inverseJoinColumns = @JoinColumn(name = "benodigdheid_id"))
+    List<Benodigdheid> benodigdhedenLijst;
 
     public List<Benodigdheid> getBenodigdhedenLijst() {
         return benodigdhedenLijst;
@@ -123,7 +127,7 @@ public class Voorstel {
     public Spreker getSpreker() {
         return spreker;
     }
-    
+
     @JsonIgnore
     public void setSpreker(Spreker spreker) {
         this.spreker = spreker;

@@ -3,6 +3,7 @@ package nl.topicus.topiconfbackend.persistence;
 import nl.topicus.topiconfbackend.domain.EmailDetails;
 import java.io.File;
 import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +36,7 @@ public class EmailServiceImpl implements EmailService {
                     = new SimpleMailMessage();
 
             // Setting up necessary details
+            mailMessage.setFrom("r.rooseboom@workingspirit.nl");
             mailMessage.setTo(details.getRecipient());
             mailMessage.setText(details.getMsgBody());
             mailMessage.setSubject(details.getSubject());
