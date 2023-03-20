@@ -22,6 +22,7 @@ import nl.topicus.topiconfbackend.domain.Persoon;
 
 public class PersoonServiceIT {
 	
+	// Deze variabelen worden gebruikt om de te testen objecten en data bij te houden.
 	@Mock
 	private PersoonRepository persoonRep;
 	private static final Persoon mockedPersoon1;
@@ -29,14 +30,17 @@ public class PersoonServiceIT {
 	private static final Optional<Persoon> myPersoon;
 	private static final ArrayList<Persoon> persoonLijst;
 	
+	// Dit injecteert de mock-objecten in de serviceklasse.
 	@InjectMocks
 	private PersoonService persoonService;
 	
+	// Dit is de constructor, die de mock-objecten initialiseert.
 	public PersoonServiceIT() {
 		
 		MockitoAnnotations.openMocks(this);
 	}
 	
+	// Hier maken we 2x een mockedPersoon om te gebruiken in de testen
 	static {
 		mockedPersoon1 = new Persoon();
 		mockedPersoon1.setId(1L);
@@ -59,25 +63,31 @@ public class PersoonServiceIT {
 		persoonLijst.add(mockedPersoon2);
 	}
 	
+	
+	// Deze methode test of een persoon correct wordt opgeslagen aan de database.
 	@ParameterizedTest
 	@MethodSource
 	public void testToevoegenPersoon(Persoon persoon) {
-		
+		//assert om te Controleren of het opslaan van een persoon correct werkt
 		assertNotNull(persoon);
 		assertEquals(true, persoonService.slaPersoonOp(persoon));
 		assertEquals(false, persoonService.slaPersoonOp(null));
 	}
 	
+	// Deze methode test of alle personen in de database correct worden opgehaald.
 	@Test
 	public void testBekijkPersoon() {
 		
 		//Given
+		// Mocking van de findAll() methode van de PersoonRepository
 		Mockito.when(this.persoonRep.findAll()).thenReturn(this.persoonLijst);
 		
 		//When
+		// Ophalen van de Persoon objecten via de PersoonService
 		Iterable<Persoon> persoonLijstFromService = ((PersoonService) this.persoonRep).geefAllePersonen();
 		
 		//Then
+		// Asserts om te controleren of de opgehaalde Persoon objecten correct zijn
 		assertNotNull(persoonLijstFromService);
 		
 		int i = 0;
@@ -107,17 +117,22 @@ public class PersoonServiceIT {
 		}
 	}
 	
+	// Deze methode test of een persoon correct wordt opgehaald aan de hand van het gegeven persoonId
 	@ParameterizedTest
 	@ValueSource(longs = 1L)
 	public void testFindById(long persoonId) {
 		
 		//Given
+		// Maak een mock van de PersoonRepository en geef terug dat de mock een Persoon-object teruggeeft, 
+		// als findById() wordt aangeroepen met het gegeven persoonId
 		Mockito.when(this.persoonRep.findById(persoonId)).thenReturn(this.myPersoon);
 		
 		//When
+		// Roep de findById()-methode aan op de PersoonService met het gegeven persoonId
 		Persoon persoonFromService = this.persoonService.findById(persoonId);
 		
 		//Then
+		// Verifieer dat het Persoon-object dat teruggegeven wordt door de PersoonService voldoet aan de verwachte waarden
 		assertNotNull(persoonFromService);
 		assertEquals(persoonId, persoonFromService.getId());
 		assertEquals("Henk", persoonFromService.getVoornaam());

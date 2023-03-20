@@ -23,54 +23,56 @@ import java.util.List;
 @RestController
 public class VoorstelEndPoint {
 
-	@Autowired
-	VoorstelService voorstelService;
+    @Autowired
+    VoorstelService voorstelService;
 
-	@Autowired
+    @Autowired
     CategorieService categorieService;
 
-	@Autowired
-	BenodigdheidService benodigdheidService;
-	
-	// add request to database
-	// frontend will make sure that all fields are filled
-	
-	@CrossOrigin
-	@PostMapping("voorstel/slaVoorstelOp")
-	public void slaVoorstelOp(@RequestBody Voorstel voorstel) {
-		this.voorstelService.slaVoorstelOp(voorstel);
-	}
+    @Autowired
+    BenodigdheidService benodigdheidService;
 
-	@GetMapping("voorstel/geefAlleVoorstellen")
-	public Iterable<Voorstel> geefAlleVoorstellen(){
-		return this.voorstelService.geefAlleVoorstellen();
-	}
+    // add request to database
+    // frontend will make sure that all fields are filled
 
-	@GetMapping("voorstel/geefVoorstelPerId/{id}")
-	public Voorstel geefVoorstelPerId(@PathVariable("id") long id){
-		return this.voorstelService.findById(id);
-	}
-	
-	// not able to use yet
-	@CrossOrigin
-	@PutMapping("voorstel/updateVoorstel")
-	public void updateVoorstel(@RequestBody Voorstel voorstel) {
-		voorstel.setVeranderd(true);
+    @CrossOrigin
+    @PostMapping("voorstel/slaVoorstelOp")
+    public void slaVoorstelOp(@RequestBody Voorstel voorstel) {
+        this.voorstelService.slaVoorstelOp(voorstel);
+    }
 
-		List<Benodigdheid> nieuweBenodigdheden = new ArrayList<>();
-		for(Benodigdheid benodigdheid: voorstel.getBenodigdhedenLijst()){
-			Benodigdheid nieuweBenodigdheid = benodigdheidService.geefBenodigdheidPerId(benodigdheid.getId());
-			nieuweBenodigdheden.add(nieuweBenodigdheid);
-		}
-		voorstel.setBenodigdhedenLijst(nieuweBenodigdheden);
-		this.voorstelService.slaVoorstelOp(voorstel);
-	}
-	@CrossOrigin
-	@PutMapping("voorstel/updateVoorstel/{id}")
-	public void updateVoorstel(@PathVariable long id, @RequestBody Voorstel voorstel) {
-		this.voorstelService.slaVoorstelOp(voorstel);
-	}
+    @GetMapping("voorstel/geefAlleVoorstellen")
+    public Iterable<Voorstel> geefAlleVoorstellen() {
+        return this.voorstelService.geefAlleVoorstellen();
+    }
 
+    @GetMapping("voorstel/geefVoorstelPerId/{id}")
+    public Voorstel geefVoorstelPerId(@PathVariable("id") long id) {
+        return this.voorstelService.findById(id);
+    }
+
+    // not able to use yet
+    @CrossOrigin
+    @PutMapping("voorstel/updateVoorstel")
+    public void updateVoorstel(@RequestBody Voorstel voorstel) {
+        voorstel.setVeranderd(true);
+        System.out.println("======");
+        List<Benodigdheid> nieuweBenodigdheden = new ArrayList<>();
+//        for (Benodigdheid benodigdheid : voorstel.getBenodigdhedenLijst()) {
+//            System.out.println(voorstel.getBenodigdhedenLijst());
+//            System.out.println("x");
+//            Benodigdheid nieuweBenodigdheid = benodigdheidService.geefBenodigdheidPerId(benodigdheid.getId());
+//            nieuweBenodigdheden.add(nieuweBenodigdheid);
+//        }
+//        voorstel.setBenodigdhedenLijst(nieuweBenodigdheden);
+        this.voorstelService.slaVoorstelOp(voorstel);
+    }
+
+    @CrossOrigin
+    @PutMapping("voorstel/updateVoorstel/{id}")
+    public void updateVoorstel(@PathVariable long id, @RequestBody Voorstel voorstel) {
+        this.voorstelService.slaVoorstelOp(voorstel);
+    }
 
 
 	@PostMapping("voorstel/voegSprekerAanVoorstelToe/{id}")
@@ -83,16 +85,17 @@ public class VoorstelEndPoint {
 		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 
-	@PostMapping("voorstel/voegBenodigdheidAanVoorstelToe/{voorstelid}/{benodigdheidid}")
-	public void voegBenodigdheidAanVoorstelToe(@PathVariable("voorstelid") int voorstelid, @PathVariable("benodigdheidid") int benodigdheidid){
-		Benodigdheid benodigdheid = benodigdheidService.geefBenodigdheidPerId(benodigdheidid);
-		voorstelService.findById(voorstelid).getBenodigdhedenLijst().add(benodigdheid);
-	}
 
-	@GetMapping("voorstel/geefBenodigdhedenPerVoorstel/{voorstelid}")
-	public List<Benodigdheid> geefBenodigdhedenPerVoorstel(@PathVariable("voorstelid") int voorstelid){
-		Voorstel huidigVoorstel = voorstelService.findById(voorstelid);
-		return huidigVoorstel.getBenodigdhedenLijst();
-	}
+    @PostMapping("voorstel/voegBenodigdheidAanVoorstelToe/{voorstelid}/{benodigdheidid}")
+    public void voegBenodigdheidAanVoorstelToe(@PathVariable("voorstelid") int voorstelid, @PathVariable("benodigdheidid") int benodigdheidid) {
+        Benodigdheid benodigdheid = benodigdheidService.geefBenodigdheidPerId(benodigdheidid);
+        voorstelService.findById(voorstelid).getBenodigdhedenLijst().add(benodigdheid);
+    }
+
+    @GetMapping("voorstel/geefBenodigdhedenPerVoorstel/{voorstelid}")
+    public List<Benodigdheid> geefBenodigdhedenPerVoorstel(@PathVariable("voorstelid") int voorstelid) {
+        Voorstel huidigVoorstel = voorstelService.findById(voorstelid);
+        return huidigVoorstel.getBenodigdhedenLijst();
+    }
 
 }
