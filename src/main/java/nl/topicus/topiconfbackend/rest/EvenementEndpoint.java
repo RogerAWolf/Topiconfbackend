@@ -1,11 +1,14 @@
 package nl.topicus.topiconfbackend.rest;
 
 import nl.topicus.topiconfbackend.domain.*;
+import nl.topicus.topiconfbackend.persistence.PersoonService;
 import nl.topicus.topiconfbackend.persistence.VoorstelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import nl.topicus.topiconfbackend.persistence.EvenementService;
+
+import java.util.List;
 
 @RestController
 public class EvenementEndpoint {
@@ -15,6 +18,9 @@ public class EvenementEndpoint {
 
 	@Autowired
 	VoorstelService voorstelService;
+
+	@Autowired
+	PersoonService persoonService;
 
 	@GetMapping("evenement/geefAlleEvenementen")
 	public Iterable<Evenement> geefAlleEvenementen() {
@@ -97,7 +103,12 @@ public class EvenementEndpoint {
 	@PutMapping("/evenement/verwijderOrganisatorVanEvenement/{evenementid}")
 	public void updateOrganisatorVoorEvenement(@PathVariable("evenementid") int evenementid, @RequestParam("organisatorid") int organisatorid)
 	{
+		System.out.println(evenementid);
 		Evenement evenement = evenementService.findById(evenementid);
-//		List<Persoon> persoonList = evenement.getVoorstelLijst()
+		List<Persoon> persoonList = evenement.getPersoonLijst();
+		Persoon persoon = persoonService.findById(organisatorid);
+		persoonList.remove(persoon);
+		evenement.setPersoonLijst(persoonList);
+		evenementService.slaEvenementOp(evenement);
 	}
 }
