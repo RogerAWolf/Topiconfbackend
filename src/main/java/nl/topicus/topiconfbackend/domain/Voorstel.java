@@ -33,7 +33,7 @@ public class Voorstel {
             name = "voorstel_benodigdheden",
             joinColumns = @JoinColumn(name = "voorstel_id"),
             inverseJoinColumns = @JoinColumn(name = "benodigdheid_id"))
-    List<Benodigdheid> benodigdhedenLijst;
+    private List<Benodigdheid> benodigdhedenLijst;
 
     public List<Benodigdheid> getBenodigdhedenLijst() {
         return benodigdhedenLijst;
