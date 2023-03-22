@@ -2,18 +2,15 @@ package nl.topicus.topiconfbackend.rest;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import nl.topicus.topiconfbackend.domain.Evenement;
+import nl.topicus.topiconfbackend.domain.security.User;
 import nl.topicus.topiconfbackend.persistence.EvenementService;
+import nl.topicus.topiconfbackend.persistence.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.web.bind.annotation.*;
 
 import nl.topicus.topiconfbackend.domain.Persoon;
 import nl.topicus.topiconfbackend.persistence.PersoonService;
@@ -27,6 +24,9 @@ public class PersoonEndpoint {
 
 	@Autowired
 	PersoonService persoonService;
+
+	@Autowired
+	UserService userService;
 	
 	//add request to database
 	//fronted will make sure that all fields are filled
@@ -61,5 +61,34 @@ public class PersoonEndpoint {
 		return huidigPersoon.getEvenementenLijst();
 	}
 
+	@PostMapping("/user/checkUserCredentials")
+	public boolean checkUserCredentials(@RequestBody User user){
+		User currentUser = userService.findByUsername(user.getUsername());
+		if(BCrypt.checkpw(user.getInput(), currentUser.getPassword())){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
+	@PostMapping("user/createNewUser")
+	public String createNewUser(@RequestBody User user){
+		User newUser = new User();
+		String randomPassword = generateRandomPassword(8);
+		String hashedPW = BCrypt.hashpw(randomPassword, BCrypt.gensalt());
+		newUser.setPassword(hashedPW);
+		newUser.setUsername(user.getUsername());
+		userService.saveUser(newUser);
+		return randomPassword;
+	}
+
+	public String generateRandomPassword(int lengte){
+		String randomPassword = "";
+		for(int i = 0; i < lengte; i++){
+			Random r = new Random();
+			char c = (char)(r.nextInt(26) + 'a');
+			randomPassword += c;
+		}
+		return randomPassword;
+	}
 }

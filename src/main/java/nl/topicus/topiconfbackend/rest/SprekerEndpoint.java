@@ -2,6 +2,7 @@ package nl.topicus.topiconfbackend.rest;
 
 import java.util.Optional;
 
+import nl.topicus.topiconfbackend.domain.Voorstel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,4 +50,10 @@ public class SprekerEndpoint {
 		return sprekerService.findById(id);
 	}
 
+	@PutMapping("spreker/updateSpreker/{sprekerid}")
+	public void updateSpreker(@PathVariable("sprekerid") int sprekerid, @RequestBody Voorstel voorstel){
+		Spreker spreker = sprekerService.findById(sprekerid);
+		spreker.getVoorstelLijst().add(voorstel);
+		sprekerService.slaSprekerOp(spreker);
+	}
 }
