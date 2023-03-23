@@ -1,6 +1,9 @@
 package nl.topicus.topiconfbackend.domain;
 
+import nl.topicus.topiconfbackend.domain.security.User;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +23,7 @@ public class Persoon {
     private String achternaam;
     private String email;
     private String rol;  //s = spreker, o = organisator, a = administrator
+    private String password;
 
     @ManyToMany(mappedBy = "persoonLijst")
     private List<Evenement> evenementenLijst;
@@ -70,5 +74,13 @@ public class Persoon {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
