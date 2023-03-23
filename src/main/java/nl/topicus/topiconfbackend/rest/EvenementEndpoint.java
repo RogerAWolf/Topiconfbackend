@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import nl.topicus.topiconfbackend.persistence.EvenementService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -86,7 +87,6 @@ public class EvenementEndpoint {
 		spreker1.setAchternaam(voorstel.getAchternaam());
 		spreker1.setEmail(voorstel.geteMail());
 		spreker1.setRol("s");
-		System.out.println(voorstel + "\n" + spreker1);
 		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 	

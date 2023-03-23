@@ -1,9 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Categorie {
@@ -14,6 +12,9 @@ public class Categorie {
 
     private String name;
     private String description;
+
+    @ManyToMany(mappedBy = "categorieLijst")
+    private List<Evenement> evenementLijst;
 
     public long getId() {
         return id;
@@ -37,5 +38,13 @@ public class Categorie {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Evenement> getEvenementLijst() {
+        return evenementLijst;
+    }
+
+    public void setEvenementLijst(List<Evenement> evenementLijst) {
+        this.evenementLijst = evenementLijst;
     }
 }
