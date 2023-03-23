@@ -30,7 +30,7 @@ public class VoorstelService {
 	}
 
 	public void slaVoorstelEnSprekerOp(Voorstel voorstel, Spreker spreker) {
-		spreker.getVoorstelLijst().add(voorstel);
+//		spreker.getVoorstelLijst().add(voorstel);                hier breekt het endpoint voegvoorstelaanevenementtoe af.
 		voorstel.setSpreker(spreker);
 		sprekerRepository.save(spreker);
 		voorstelRepository.save(voorstel);
