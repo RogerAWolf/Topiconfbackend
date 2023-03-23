@@ -30,9 +30,11 @@ public class VoorstelService {
 	}
 
 	public void slaVoorstelEnSprekerOp(Voorstel voorstel, Spreker spreker) {
+//		spreker.getVoorstelLijst().add(voorstel);
 		spreker.setVoorstel(voorstel);
-		voorstel.setSpreker(spreker);
 		sprekerRepository.save(spreker);
+//		voorstel.getSprekerLijst().add(spreker);
+		voorstel.setSpreker(spreker);
 		voorstelRepository.save(voorstel);
 	}
 

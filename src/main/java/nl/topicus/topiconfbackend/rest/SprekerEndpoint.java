@@ -2,6 +2,8 @@ package nl.topicus.topiconfbackend.rest;
 
 import java.util.Optional;
 
+import nl.topicus.topiconfbackend.domain.Voorstel;
+import nl.topicus.topiconfbackend.persistence.VoorstelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,10 @@ public class SprekerEndpoint {
 
 	@Autowired
 	SprekerService sprekerService;
-	
+
+	@Autowired
+	VoorstelService voorstelService;
+
 	//add request to database
 	//fronted will make sure that all fields are filled
 	
@@ -49,4 +54,11 @@ public class SprekerEndpoint {
 		return sprekerService.findById(id);
 	}
 
+	@PutMapping("spreker/voegVoorstelAanSprekerToe/{persoonid}")
+	public void voegVoorstelAanSprekerToe(@PathVariable("persoonid") int sprekerid, @RequestBody Voorstel voorstel){
+		voorstelService.slaVoorstelOp(voorstel);
+		Spreker spreker = sprekerService.findById(sprekerid);
+		spreker.getVoorstelLijst().add(voorstel);
+		sprekerService.slaSprekerOp(spreker);
+	}
 }
