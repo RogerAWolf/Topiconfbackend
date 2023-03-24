@@ -13,9 +13,6 @@ public class Categorie {
     private String name;
     private String description;
 
-    @ManyToMany(mappedBy = "categorieLijst")
-    private List<Evenement> evenementLijst;
-
     public long getId() {
         return id;
     }
@@ -38,13 +35,5 @@ public class Categorie {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<Evenement> getEvenementLijst() {
-        return evenementLijst;
-    }
-
-    public void setEvenementLijst(List<Evenement> evenementLijst) {
-        this.evenementLijst = evenementLijst;
     }
 }
