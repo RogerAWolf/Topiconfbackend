@@ -14,12 +14,7 @@ public class Evenement {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 
-	@ManyToMany
-	@JoinTable(
-			name = "categorieen_per_evenement",
-			joinColumns = @JoinColumn(name = "evenement_id"),
-			inverseJoinColumns = @JoinColumn(name = "categorie_id")
-	)
+	@OneToMany
 	private List<Categorie> categorieLijst = new ArrayList<Categorie>();
 
 	@OneToMany
