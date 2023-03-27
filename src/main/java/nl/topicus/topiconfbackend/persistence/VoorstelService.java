@@ -26,16 +26,13 @@ public class VoorstelService {
 	}
 
 	public Voorstel findById(long id){
-		 return voorstelRepository.findById(id).get();
+		return voorstelRepository.findById(id).get();
 	}
 
 	public void slaVoorstelEnSprekerOp(Voorstel voorstel, Spreker spreker) {
-//		spreker.getVoorstelLijst().add(voorstel);
-		spreker.setVoorstel(voorstel);
-		sprekerRepository.save(spreker);
-//		voorstel.getSprekerLijst().add(spreker);
+//		spreker.getVoorstelLijst().add(voorstel);                hier breekt het endpoint voegvoorstelaanevenementtoe af.
 		voorstel.setSpreker(spreker);
+		sprekerRepository.save(spreker);
 		voorstelRepository.save(voorstel);
 	}
-
 }

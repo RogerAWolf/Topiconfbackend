@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import nl.topicus.topiconfbackend.persistence.EvenementService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController

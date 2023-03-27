@@ -17,7 +17,11 @@ public class EmailDetails {
 //    private String sender;
     private String from;
     private String recipient;
-    public String getRecipient() {
+	private String msgBody;
+    private String subject;
+    private String attachment;
+
+	public String getRecipient() {
 		return recipient;
 	}
 	public void setRecipient(String recipient) {
@@ -41,7 +45,4 @@ public class EmailDetails {
 	public void setAttachment(String attachment) {
 		this.attachment = attachment;
 	}
-	private String msgBody;
-    private String subject;
-    private String attachment;
 }

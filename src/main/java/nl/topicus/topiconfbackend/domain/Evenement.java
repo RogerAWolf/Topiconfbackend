@@ -16,8 +16,10 @@ public class Evenement {
 
 	@OneToMany
 	private List<Categorie> categorieLijst = new ArrayList<Categorie>();
+
 	@OneToMany
 	private List<Voorstel> voorstelLijst = new ArrayList<Voorstel>();
+
 	@OneToMany
 	private List<Locatie> locatieLijst = new ArrayList<Locatie>();
 
@@ -84,18 +86,22 @@ public class Evenement {
 		this.eindDatumTijd = eindDatumTijd;
 	}
 
+	@JsonIgnore
 	public List<Categorie> getCategorieLijst() {
 		return categorieLijst;
 	}
 
+	@JsonIgnore
 	public void setCategorieLijst(List<Categorie> categorieLijst) {
 		this.categorieLijst = categorieLijst;
 	}
 
+	@JsonIgnore
 	public List<Voorstel> getVoorstelLijst() {
 		return voorstelLijst;
 	}
 
+	@JsonIgnore
 	public void setVoorstelLijst(List<Voorstel> voorstelLijst) {
 		this.voorstelLijst = voorstelLijst;
 	}

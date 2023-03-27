@@ -3,7 +3,6 @@ package nl.topicus.topiconfbackend.rest;
 import java.util.Optional;
 
 import nl.topicus.topiconfbackend.domain.Voorstel;
-import nl.topicus.topiconfbackend.persistence.VoorstelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,23 +23,20 @@ public class SprekerEndpoint {
 	@Autowired
 	SprekerService sprekerService;
 
-	@Autowired
-	VoorstelService voorstelService;
-
 	//add request to database
 	//fronted will make sure that all fields are filled
-	
+
 	@CrossOrigin
 	@PostMapping("spreker/slaSprekerOp")
 	public void slaSprekerOp(@RequestBody Spreker spreker) {
 		sprekerService.slaSprekerOp(spreker);
 	}
-	
+
 	@GetMapping("spreker/geefAlleSprekers")
 	public Iterable<Spreker> geefAlleSprekers() {
 		return sprekerService.geefAlleSprekers();
 	}
-	
+
 	//not able to use yet
 	@CrossOrigin
 	@PutMapping("spreker/updateSpreker/{id}")
@@ -54,9 +50,8 @@ public class SprekerEndpoint {
 		return sprekerService.findById(id);
 	}
 
-	@PutMapping("spreker/voegVoorstelAanSprekerToe/{persoonid}")
-	public void voegVoorstelAanSprekerToe(@PathVariable("persoonid") int sprekerid, @RequestBody Voorstel voorstel){
-		voorstelService.slaVoorstelOp(voorstel);
+	@PutMapping("spreker/updateSpreker/{sprekerid}")
+	public void updateSpreker(@PathVariable("sprekerid") int sprekerid, @RequestBody Voorstel voorstel){
 		Spreker spreker = sprekerService.findById(sprekerid);
 		spreker.getVoorstelLijst().add(voorstel);
 		sprekerService.slaSprekerOp(spreker);

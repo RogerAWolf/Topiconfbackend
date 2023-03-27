@@ -74,9 +74,4 @@ public class EvenementService {
 	public Iterable<Evenement> geefEvenementPerNaam(String naam) {
 		return evenementRepository.findEvenementsByNaam(naam);
 	}
-
-
-
-
-
 }
