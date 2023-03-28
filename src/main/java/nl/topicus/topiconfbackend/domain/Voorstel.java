@@ -25,7 +25,7 @@ public class Voorstel {
     private String extraOpmerkingen;
     @OneToOne
     private Categorie categorie;
-    @OneToOne
+    @ManyToOne
     private Spreker spreker;
 
     @ManyToMany

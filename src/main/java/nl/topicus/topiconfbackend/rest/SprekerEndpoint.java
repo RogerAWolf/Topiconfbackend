@@ -1,8 +1,13 @@
 package nl.topicus.topiconfbackend.rest;
 
+import java.util.List;
 import java.util.Optional;
 
+import nl.topicus.topiconfbackend.domain.Evenement;
+import nl.topicus.topiconfbackend.domain.Persoon;
 import nl.topicus.topiconfbackend.domain.Voorstel;
+import nl.topicus.topiconfbackend.persistence.PersoonService;
+import nl.topicus.topiconfbackend.persistence.VoorstelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +27,9 @@ public class SprekerEndpoint {
 
 	@Autowired
 	SprekerService sprekerService;
+
+	@Autowired
+	VoorstelService voorstelService;
 	
 	//add request to database
 	//fronted will make sure that all fields are filled
@@ -50,10 +58,19 @@ public class SprekerEndpoint {
 		return sprekerService.findById(id);
 	}
 
-	@PutMapping("spreker/updateSpreker/{sprekerid}")
+	@PutMapping("spreker/voegVoorstelAanSprekerToe/{sprekerid}")
 	public void updateSpreker(@PathVariable("sprekerid") int sprekerid, @RequestBody Voorstel voorstel){
 		Spreker spreker = sprekerService.findById(sprekerid);
+		voorstel.setSpreker(spreker);
+		voorstelService.slaVoorstelOp(voorstel);
 		spreker.getVoorstelLijst().add(voorstel);
 		sprekerService.slaSprekerOp(spreker);
+	}
+
+	@GetMapping("spreker/geefVoorstellenPerSpreker/{sprekerid}")
+	public List<Voorstel> geefVoorstellenPerSpreker(@PathVariable("sprekerid") int sprekerid){
+		Spreker huidigeSpreker = sprekerService.findById(sprekerid);
+		System.out.println("Voorstellen van: " + huidigeSpreker.getVoornaam());
+		return huidigeSpreker.getVoorstelLijst();
 	}
 }

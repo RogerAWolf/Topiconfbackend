@@ -87,6 +87,9 @@ public class EvenementEndpoint {
 		spreker1.setAchternaam(voorstel.getAchternaam());
 		spreker1.setEmail(voorstel.geteMail());
 		spreker1.setRol("s");
+		List <Voorstel> voorstelLijst = new ArrayList<>();
+		voorstelLijst.add(voorstel);
+		spreker1.setVoorstelLijst(voorstelLijst); //NIEUW
 		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 	
