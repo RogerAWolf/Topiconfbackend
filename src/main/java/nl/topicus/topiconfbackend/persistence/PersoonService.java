@@ -28,4 +28,6 @@ public class PersoonService {
 		 return persoonRepository.findById(id).get();
 	}
 
+	public void deleteById(long id) {persoonRepository.deleteById(id);}
+
 }
