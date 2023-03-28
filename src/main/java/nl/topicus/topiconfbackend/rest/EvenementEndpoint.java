@@ -107,12 +107,19 @@ public class EvenementEndpoint {
 	@PutMapping("/evenement/verwijderOrganisatorVanEvenement/{evenementid}")
 	public void updateOrganisatorVoorEvenement(@PathVariable("evenementid") int evenementid, @RequestParam("organisatorid") int organisatorid)
 	{
-		System.out.println(evenementid);
 		Evenement evenement = evenementService.findById(evenementid);
-		List<Persoon> persoonList = evenement.getPersoonLijst();
-		Persoon persoon = persoonService.findById(organisatorid);
-		persoonList.remove(persoon);
-		evenement.setPersoonLijst(persoonList);
+		Persoon teVerwijderenPersoon = persoonService.findById(organisatorid);
+		evenement.getPersoonLijst().remove(teVerwijderenPersoon);
 		evenementService.slaEvenementOp(evenement);
+	}
+
+	@PostMapping("/evenement/voegOrganisatorToeAanEvenement/{evenementid}")
+	public void voegOrganisatorToeAanEvenement(@PathVariable("evenementid") int evenementid, @RequestBody Organisator organisator){
+		Persoon nieuweOrganisator = organisator;
+		nieuweOrganisator.setRol("o");
+		persoonService.slaPersoonOp(nieuweOrganisator);
+		Evenement huidigEvenement = evenementService.findById(evenementid);
+		huidigEvenement.getPersoonLijst().add(nieuweOrganisator);
+		evenementService.slaEvenementOp(huidigEvenement);
 	}
 }
