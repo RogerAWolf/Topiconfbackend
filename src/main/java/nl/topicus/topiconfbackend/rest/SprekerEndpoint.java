@@ -33,18 +33,18 @@ public class SprekerEndpoint {
 	
 	//add request to database
 	//fronted will make sure that all fields are filled
-	
+
 	@CrossOrigin
 	@PostMapping("spreker/slaSprekerOp")
 	public void slaSprekerOp(@RequestBody Spreker spreker) {
 		sprekerService.slaSprekerOp(spreker);
 	}
-	
+
 	@GetMapping("spreker/geefAlleSprekers")
 	public Iterable<Spreker> geefAlleSprekers() {
 		return sprekerService.geefAlleSprekers();
 	}
-	
+
 	//not able to use yet
 	@CrossOrigin
 	@PutMapping("spreker/updateSpreker/{id}")
