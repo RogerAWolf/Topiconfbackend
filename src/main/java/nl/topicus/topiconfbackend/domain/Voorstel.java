@@ -25,8 +25,11 @@ public class Voorstel {
     private String extraOpmerkingen;
     @OneToOne
     private Categorie categorie;
-    @OneToOne
+    @ManyToOne
     private Spreker spreker;
+
+    @ManyToMany(mappedBy = "voorstelLijst")
+    private List<Spreker> sprekerLijst;
 
     @ManyToMany
     @JoinTable(
@@ -131,6 +134,16 @@ public class Voorstel {
     @JsonIgnore
     public void setSpreker(Spreker spreker) {
         this.spreker = spreker;
+    }
+
+    @JsonIgnore
+    public List<Spreker> getSprekerLijst() {
+        return sprekerLijst;
+    }
+
+    @JsonIgnore
+    public void setSprekerLijst(List<Spreker> sprekerLijst) {
+        this.sprekerLijst = sprekerLijst;
     }
 
     public int getTijdsduur() {
