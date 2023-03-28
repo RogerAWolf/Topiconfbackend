@@ -1,6 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class Evenement {
 			inverseJoinColumns = @JoinColumn(name = "persoon_id")
 	)
 	private List<Persoon> persoonLijst;
+
 
 	public List<Persoon> getPersoonLijst() {
 		return persoonLijst;

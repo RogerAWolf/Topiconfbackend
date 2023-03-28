@@ -1,5 +1,6 @@
 package nl.topicus.topiconfbackend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import nl.topicus.topiconfbackend.domain.security.User;
 
 import javax.persistence.*;

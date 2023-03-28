@@ -55,7 +55,6 @@ public class OrganisatorEndpoint {
 	@GetMapping("organisator/geefOrganisatorsPerEvenementId/{evenementid}")
 	public Iterable<Persoon> geefOrganisatorsPerEvenement(@PathVariable("evenementid") int evenementid)
 	{
-		System.out.println(evenementid);
 		return organisatorService.geefAlleOrganisatorsPerEvenement(evenementid);
 	}
 

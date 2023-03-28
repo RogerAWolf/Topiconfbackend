@@ -17,6 +17,9 @@ public class OrganisatorService {
     @Autowired
     PersoonRepository persoonRepository;
 
+    @Autowired
+    EvenementRepository evenementRepository;
+
     public void slaOrganisatorOp(Organisator organisator) {
         organisatorRepository.save(organisator);
     }
@@ -29,11 +32,9 @@ public class OrganisatorService {
         return organisatorRepository.findById(id).get();
     }
 
-    public Iterable<Persoon> geefAlleOrganisatorsPerEvenement(int id)
+    public Iterable<Persoon> geefAlleOrganisatorsPerEvenement(long evenementid)
     {
-        Iterable<Long> organisatorIds = organisatorRepository.geefAlleOrganisatorsVanDitEvenement(id);
-        Iterable<Persoon> organisators = persoonRepository.findAllById(organisatorIds);
-        return organisators;
+        return evenementRepository.findById(evenementid).get().getPersoonLijst();
     }
 
 }
