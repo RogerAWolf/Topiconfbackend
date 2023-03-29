@@ -26,7 +26,7 @@ public class VoorstelService {
 	}
 
 	public Voorstel findById(long id){
-		 return voorstelRepository.findById(id).get();
+		return voorstelRepository.findById(id).get();
 	}
 
 	public void slaVoorstelEnSprekerOp(Voorstel voorstel, Spreker spreker) {
@@ -35,5 +35,4 @@ public class VoorstelService {
 		sprekerRepository.save(spreker);
 		voorstelRepository.save(voorstel);
 	}
-
 }
