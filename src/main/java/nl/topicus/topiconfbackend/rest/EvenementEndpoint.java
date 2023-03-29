@@ -98,7 +98,12 @@ public class EvenementEndpoint {
 	@PutMapping("evenement/updateEvenement/{evenementid}")
 	public void updateEvenement(@PathVariable("evenementid") int evenementid, @RequestBody Evenement evenement)
 	{
-		evenementService.slaEvenementOp(evenement);
+		Evenement teUpdatenEvenement = evenementService.findById(evenementid);
+		teUpdatenEvenement.setNaam(evenement.getNaam());
+		teUpdatenEvenement.setOmschrijving(evenement.getOmschrijving());
+		teUpdatenEvenement.setBeginDatumTijd(evenement.getBeginDatumTijd());
+		teUpdatenEvenement.setEindDatumTijd(evenement.getEindDatumTijd());
+		evenementService.slaEvenementOp(teUpdatenEvenement);
 	}
 
 	@PutMapping("/evenement/verwijderOrganisatorVanEvenement/{evenementid}")
