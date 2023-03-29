@@ -31,11 +31,12 @@ public class CategorieEndpoint {
         return categorieService.findById(categorieid);
     }
 
-    @DeleteMapping("categorie/verwijderCategorie/{categorieid}")
-    public void verwijderCategorie(@PathVariable("categorieid") int categorieid, @RequestParam("id") int id){
-        Evenement evenement = evenementService.findById(id);
-        Categorie categorie = categorieService.findById(categorieid);
-        evenement.getCategorieLijst().remove(categorie);
+    @DeleteMapping("categorie/verwijderCategorie/{evenementid}/{categorieid}")
+    public void verwijderCategorie(@PathVariable("evenementid") int evenementid, @PathVariable("categorieid") int categorieid){
+        Evenement evenement = evenementService.findById(evenementid);
+        Categorie teVerwijderenCategorie = categorieService.findById(categorieid);
+        evenement.getCategorieLijst().remove(teVerwijderenCategorie);
         categorieService.verwijderCategorie(categorieid);
+        evenementService.slaEvenementOp(evenement);
     }
 }
