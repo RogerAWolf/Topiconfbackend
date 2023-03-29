@@ -4,6 +4,7 @@ import nl.topicus.topiconfbackend.domain.Benodigdheid;
 import nl.topicus.topiconfbackend.domain.Spreker;
 import nl.topicus.topiconfbackend.persistence.BenodigdheidService;
 import nl.topicus.topiconfbackend.persistence.CategorieService;
+import nl.topicus.topiconfbackend.persistence.EvenementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,9 @@ public class VoorstelEndPoint {
     CategorieService categorieService;
 
     @Autowired
+    EvenementService evenementService;
+
+    @Autowired
     BenodigdheidService benodigdheidService;
 
     // add request to database
@@ -52,19 +56,20 @@ public class VoorstelEndPoint {
     }
 
     // not able to use yet
-    @CrossOrigin
-    @PutMapping("voorstel/updateVoorstel")
-    public void updateVoorstel(@RequestBody Voorstel voorstel) {
-        voorstel.setVeranderd(true);
-        this.voorstelService.slaVoorstelOp(voorstel);
-    }
+//    @CrossOrigin
+//    @PutMapping("voorstel/updateVoorstel")
+//    public void updateVoorstel(@RequestBody Voorstel voorstel) {
+//        voorstel.setVeranderd(true);
+//        this.voorstelService.slaVoorstelOp(voorstel);
+//    }
 
     @CrossOrigin
     @PutMapping("voorstel/updateVoorstel/{id}")
     public void updateVoorstel(@PathVariable long id, @RequestBody Voorstel voorstel) {
+        Voorstel oudVoorstel = voorstelService.findById(id);
+        voorstel.setCategorie(oudVoorstel.getCategorie());
         this.voorstelService.slaVoorstelOp(voorstel);
     }
-
 
 	@PostMapping("voorstel/voegSprekerAanVoorstelToe/{id}")
 	public void voegSprekerAanVoorstelToe(@PathVariable long id, @RequestBody Voorstel voorstel){
