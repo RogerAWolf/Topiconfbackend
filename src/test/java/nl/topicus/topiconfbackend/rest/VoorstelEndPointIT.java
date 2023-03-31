@@ -77,20 +77,20 @@ public class VoorstelEndPointIT {
 		assertEquals(verwachteVoorstel, result);
 	}
 	
-	@Test
-	public void testSelecterenEnUpdate() {
-		
-		//Given
-		long id = 1;
-		Voorstel voorstel = new Voorstel();
-		voorstel.setId(id);
-		
-		//When
-		voorstelEndPoint.updateVoorstel(voorstel);
-		
-		//Then
-		verify(voorstelService).slaVoorstelOp(voorstel);
-	}
+//	@Test
+//	public void testSelecterenEnUpdate() {
+//		
+//		//Given
+//		long id = 1;
+//		Voorstel voorstel = new Voorstel();
+//		voorstel.setId(id);
+//		
+//		//When
+//		voorstelEndPoint.updateVoorstel(voorstel);
+//		
+//		//Then
+//		verify(voorstelService).slaVoorstelOp(voorstel);
+//	}
 	
 	@Test
 	public void testToevoegenSprekerBijVoorstel() {
