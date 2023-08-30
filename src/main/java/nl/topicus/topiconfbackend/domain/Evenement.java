@@ -1,6 +1,7 @@
 package nl.topicus.topiconfbackend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,12 +15,7 @@ public class Evenement {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
 
-	@ManyToMany
-	@JoinTable(
-			name = "categorieen_per_evenement",
-			joinColumns = @JoinColumn(name = "evenement_id"),
-			inverseJoinColumns = @JoinColumn(name = "categorie_id")
-	)
+	@OneToMany
 	private List<Categorie> categorieLijst = new ArrayList<Categorie>();
 
 	@OneToMany
@@ -36,7 +32,7 @@ public class Evenement {
 	)
 	private List<Persoon> persoonLijst;
 
-	@JsonIgnore
+
 	public List<Persoon> getPersoonLijst() {
 		return persoonLijst;
 	}
@@ -91,22 +87,18 @@ public class Evenement {
 		this.eindDatumTijd = eindDatumTijd;
 	}
 
-	@JsonIgnore
 	public List<Categorie> getCategorieLijst() {
 		return categorieLijst;
 	}
 
-	@JsonIgnore
 	public void setCategorieLijst(List<Categorie> categorieLijst) {
 		this.categorieLijst = categorieLijst;
 	}
 
-	@JsonIgnore
 	public List<Voorstel> getVoorstelLijst() {
 		return voorstelLijst;
 	}
 
-	@JsonIgnore
 	public void setVoorstelLijst(List<Voorstel> voorstelLijst) {
 		this.voorstelLijst = voorstelLijst;
 	}

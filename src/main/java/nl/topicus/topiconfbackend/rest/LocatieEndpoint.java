@@ -1,6 +1,9 @@
 package nl.topicus.topiconfbackend.rest;
 
+import nl.topicus.topiconfbackend.domain.Categorie;
+import nl.topicus.topiconfbackend.domain.Evenement;
 import nl.topicus.topiconfbackend.domain.Locatie;
+import nl.topicus.topiconfbackend.persistence.EvenementService;
 import nl.topicus.topiconfbackend.persistence.LocatieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,9 @@ public class LocatieEndpoint {
 
     @Autowired
     private LocatieService locatieService;
+    
+    @Autowired
+    private EvenementService evenementService;
 
     @GetMapping("locatie/geefAlleLocaties")
     public Iterable<Locatie> geefAlleLocaties(){
@@ -21,8 +27,21 @@ public class LocatieEndpoint {
         locatieService.slaLocatieOp(locatie);
     }
 
-    @DeleteMapping("locatie/verwijderLocatie/{locatieid}")
-    public void verwijderLocatie(@PathVariable("locatieid") int locatieid){
+    @DeleteMapping("locatie/verwijderLocatie/{evenementid}/{locatieid}")
+    public void verwijderLocatie(@PathVariable("evenementid") int evenementid, @PathVariable("locatieid") int locatieid){
+        Evenement evenement = evenementService.findById(evenementid);
+        Locatie teVerwijderenLocatie = locatieService.findById(locatieid);
+        evenement.getLocatieLijst().remove(teVerwijderenLocatie);
         locatieService.verwijderLocatie(locatieid);
+        evenementService.slaEvenementOp(evenement);
+    }
+
+    @DeleteMapping("locatie/verwijderLocatie/{locatieid}")
+    public void verwijderLocatie(@PathVariable("locatieid") long locatieid, @RequestParam("evenementid") long evenementid){
+        Evenement evenement = evenementService.findById(evenementid);
+        Locatie teVerwijderenLocatie = locatieService.findById(locatieid);
+        evenement.getLocatieLijst().remove(teVerwijderenLocatie);
+        locatieService.verwijderLocatie(locatieid);
+        evenementService.slaEvenementOp(evenement);
     }
 }

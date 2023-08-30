@@ -1,7 +1,9 @@
 package nl.topicus.topiconfbackend.rest;
 
+import java.util.List;
 import java.util.Optional;
 
+import nl.topicus.topiconfbackend.domain.Persoon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +49,13 @@ public class OrganisatorEndpoint {
 	@GetMapping("organisator/geefOrganisatorPerId/{id}")
 	public Organisator geefOrganisatorPerId(@PathVariable long id){
 		return organisatorService.findById(id);
+	}
+
+
+	@GetMapping("organisator/geefOrganisatorsPerEvenementId/{evenementid}")
+	public Iterable<Persoon> geefOrganisatorsPerEvenement(@PathVariable("evenementid") int evenementid)
+	{
+		return organisatorService.geefAlleOrganisatorsPerEvenement(evenementid);
 	}
 
 }

@@ -17,4 +17,3 @@ public class Spreker extends Persoon {
         this.voorstelLijst = voorstelLijst;
     }
 }
-

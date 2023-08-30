@@ -12,4 +12,13 @@ public class Organisator extends Persoon{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@Override
+	public long getId(){
+		return this.id;
+	}
+
+//	@Override
+//	public String getAchternaam(){
+//		return this.getAchternaam();
+//	}
 }

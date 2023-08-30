@@ -87,6 +87,9 @@ public class EvenementEndpoint {
 		spreker1.setAchternaam(voorstel.getAchternaam());
 		spreker1.setEmail(voorstel.geteMail());
 		spreker1.setRol("s");
+		List <Voorstel> voorstelLijst = new ArrayList<>();
+		voorstelLijst.add(voorstel);
+		spreker1.setVoorstelLijst(voorstelLijst); //NIEUW
 		voorstelService.slaVoorstelEnSprekerOp(voorstel, spreker1);
 	}
 	
@@ -98,18 +101,30 @@ public class EvenementEndpoint {
 	@PutMapping("evenement/updateEvenement/{evenementid}")
 	public void updateEvenement(@PathVariable("evenementid") int evenementid, @RequestBody Evenement evenement)
 	{
-		evenementService.slaEvenementOp(evenement);
+		Evenement teUpdatenEvenement = evenementService.findById(evenementid);
+		teUpdatenEvenement.setNaam(evenement.getNaam());
+		teUpdatenEvenement.setOmschrijving(evenement.getOmschrijving());
+		teUpdatenEvenement.setBeginDatumTijd(evenement.getBeginDatumTijd());
+		teUpdatenEvenement.setEindDatumTijd(evenement.getEindDatumTijd());
+		evenementService.slaEvenementOp(teUpdatenEvenement);
 	}
 
 	@PutMapping("/evenement/verwijderOrganisatorVanEvenement/{evenementid}")
 	public void updateOrganisatorVoorEvenement(@PathVariable("evenementid") int evenementid, @RequestParam("organisatorid") int organisatorid)
 	{
-		System.out.println(evenementid);
 		Evenement evenement = evenementService.findById(evenementid);
-		List<Persoon> persoonList = evenement.getPersoonLijst();
-		Persoon persoon = persoonService.findById(organisatorid);
-		persoonList.remove(persoon);
-		evenement.setPersoonLijst(persoonList);
+		Persoon teVerwijderenPersoon = persoonService.findById(organisatorid);
+		evenement.getPersoonLijst().remove(teVerwijderenPersoon);
 		evenementService.slaEvenementOp(evenement);
+	}
+
+	@PostMapping("/evenement/voegOrganisatorToeAanEvenement/{evenementid}")
+	public void voegOrganisatorToeAanEvenement(@PathVariable("evenementid") int evenementid, @RequestBody Organisator organisator){
+		Persoon nieuweOrganisator = organisator;
+		nieuweOrganisator.setRol("o");
+		persoonService.slaPersoonOp(nieuweOrganisator);
+		Evenement huidigEvenement = evenementService.findById(evenementid);
+		huidigEvenement.getPersoonLijst().add(nieuweOrganisator);
+		evenementService.slaEvenementOp(huidigEvenement);
 	}
 }

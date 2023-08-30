@@ -1,8 +1,14 @@
 package nl.topicus.topiconfbackend.rest;
 
+import java.util.List;
 import java.util.Optional;
 
+import nl.topicus.topiconfbackend.domain.Evenement;
+import nl.topicus.topiconfbackend.domain.Persoon;
 import nl.topicus.topiconfbackend.domain.Voorstel;
+import nl.topicus.topiconfbackend.persistence.EvenementService;
+import nl.topicus.topiconfbackend.persistence.PersoonService;
+import nl.topicus.topiconfbackend.persistence.VoorstelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,21 +28,27 @@ public class SprekerEndpoint {
 
 	@Autowired
 	SprekerService sprekerService;
+
+	@Autowired
+	VoorstelService voorstelService;
+
+	@Autowired
+	EvenementService evenementService;
 	
 	//add request to database
 	//fronted will make sure that all fields are filled
-	
+
 	@CrossOrigin
 	@PostMapping("spreker/slaSprekerOp")
 	public void slaSprekerOp(@RequestBody Spreker spreker) {
 		sprekerService.slaSprekerOp(spreker);
 	}
-	
+
 	@GetMapping("spreker/geefAlleSprekers")
 	public Iterable<Spreker> geefAlleSprekers() {
 		return sprekerService.geefAlleSprekers();
 	}
-	
+
 	//not able to use yet
 	@CrossOrigin
 	@PutMapping("spreker/updateSpreker/{id}")
@@ -50,10 +62,21 @@ public class SprekerEndpoint {
 		return sprekerService.findById(id);
 	}
 
-	@PutMapping("spreker/updateSpreker/{sprekerid}")
-	public void updateSpreker(@PathVariable("sprekerid") int sprekerid, @RequestBody Voorstel voorstel){
+	@PutMapping("spreker/voegVoorstelAanSprekerToe/{sprekerid}/{evenementid}")
+	public void updateSpreker(@PathVariable("sprekerid") int sprekerid, @PathVariable("evenementid") int evenementid, @RequestBody Voorstel voorstel){
 		Spreker spreker = sprekerService.findById(sprekerid);
+		voorstel.setSpreker(spreker);
+		voorstelService.slaVoorstelOp(voorstel);
+		Evenement evenement = evenementService.findById(evenementid);
+		evenement.getVoorstelLijst().add(voorstel);
+		evenementService.slaEvenementOp(evenement);
 		spreker.getVoorstelLijst().add(voorstel);
 		sprekerService.slaSprekerOp(spreker);
+	}
+
+	@GetMapping("spreker/geefVoorstellenPerSpreker/{sprekerid}")
+	public List<Voorstel> geefVoorstellenPerSpreker(@PathVariable("sprekerid") int sprekerid){
+		Spreker huidigeSpreker = sprekerService.findById(sprekerid);
+		return huidigeSpreker.getVoorstelLijst();
 	}
 }

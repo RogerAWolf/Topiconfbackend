@@ -1,15 +1,11 @@
 package nl.topicus.topiconfbackend.persistence;
 
-import nl.topicus.topiconfbackend.domain.Locatie;
-import nl.topicus.topiconfbackend.domain.Categorie;
+import nl.topicus.topiconfbackend.domain.*;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import nl.topicus.topiconfbackend.domain.Voorstel;
-import nl.topicus.topiconfbackend.domain.Evenement;
 
 @Service
 public class EvenementService {
@@ -74,9 +70,4 @@ public class EvenementService {
 	public Iterable<Evenement> geefEvenementPerNaam(String naam) {
 		return evenementRepository.findEvenementsByNaam(naam);
 	}
-
-
-
-
-
 }

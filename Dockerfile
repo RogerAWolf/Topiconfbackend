@@ -1,5 +1,5 @@
 FROM maven:3.8.5-openjdk-11 as build
-WORKDIR /usr/src/scaffolded
+WORKDIR /src/main/java/nl/topicus/topiconfbackend
 COPY . .
 RUN mvn --batch-mode package
 RUN cp target/*jar target/app.jar
